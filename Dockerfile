@@ -40,7 +40,7 @@ RUN if [ -f composer.json ]; then composer install --no-dev --optimize-autoloade
 # Create uploads directory
 RUN mkdir -p /var/www/html/uploads && chown -R www-data:www-data /var/www/html/uploads
 
-# Configure Apache
+# Configure Apache VirtualHost
 RUN echo '<VirtualHost *:80>\n\
     DocumentRoot /var/www/html\n\
     <Directory /var/www/html>\n\
@@ -52,12 +52,17 @@ RUN echo '<VirtualHost *:80>\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
 </VirtualHost>' > /etc/apache2/sites-available/000-default.conf
 
+# Add ServerName to suppress warning
+RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
+
 # Set proper permissions
 RUN chown -R www-data:www-data /var/www/html \
     && find /var/www/html -type f -exec chmod 644 {} \; \
     && find /var/www/html -type d -exec chmod 755 {} \;
 
-# Expose port 80
+# Railway uses dynamic PORT - update Apache to listen on it
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+CMD bash -c "sed -i \"s/Listen 80/Listen \${PORT:-80}/g\" /etc/apache2/ports.conf && \
+    sed -i \"s/*:80/*:\${PORT:-80}/g\" /etc/apache2/sites-available/000-default.conf && \
+    apache2-foreground"
