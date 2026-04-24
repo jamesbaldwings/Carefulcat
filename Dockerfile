@@ -21,12 +21,15 @@ RUN apt-get update && apt-get install -y \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Fix Apache MPM conflict - disable ALL mpm modules then enable only prefork
+RUN for mpm in mpm_event mpm_worker mpm_prefork; do \
+        a2dismod $mpm 2>/dev/null || true; \
+    done \
+    && a2enmod mpm_prefork \
+    && a2enmod rewrite headers
 
-# Fix MPM conflict and enable Apache modules
-RUN a2dismod mpm_event 2>/dev/null || true \
-    && a2enmod mpm_prefork rewrite headers
+# Verify only one MPM is enabled
+RUN ls /etc/apache2/mods-enabled/ | grep mpm
 
 # Set working directory
 WORKDIR /var/www/html
@@ -34,14 +37,11 @@ WORKDIR /var/www/html
 # Copy application files
 COPY public_html/ /var/www/html/
 
-# Install PHP dependencies if composer.json exists
-RUN if [ -f composer.json ]; then composer install --no-dev --optimize-autoloader --no-interaction; fi
-
 # Create uploads directory
 RUN mkdir -p /var/www/html/uploads && chown -R www-data:www-data /var/www/html/uploads
 
 # Configure Apache VirtualHost
-RUN echo '<VirtualHost *:80>\n\
+RUN printf '<VirtualHost *:80>\n\
     DocumentRoot /var/www/html\n\
     <Directory /var/www/html>\n\
         AllowOverride All\n\
@@ -50,7 +50,7 @@ RUN echo '<VirtualHost *:80>\n\
     </Directory>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-</VirtualHost>' > /etc/apache2/sites-available/000-default.conf
+</VirtualHost>\n' > /etc/apache2/sites-available/000-default.conf
 
 # Add ServerName to suppress warning
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
@@ -62,8 +62,6 @@ RUN chown -R www-data:www-data /var/www/html \
 
 # Railway uses dynamic PORT - update Apache to listen on it
 EXPOSE 80
-
 CMD bash -c "sed -i \"s/Listen 80/Listen \${PORT:-80}/g\" /etc/apache2/ports.conf && \
     sed -i \"s/*:80/*:\${PORT:-80}/g\" /etc/apache2/sites-available/000-default.conf && \
     apache2-foreground"
-# Build Fri Apr 24 01:36:17 EDT 2026
