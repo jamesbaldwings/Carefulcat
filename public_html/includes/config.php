@@ -1,11 +1,11 @@
 <?php
 /**
- * Configuration File - FIXED VERSION
- * Load environment variables and define constants
- * FIXES: HTTPS detection, secure session cookies, consistent paths
+ * Configuration File - Railway-compatible version
+ * Reads from environment variables (set in Railway dashboard)
+ * Falls back to .env file for local development
  */
 
-// Load environment variables from .env file
+// Load environment variables from .env file (for local dev only)
 function loadEnv($path) {
     if (!file_exists($path)) {
         return;
@@ -14,6 +14,9 @@ function loadEnv($path) {
     $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     foreach ($lines as $line) {
         if (strpos(trim($line), '#') === 0) {
+            continue;
+        }
+        if (strpos($line, '=') === false) {
             continue;
         }
         
@@ -28,15 +31,17 @@ function loadEnv($path) {
     }
 }
 
-// Load .env file
+// Load .env file (local dev)
 loadEnv(__DIR__ . '/../.env');
 
-// Database Configuration - UPDATED FOR HOSTINGER
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'u774526707_carefulcat_db');
-define('DB_USER', 'u774526707_carefulcat_db');
-define('DB_PASS', 'Vum3317!!!!');
-define('DB_PORT', getenv('DB_PORT') ?: '3306');
+// Database Configuration - reads from environment variables (Railway injects these)
+// Railway MySQL service provides: MYSQLHOST, MYSQLPORT, MYSQLDATABASE, MYSQLUSER, MYSQLPASSWORD
+// Also supports standard DB_* variables
+define('DB_HOST', getenv('MYSQLHOST') ?: getenv('DB_HOST') ?: 'localhost');
+define('DB_NAME', getenv('MYSQLDATABASE') ?: getenv('DB_NAME') ?: 'carefulcat_db');
+define('DB_USER', getenv('MYSQLUSER') ?: getenv('DB_USER') ?: 'carefulcat_user');
+define('DB_PASS', getenv('MYSQLPASSWORD') ?: getenv('DB_PASS') ?: '');
+define('DB_PORT', getenv('MYSQLPORT') ?: getenv('DB_PORT') ?: '3306');
 define('DB_CHARSET', 'utf8mb4');
 
 // Stripe Configuration
@@ -44,7 +49,7 @@ define('STRIPE_SECRET_KEY', getenv('STRIPE_SECRET_KEY') ?: '');
 define('STRIPE_PUBLIC_KEY', getenv('STRIPE_PUBLIC_KEY') ?: '');
 define('STRIPE_WEBHOOK_SECRET', getenv('STRIPE_WEBHOOK_SECRET') ?: '');
 
-// Detect HTTPS - FIXED
+// Detect HTTPS - handles Railway's proxy
 $isHttps = (
     (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ||
     (!empty($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') ||
@@ -52,20 +57,21 @@ $isHttps = (
     (!empty($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == 443)
 );
 
-// Site Configuration - UPDATED FOR PRODUCTION
+// Site Configuration
+$siteUrl = getenv('SITE_URL') ?: ($isHttps ? 'https' : 'http') . '://' . ($_SERVER['HTTP_HOST'] ?? 'carefulcat.org');
 $protocol = $isHttps ? 'https' : 'http';
-define('SITE_URL', $protocol . '://carefulcat.org');
+define('SITE_URL', rtrim($siteUrl, '/'));
 define('SITE_NAME', getenv('SITE_NAME') ?: 'Careful Cat Rescue');
 define('SITE_EMAIL', getenv('SITE_EMAIL') ?: 'info@carefulcatrescue.org');
 
-// Path Configuration - FIXED FOR ROOT DEPLOYMENT (no /public/ subdirectory)
+// Path Configuration
 define('ROOT_PATH', dirname(__DIR__));
 define('PUBLIC_PATH', ROOT_PATH);
 define('UPLOAD_PATH', ROOT_PATH . '/uploads');
 define('ASSETS_PATH', ROOT_PATH . '/assets');
 
-// URL Configuration - FIXED FOR ROOT DEPLOYMENT
-define('BASE_URL', rtrim(SITE_URL, '/'));
+// URL Configuration
+define('BASE_URL', SITE_URL);
 define('ASSETS_URL', BASE_URL . '/assets');
 define('UPLOADS_URL', BASE_URL . '/uploads');
 
@@ -76,11 +82,13 @@ define('ALLOWED_VIDEO_TYPES', explode(',', getenv('ALLOWED_VIDEO_TYPES') ?: 'mp4
 
 // Session Configuration
 define('SESSION_LIFETIME', getenv('SESSION_LIFETIME') ?: 7200); // 2 hours
-define('SESSION_SECURE', $isHttps); // Secure cookies only on HTTPS
+define('SESSION_SECURE', $isHttps);
 
 // Environment Configuration
-define('ENVIRONMENT', 'production');
-define('DEBUG_MODE', false); // Disable debug in production
+$env = getenv('ENVIRONMENT') ?: 'production';
+$debug = getenv('DEBUG_MODE') === 'true' ? true : false;
+define('ENVIRONMENT', $env);
+define('DEBUG_MODE', $debug);
 
 // Error Reporting
 if (DEBUG_MODE) {
@@ -94,7 +102,7 @@ if (DEBUG_MODE) {
 // Timezone
 date_default_timezone_set('America/Chicago');
 
-// Session Settings - FIXED: Only set secure flag when on HTTPS
+// Session Settings
 ini_set('session.cookie_httponly', 1);
 ini_set('session.use_only_cookies', 1);
 ini_set('session.cookie_secure', SESSION_SECURE ? 1 : 0);
@@ -106,4 +114,3 @@ ini_set('session.cookie_lifetime', SESSION_LIFETIME);
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
