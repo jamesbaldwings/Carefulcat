@@ -1,0 +1,25 @@
+# Environment files
+.env
+*.env.local
+
+# Vendor directory
+vendor/
+
+# Uploads (user-generated content)
+public_html/uploads/
+
+# Logs
+*.log
+nohup.out
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Temp files
+*.tmp
+*.swp

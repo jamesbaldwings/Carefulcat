@@ -1,0 +1,151 @@
+<?php
+require_once __DIR__ . '/../includes/config.php';
+require_once __DIR__ . '/../includes/db.php';
+require_once __DIR__ . '/../includes/functions.php';
+
+requireAdmin();
+
+$pageTitle = 'Dashboard';
+
+// Get statistics
+$stats = [
+    'total_cats' => db()->fetchOne("SELECT COUNT(*) as count FROM cats")['count'],
+    'adoptable_cats' => db()->fetchOne("SELECT COUNT(*) as count FROM cats WHERE status = 'adoptable'")['count'],
+    'pending_volunteers' => db()->fetchOne("SELECT COUNT(*) as count FROM volunteers WHERE status = 'pending'")['count'],
+    'total_donations' => db()->fetchOne("SELECT SUM(amount) as total FROM donations WHERE status = 'completed'")['total'] ?? 0,
+    'recent_contacts' => db()->fetchOne("SELECT COUNT(*) as count FROM contacts WHERE created_at >= DATE_SUB(NOW(), INTERVAL 7 DAY)")['count'],
+];
+
+// Get recent activities
+$recentDonations = db()->fetchAll(
+    "SELECT * FROM donations ORDER BY created_at DESC LIMIT 5"
+);
+
+$recentContacts = db()->fetchAll(
+    "SELECT * FROM contacts ORDER BY created_at DESC LIMIT 5"
+);
+
+require_once __DIR__ . '/includes/admin-header.php';
+?>
+
+<div class="dashboard-grid">
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--primary-color);">🐱</div>
+            <div class="stat-content">
+                <h3><?php echo number_format($stats['total_cats']); ?></h3>
+                <p>Total Cats</p>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--secondary-color);">❤️</div>
+            <div class="stat-content">
+                <h3><?php echo number_format($stats['adoptable_cats']); ?></h3>
+                <p>Adoptable Cats</p>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon" style="background-color: var(--accent-color);">👥</div>
+            <div class="stat-content">
+                <h3><?php echo number_format($stats['pending_volunteers']); ?></h3>
+                <p>Pending Volunteers</p>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon" style="background-color: #28a745;">💰</div>
+            <div class="stat-content">
+                <h3><?php echo formatCurrency($stats['total_donations']); ?></h3>
+                <p>Total Donations</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Donations -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Recent Donations</h3>
+            <a href="/admin/donations.php" class="btn btn-sm btn-outline">View All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Donor</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($recentDonations) > 0): ?>
+                        <?php foreach ($recentDonations as $donation): ?>
+                        <tr>
+                            <td><?php echo e($donation['first_name'] . ' ' . $donation['last_name']); ?></td>
+                            <td><?php echo formatCurrency($donation['amount']); ?></td>
+                            <td><?php echo ucfirst(e($donation['type'])); ?></td>
+                            <td>
+                                <span class="badge badge-<?php echo $donation['status'] === 'completed' ? 'success' : ($donation['status'] === 'pending' ? 'warning' : 'danger'); ?>">
+                                    <?php echo ucfirst(e($donation['status'])); ?>
+                                </span>
+                            </td>
+                            <td><?php echo formatDateTime($donation['created_at']); ?></td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: var(--text-light);">No donations yet</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <!-- Recent Contacts -->
+    <div class="card">
+        <div class="card-header">
+            <h3>Recent Contact Messages</h3>
+            <a href="/admin/contacts.php" class="btn btn-sm btn-outline">View All</a>
+        </div>
+        <div class="table-responsive">
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php if (count($recentContacts) > 0): ?>
+                        <?php foreach ($recentContacts as $contact): ?>
+                        <tr>
+                            <td><?php echo e($contact['first_name'] . ' ' . $contact['last_name']); ?></td>
+                            <td><?php echo e($contact['email']); ?></td>
+                            <td><?php echo e(truncate($contact['subject'], 40)); ?></td>
+                            <td><?php echo timeAgo($contact['created_at']); ?></td>
+                            <td>
+                                <a href="mailto:<?php echo e($contact['email']); ?>" class="btn btn-sm btn-primary">Reply</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: var(--text-light);">No contact messages yet</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<?php require_once __DIR__ . '/includes/admin-footer.php'; ?>
+
