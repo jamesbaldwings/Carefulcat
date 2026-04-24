@@ -14,7 +14,7 @@ $pageTitle = 'Shop';
 $metaDescription = 'Shop our merchandise and support Careful Cat Rescue. All proceeds go directly to caring for our cats.';
 
 // Get active products
-$sql = "SELECT * FROM merch_products WHERE is_active = 1 ORDER BY display_order ASC, name ASC";
+$sql = "SELECT * FROM merch_products WHERE status = 'active' ORDER BY featured DESC, name ASC";
 $products = db()->fetchAll($sql);
 
 require_once __DIR__ . '/includes/header.php';
@@ -33,17 +33,24 @@ require_once __DIR__ . '/includes/header.php';
         <div class="grid grid-3">
             <?php foreach ($products as $product): ?>
             <div class="card">
-                <?php if ($product['image_url']): ?>
-                <img src="<?php echo e($product['image_url']); ?>" alt="<?php echo e($product['name']); ?>" class="card-image">
+                <?php 
+                $images = !empty($product['images']) ? json_decode($product['images'], true) : [];
+                $firstImage = is_array($images) && count($images) > 0 ? $images[0] : null;
+                ?>
+                <?php if ($firstImage): ?>
+                <img src="<?php echo e($firstImage); ?>" alt="<?php echo e($product['name']); ?>" class="card-image">
                 <?php endif; ?>
                 <div class="card-content">
                     <h3 class="card-title"><?php echo e($product['name']); ?></h3>
                     <p class="card-text"><?php echo e($product['description']); ?></p>
                     
-                    <?php if ($product['sizes']): ?>
+                    <?php 
+                    $sizes = !empty($product['sizes']) ? json_decode($product['sizes'], true) : [];
+                    ?>
+                    <?php if (!empty($sizes)): ?>
                     <div class="mb-2">
                         <small style="color: var(--text-light);">
-                            Available sizes: <?php echo e($product['sizes']); ?>
+                            Available sizes: <?php echo e(implode(', ', $sizes)); ?>
                         </small>
                     </div>
                     <?php endif; ?>
@@ -52,15 +59,15 @@ require_once __DIR__ . '/includes/header.php';
                         <strong style="font-size: 1.25rem; color: var(--primary-color);">
                             $<?php echo number_format($product['price'], 2); ?>
                         </strong>
-                        <?php if ($product['stock_quantity'] !== null && $product['stock_quantity'] < 10): ?>
+                        <?php if ($product['status'] === 'limited'): ?>
                         <span class="badge" style="background-color: var(--warning-color); margin-left: 0.5rem;">
-                            Only <?php echo $product['stock_quantity']; ?> left!
+                            Limited Stock!
                         </span>
                         <?php endif; ?>
                     </div>
                 </div>
                 <div class="card-footer">
-                    <?php if ($product['stock_quantity'] === null || $product['stock_quantity'] > 0): ?>
+                    <?php if ($product['status'] !== 'out_of_stock'): ?>
                     <a href="/contact.php?subject=Order: <?php echo urlencode($product['name']); ?>" 
                        class="btn btn-primary" style="width: 100%;">Order Now</a>
                     <?php else: ?>
