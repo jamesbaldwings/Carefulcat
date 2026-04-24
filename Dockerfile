@@ -1,44 +1,28 @@
-FROM php:8.2-apache
+FROM ubuntu:22.04
 
-# Install required PHP extensions
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=America/Chicago
+
+# Install Apache, PHP and required extensions
 RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libwebp-dev \
-    libzip-dev \
-    zip \
-    unzip \
-    curl \
-    git \
-    && docker-php-ext-configure gd --with-jpeg --with-webp \
-    && docker-php-ext-install \
-        pdo \
-        pdo_mysql \
-        mysqli \
-        gd \
-        zip \
-        opcache \
+    apache2 \
+    php8.1 \
+    php8.1-mysql \
+    php8.1-pdo \
+    php8.1-gd \
+    php8.1-zip \
+    php8.1-curl \
+    php8.1-mbstring \
+    php8.1-xml \
+    libapache2-mod-php8.1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Fix Apache MPM conflict - disable ALL mpm modules then enable only prefork
-RUN for mpm in mpm_event mpm_worker mpm_prefork; do \
-        a2dismod $mpm 2>/dev/null || true; \
-    done \
-    && a2enmod mpm_prefork \
-    && a2enmod rewrite headers
+# Enable Apache modules
+RUN a2enmod rewrite headers php8.1
 
-# Verify only one MPM is enabled
-RUN ls /etc/apache2/mods-enabled/ | grep mpm
-
-# Set working directory
-WORKDIR /var/www/html
-
-# Copy application files
-COPY public_html/ /var/www/html/
-
-# Create uploads directory
-RUN mkdir -p /var/www/html/uploads && chown -R www-data:www-data /var/www/html/uploads
+# Disable default site and configure our own
+RUN a2dissite 000-default
 
 # Configure Apache VirtualHost
 RUN printf '<VirtualHost *:80>\n\
@@ -50,18 +34,26 @@ RUN printf '<VirtualHost *:80>\n\
     </Directory>\n\
     ErrorLog ${APACHE_LOG_DIR}/error.log\n\
     CustomLog ${APACHE_LOG_DIR}/access.log combined\n\
-</VirtualHost>\n' > /etc/apache2/sites-available/000-default.conf
+</VirtualHost>\n' > /etc/apache2/sites-available/carefulcat.conf
 
-# Add ServerName to suppress warning
+RUN a2ensite carefulcat
 RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
 
+# Set working directory
+WORKDIR /var/www/html
+
+# Copy application files
+COPY public_html/ /var/www/html/
+
+# Create uploads directory
+RUN mkdir -p /var/www/html/uploads && chown -R www-data:www-data /var/www/html
+
 # Set proper permissions
-RUN chown -R www-data:www-data /var/www/html \
-    && find /var/www/html -type f -exec chmod 644 {} \; \
+RUN find /var/www/html -type f -exec chmod 644 {} \; \
     && find /var/www/html -type d -exec chmod 755 {} \;
 
-# Railway uses dynamic PORT - update Apache to listen on it
+# Railway uses dynamic PORT
 EXPOSE 80
 CMD bash -c "sed -i \"s/Listen 80/Listen \${PORT:-80}/g\" /etc/apache2/ports.conf && \
-    sed -i \"s/*:80/*:\${PORT:-80}/g\" /etc/apache2/sites-available/000-default.conf && \
-    apache2-foreground"
+    sed -i \"s/*:80/*:\${PORT:-80}/g\" /etc/apache2/sites-available/carefulcat.conf && \
+    apache2ctl -D FOREGROUND"
