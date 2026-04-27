@@ -13,6 +13,7 @@ echo "Listen $PORT" > /etc/apache2/ports.conf
 cat > /etc/apache2/sites-available/carefulcat.conf <<EOF
 <VirtualHost *:$PORT>
     DocumentRoot /var/www/html
+    DirectoryIndex index.php index.html
     <Directory /var/www/html>
         AllowOverride All
         Require all granted
@@ -23,8 +24,12 @@ cat > /etc/apache2/sites-available/carefulcat.conf <<EOF
 </VirtualHost>
 EOF
 
-# Enable our site
+# Disable default site and enable ours
+a2dissite 000-default > /dev/null 2>&1 || true
 a2ensite carefulcat > /dev/null 2>&1 || true
+
+# Remove default Apache page so index.php is served
+rm -f /var/www/html/index.html
 
 # Ensure proper ownership
 chown -R www-data:www-data /var/www/html
