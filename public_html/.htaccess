@@ -1,6 +1,10 @@
 RewriteEngine On
 RewriteBase /
 
+# Allow Railway healthcheck through without redirect
+RewriteCond %{HTTP_USER_AGENT} RailwayHealthCheck [NC]
+RewriteRule ^ - [L]
+
 # Force HTTPS
 RewriteCond %{HTTPS} off
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
