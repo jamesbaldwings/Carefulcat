@@ -3,8 +3,9 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Contact Us';
-$metaDescription = 'Get in touch with Careful Cat Rescue. We\'re here to answer your questions about adoption, volunteering, and more.';
+$pageTitle = 'Contact Us - Careful Cat Rescue';
+$metaDescription = 'Get in touch with Careful Cat Rescue. We\'re here to answer your questions about exotic cat adoption, volunteering, donations, and more in Murfreesboro, TN.';
+$metaKeywords = 'contact exotic cat rescue, Careful Cat Rescue contact, exotic feline adoption inquiry, Murfreesboro TN rescue contact';
 
 // Get cat ID if specified (for adoption inquiries)
 $catId = isset($_GET['cat']) ? sanitize($_GET['cat']) : '';
@@ -20,7 +21,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Contact Us</h1>
-        <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        <p>Have questions about our exotic cats? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
     </div>
 </section>
 
@@ -64,20 +65,16 @@ require_once __DIR__ . '/includes/header.php';
                                 <div class="form-error"></div>
                             </div>
                             
-                            <div class="form-group">
-                                <label class="form-label">Phone</label>
-                                <input type="tel" name="phone" class="form-control">
-                            </div>
-                            
                             <?php if (!$cat): ?>
                             <div class="form-group">
                                 <label class="form-label">Subject *</label>
                                 <select name="subject" class="form-control" required>
                                     <option value="">Select a subject</option>
-                                    <option value="Adoption Inquiry">Adoption Inquiry</option>
+                                    <option value="Adoption Inquiry">Exotic Cat Adoption Inquiry</option>
                                     <option value="Volunteer Opportunity">Volunteer Opportunity</option>
                                     <option value="Donation Question">Donation Question</option>
                                     <option value="Foster Program">Foster Program</option>
+                                    <option value="Surrender Inquiry">Surrender Inquiry</option>
                                     <option value="General Question">General Question</option>
                                     <option value="Other">Other</option>
                                 </select>
@@ -111,7 +108,7 @@ require_once __DIR__ . '/includes/header.php';
                                     <use href="#icon-location"/>
                                 </svg>
                                 <div>
-                                    <strong>Address</strong>
+                                    <strong>Location</strong>
                                     <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">
                                         <?php echo e(getSetting('site_address', 'Murfreesboro, TN')); ?>
                                     </p>
@@ -129,33 +126,21 @@ require_once __DIR__ . '/includes/header.php';
                                     </p>
                                 </div>
                             </div>
-                            
-                            <div style="display: flex; align-items: start; gap: 1rem; margin-bottom: 1.5rem;">
-                                <svg width="24" height="24" fill="currentColor" style="color: var(--primary-color); flex-shrink: 0;">
-                                    <use href="#icon-phone"/>
-                                </svg>
-                                <div>
-                                    <strong>Phone</strong>
-                                    <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">
-                                        <?php echo e(getSetting('site_phone', '(615) 555-0123')); ?>
-                                    </p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="card mb-3">
                     <div class="card-content">
-                        <h3>Visit Us</h3>
-                        <p>We welcome visitors by appointment. Please contact us to schedule a visit to meet our cats.</p>
+                        <h3>Visit Our Exotic Cat Sanctuary</h3>
+                        <p>We welcome visitors by appointment. Please contact us to schedule a visit to meet our exotic cats.</p>
                         <?php if (isPageVisible('book_visit')): ?>
                         <a href="/book-visit.php" class="btn btn-primary">Schedule a Visit</a>
                         <?php endif; ?>
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-content">
                         <h3>Hours</h3>
                         <p><strong>By Appointment Only</strong></p>
@@ -164,6 +149,14 @@ require_once __DIR__ . '/includes/header.php';
                             Saturday: 10am - 4pm<br>
                             Sunday: Closed
                         </p>
+                    </div>
+                </div>
+                
+                <div class="card" style="border: 2px solid var(--primary-color); background: #fff5f5;">
+                    <div class="card-content text-center">
+                        <h4 style="color: var(--primary-color);">Support Our Mission</h4>
+                        <p>Can't adopt or volunteer right now? A donation makes a huge difference for our exotic cats.</p>
+                        <a href="/donate.php" class="btn btn-primary" style="width: 100%;">Donate Now</a>
                     </div>
                 </div>
             </div>
@@ -203,4 +196,3 @@ document.getElementById('contactForm').addEventListener('submit', async function
 </script>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
-

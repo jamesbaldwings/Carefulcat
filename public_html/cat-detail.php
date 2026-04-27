@@ -16,8 +16,9 @@ if (!$cat) {
     redirect('/adoptions.php');
 }
 
-$pageTitle = $cat['name'];
-$metaDescription = $cat['bio'] ? truncate($cat['bio'], 150) : 'Meet ' . $cat['name'] . ', available for adoption.';
+$pageTitle = e($cat['name']) . ' - Exotic Cat Available for Adoption';
+$metaDescription = $cat['bio'] ? truncate(strip_tags($cat['bio']), 150) : 'Meet ' . $cat['name'] . ', a small exotic cat available for adoption at Careful Cat Rescue in Murfreesboro, TN.';
+$metaKeywords = 'adopt ' . e($cat['species']) . ', exotic cat adoption Murfreesboro TN, ' . e($cat['name']) . ' exotic cat rescue';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -25,14 +26,14 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section">
     <div class="container" style="max-width: 1000px;">
         <a href="/adoptions.php" style="display: inline-block; margin-bottom: 1rem; color: var(--text-light);">
-            ← Back to Adoptable Cats
+            &larr; Back to Adoptable Exotic Cats
         </a>
         
         <div class="cat-detail-card">
             <div class="cat-detail-grid">
                 <!-- Cat Image -->
                 <div class="cat-detail-image">
-                    <img src="<?php echo e($cat['hero_photo']); ?>" alt="<?php echo e($cat['name']); ?>">
+                    <img src="<?php echo e($cat['hero_photo']); ?>" alt="<?php echo e($cat['name']); ?> - <?php echo e($cat['species']); ?> available for adoption">
                     <?php if ($cat['status'] === 'adoptable'): ?>
                     <span class="status-badge adoptable">Adoptable</span>
                     <?php elseif ($cat['status'] === 'adopted'): ?>
@@ -62,11 +63,11 @@ require_once __DIR__ . '/includes/header.php';
                     
                     <?php if ($cat['location']): ?>
                     <div class="cat-section">
-                        <h3>📍 Location</h3>
+                        <h3>Location</h3>
                         <p><?php echo e($cat['location']); ?></p>
                         <?php if ($cat['intake_date']): ?>
                         <p style="font-size: 14px; color: #666;">
-                            Intake Date: <?php echo date('M d, Y', strtotime($cat['intake_date'])); ?>
+                            In our care since: <?php echo date('M d, Y', strtotime($cat['intake_date'])); ?>
                         </p>
                         <?php endif; ?>
                     </div>
@@ -76,28 +77,46 @@ require_once __DIR__ . '/includes/header.php';
                     <?php if ($cat['status'] === 'adoptable'): ?>
                     <div class="cat-actions">
                         <a href="/adopt-application.php?cat=<?php echo e($cat['id']); ?>" class="btn btn-primary btn-lg">
-                            Apply to Adopt
+                            Apply to Adopt <?php echo e($cat['name']); ?>
                         </a>
-                        <a href="/sponsor.php?cat=<?php echo e($cat['id']); ?>" class="btn btn-secondary btn-lg">
-                            Sponsor <?php echo e($cat['name']); ?>
+                        <a href="/donate.php" class="btn btn-secondary btn-lg">
+                            Donate to Support <?php echo e($cat['name']); ?>
+                        </a>
+                        <a href="/contact.php?cat=<?php echo e($cat['id']); ?>" class="btn btn-outline btn-lg">
+                            Ask a Question
                         </a>
                     </div>
                     <?php elseif ($cat['status'] === 'adopted'): ?>
                     <div class="cat-actions">
                         <p style="color: #10b981; font-weight: 600; font-size: 18px;">
-                            ✅ <?php echo e($cat['name']); ?> has been adopted!
+                            &#10003; <?php echo e($cat['name']); ?> has found a forever home!
                         </p>
                         <a href="/adoptions.php" class="btn btn-primary">
-                            View Other Adoptable Cats
+                            View Other Adoptable Exotic Cats
+                        </a>
+                        <a href="/donate.php" class="btn btn-outline">
+                            Donate to Help More Exotic Cats
                         </a>
                     </div>
                     <?php elseif ($cat['status'] === 'pending'): ?>
                     <div class="cat-actions">
                         <p style="color: #f59e0b; font-weight: 600; font-size: 18px;">
-                            ⏳ <?php echo e($cat['name']); ?>'s adoption is pending
+                            &#8987; <?php echo e($cat['name']); ?>'s adoption is pending
                         </p>
                         <a href="/adoptions.php" class="btn btn-primary">
-                            View Other Adoptable Cats
+                            View Other Adoptable Exotic Cats
+                        </a>
+                        <a href="/donate.php" class="btn btn-outline">
+                            Donate to Help More Exotic Cats
+                        </a>
+                    </div>
+                    <?php else: ?>
+                    <div class="cat-actions">
+                        <a href="/donate.php" class="btn btn-primary btn-lg">
+                            Donate to Support <?php echo e($cat['name']); ?>
+                        </a>
+                        <a href="/contact.php" class="btn btn-outline btn-lg">
+                            Contact Us
                         </a>
                     </div>
                     <?php endif; ?>

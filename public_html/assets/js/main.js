@@ -281,5 +281,5 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Console Easter Egg
 console.log('%c🐱 Careful Cat Rescue', 'font-size: 20px; font-weight: bold; color: #ff6b6b;');
-console.log('%cThanks for caring about cats! 🐾', 'font-size: 14px; color: #4ecdc4;');
+console.log('%cThanks for caring about exotic cats! 🐾', 'font-size: 14px; color: #4ecdc4;');
 

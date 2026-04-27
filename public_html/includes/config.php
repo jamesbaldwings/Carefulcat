@@ -62,7 +62,7 @@ $siteUrl = getenv('SITE_URL') ?: ($isHttps ? 'https' : 'http') . '://' . ($_SERV
 $protocol = $isHttps ? 'https' : 'http';
 define('SITE_URL', rtrim($siteUrl, '/'));
 define('SITE_NAME', getenv('SITE_NAME') ?: 'Careful Cat Rescue');
-define('SITE_EMAIL', getenv('SITE_EMAIL') ?: 'info@carefulcatrescue.org');
+define('SITE_EMAIL', getenv('SITE_EMAIL') ?: 'carefulcatrescue@gmail.com');
 
 // Path Configuration
 define('ROOT_PATH', dirname(__DIR__));

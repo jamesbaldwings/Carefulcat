@@ -315,8 +315,8 @@ INSERT INTO system_settings (setting_key, setting_value, description) VALUES
 ('page_volunteer_visible', 'true', 'Show or hide volunteer page'),
 ('page_volunteer_events_visible', 'true', 'Show or hide volunteer events page'),
 ('site_name', 'Careful Cat Rescue', 'Website name'),
-('site_email', 'info@carefulcatrescue.org', 'Contact email'),
-('site_phone', '(615) 555-0123', 'Contact phone number'),
+('site_email', 'carefulcatrescue@gmail.com', 'Contact email'),
+('site_phone', '', 'Contact phone number'),
 ('site_address', 'Murfreesboro, TN', 'Physical address')
 ON DUPLICATE KEY UPDATE setting_value = VALUES(setting_value);
 

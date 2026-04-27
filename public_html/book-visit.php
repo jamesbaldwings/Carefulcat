@@ -10,8 +10,9 @@ if (!isPageVisible('book_visit')) {
     exit;
 }
 
-$pageTitle = 'Visit Our Sanctuary';
-$metaDescription = 'Schedule a visit to meet our cats and see our facility. We welcome visitors by appointment.';
+$pageTitle = 'Visit Our Exotic Cat Sanctuary - Book an Appointment';
+$metaDescription = 'Schedule a visit to meet our small exotic cats and see our sanctuary in Murfreesboro, TN. All visits are by appointment only. Come meet servals, savannahs, bengals, and more.';
+$metaKeywords = 'visit exotic cat sanctuary, book exotic cat visit, Murfreesboro TN exotic cat sanctuary tour, meet serval savannah bengal caracal';
 
 $successMessage = '';
 $errorMessage = '';
@@ -20,7 +21,7 @@ $errorMessage = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = sanitize($_POST['name'] ?? '');
     $email = sanitize($_POST['email'] ?? '');
-    $phone = sanitize($_POST['phone'] ?? '');
+    $phone = ''; // Phone removed per owner request
     $preferred_date = sanitize($_POST['preferred_date'] ?? '');
     $preferred_time = sanitize($_POST['preferred_time'] ?? '');
     $num_visitors = (int)($_POST['num_visitors'] ?? 1);
@@ -48,8 +49,8 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
-        <h1>Visit Our Sanctuary</h1>
-        <p>We welcome visitors to come meet our cats and see our facility. All visits are by appointment only to ensure the best experience for you and our feline friends.</p>
+        <h1>Visit Our Exotic Cat Sanctuary</h1>
+        <p>We welcome visitors to come meet our small exotic cats and see our sanctuary. All visits are by appointment only to ensure the best experience for you and our incredible felines.</p>
     </div>
 </section>
 
@@ -77,7 +78,7 @@ require_once __DIR__ . '/includes/header.php';
                     </div>
                 </div>
                 
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-content">
                         <h4>Visit Guidelines</h4>
                         <ul style="margin-left: 1.5rem;">
@@ -85,9 +86,18 @@ require_once __DIR__ . '/includes/header.php';
                             <li>Please arrive on time for your appointment</li>
                             <li>Hand sanitizer will be provided upon arrival</li>
                             <li>Children must be supervised at all times</li>
-                            <li>Please be gentle and respectful with our cats</li>
+                            <li>Please be calm and respectful with our exotic cats</li>
                             <li>No outside food or drinks in cat areas</li>
+                            <li>Follow all handler instructions for safety</li>
                         </ul>
+                    </div>
+                </div>
+                
+                <div class="card" style="border: 2px solid var(--primary-color); background: #fff5f5;">
+                    <div class="card-content text-center">
+                        <h4 style="color: var(--primary-color);">Love What We Do?</h4>
+                        <p>After your visit, consider supporting our exotic cats with a donation.</p>
+                        <a href="/donate.php" class="btn btn-primary">Donate Now</a>
                     </div>
                 </div>
             </div>
@@ -117,11 +127,6 @@ require_once __DIR__ . '/includes/header.php';
                             <div class="form-group">
                                 <label class="form-label">Email *</label>
                                 <input type="email" name="email" class="form-control" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Phone *</label>
-                                <input type="tel" name="phone" class="form-control" required>
                             </div>
                             
                             <div class="grid grid-2">
@@ -156,9 +161,9 @@ require_once __DIR__ . '/includes/header.php';
                                     <select name="purpose" class="form-control">
                                         <option value="">Select...</option>
                                         <option value="Adoption">Interested in Adoption</option>
-                                        <option value="General Visit">General Visit</option>
+                                        <option value="General Visit">General Visit / Meet the Exotic Cats</option>
                                         <option value="Volunteer Interest">Volunteer Interest</option>
-                                        <option value="Donation Drop-off">Donation Drop-off</option>
+                                        <option value="Donation Drop-off">Donation / Supply Drop-off</option>
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
@@ -167,7 +172,7 @@ require_once __DIR__ . '/includes/header.php';
                             <div class="form-group">
                                 <label class="form-label">Additional Information</label>
                                 <textarea name="message" class="form-control" rows="4" 
-                                          placeholder="Is there a specific cat you'd like to meet? Any special requirements?"></textarea>
+                                          placeholder="Is there a specific exotic cat you'd like to meet? Any special requirements?"></textarea>
                             </div>
                             
                             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">Request Visit</button>
@@ -190,28 +195,28 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Do I need an appointment?</h4>
-                    <p>Yes, all visits require an appointment. This helps us ensure we can give you and our cats the attention you deserve.</p>
+                    <p>Yes, all visits require an appointment. This helps us ensure we can give you and our exotic cats the attention you deserve, and keeps our animals calm and comfortable.</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Can I bring my children?</h4>
-                    <p>Yes! We welcome families. Children must be supervised by adults at all times and taught to be gentle with the cats.</p>
+                    <p>Yes! We welcome families. Children must be supervised by adults at all times and taught to be calm and gentle with our exotic cats.</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
-                    <h4>Can I adopt a cat during my visit?</h4>
-                    <p>While you can meet cats and express interest during your visit, adoptions require an application process. We can help you start the application during your visit.</p>
+                    <h4>Can I adopt an exotic cat during my visit?</h4>
+                    <p>While you can meet exotic cats and express interest during your visit, adoptions require an application process. We can help you start the application during your visit.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>What should I bring?</h4>
-                    <p>Just yourself! We provide everything you need. If you're interested in adoption, you may want to bring questions about cat care.</p>
+                    <p>Just yourself! We provide everything you need. If you're interested in adoption, you may want to bring questions about exotic cat care and your living situation.</p>
                 </div>
             </div>
         </div>
@@ -219,4 +224,3 @@ require_once __DIR__ . '/includes/header.php';
 </section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
-

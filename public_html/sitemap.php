@@ -3,8 +3,8 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Site Map';
-$metaDescription = 'Navigate Careful Cat Rescue website. Find all pages and resources in one place.';
+$pageTitle = 'Site Map - Careful Cat Rescue';
+$metaDescription = 'Navigate the Careful Cat Rescue website. Find all pages about exotic cat adoption, rescue, volunteering, and donating in Murfreesboro, TN.';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -101,7 +101,7 @@ require_once __DIR__ . '/includes/header.php';
                     <h3 style="color: var(--primary-color); margin-bottom: 1.5rem; text-align: center;">Quick Actions</h3>
                     <div class="grid grid-4">
                         <div class="text-center">
-                            <a href="/adoptions.php" class="btn btn-primary" style="width: 100%;">Adopt a Cat</a>
+                            <a href="/adoptions.php" class="btn btn-primary" style="width: 100%;">Adopt an Exotic Cat</a>
                         </div>
                         <div class="text-center">
                             <a href="/donate.php" class="btn btn-primary" style="width: 100%;">Make a Donation</a>

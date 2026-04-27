@@ -3,8 +3,9 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Our Sponsors';
-$metaDescription = 'Thank you to our generous sponsors who support Careful Cat Rescue and help us save lives.';
+$pageTitle = 'Our Sponsors - Partners in Exotic Cat Rescue';
+$metaDescription = 'Thank you to our generous sponsors who support Careful Cat Rescue and help us save small exotic cats in Murfreesboro, TN. Learn how your business can become a sponsor.';
+$metaKeywords = 'exotic cat rescue sponsors, sponsor exotic feline sanctuary, Careful Cat Rescue partners, animal rescue sponsorship Tennessee';
 
 // Get all active sponsors
 $sponsors = db()->fetchAll(
@@ -17,7 +18,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Our Generous Sponsors</h1>
-        <p>We are grateful to our sponsors whose support makes our rescue work possible. Thank you for believing in our mission!</p>
+        <p>We are grateful to our sponsors whose support makes our exotic cat rescue work possible. Thank you for believing in our mission!</p>
     </div>
 </section>
 
@@ -64,7 +65,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="card">
             <div class="card-content text-center" style="padding: 3rem;">
                 <h3>No Sponsors Yet</h3>
-                <p>We're currently building our sponsor network. Interested in becoming a sponsor?</p>
+                <p>We're currently building our sponsor network. Interested in becoming a sponsor for our exotic cat rescue?</p>
                 <a href="/contact.php" class="btn btn-primary mt-3">Contact Us</a>
             </div>
         </div>
@@ -77,7 +78,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Become a Sponsor</h2>
-            <p class="section-subtitle">Partner with us to make a lasting impact on the lives of cats in need.</p>
+            <p class="section-subtitle">Partner with us to make a lasting impact on the lives of small exotic cats in need.</p>
         </div>
         
         <div class="grid grid-3">
@@ -125,8 +126,8 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         
         <div class="text-center mt-4">
-            <p><strong>Interested in becoming a sponsor?</strong></p>
-            <a href="/contact.php?subject=Sponsorship Inquiry" class="btn btn-primary">Contact Us About Sponsorship</a>
+            <p><strong>Interested in becoming a sponsor of our exotic cat rescue?</strong></p>
+            <a href="/contact.php" class="btn btn-primary">Contact Us About Sponsorship</a>
         </div>
     </div>
 </section>
@@ -142,28 +143,28 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content">
                     <h4>🤝 Community Impact</h4>
-                    <p>Show your commitment to animal welfare and community support.</p>
+                    <p>Show your commitment to exotic animal welfare and community support in Murfreesboro, TN.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>📣 Brand Visibility</h4>
-                    <p>Reach thousands of animal lovers through our website and social media.</p>
+                    <p>Reach thousands of exotic cat lovers and animal welfare advocates through our website and social media.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>💚 Feel-Good Factor</h4>
-                    <p>Know that your support directly saves lives and helps cats find homes.</p>
+                    <p>Know that your support directly saves lives and helps small exotic cats find forever homes.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>🎯 Tax Benefits</h4>
-                    <p>Sponsorships are tax-deductible as we are a registered 501(c)(3) nonprofit.</p>
+                    <p>Sponsorships are tax-deductible as we are a registered 501(c)(3) nonprofit organization.</p>
                 </div>
             </div>
         </div>
@@ -171,4 +172,3 @@ require_once __DIR__ . '/includes/header.php';
 </section>
 
 <?php require_once __DIR__ . '/includes/footer.php'; ?>
-

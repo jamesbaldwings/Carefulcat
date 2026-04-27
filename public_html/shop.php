@@ -10,8 +10,8 @@ if (!isPageVisible('shop')) {
     exit;
 }
 
-$pageTitle = 'Shop';
-$metaDescription = 'Shop our merchandise and support Careful Cat Rescue. All proceeds go directly to caring for our cats.';
+$pageTitle = 'Shop - Support Exotic Cat Rescue';
+$metaDescription = 'Shop Careful Cat Rescue merchandise and support our small exotic cat rescue mission. All proceeds go directly to caring for our exotic felines in Murfreesboro, TN.';
 
 // Get active products
 $sql = "SELECT * FROM merch_products WHERE status = 'active' ORDER BY featured DESC, name ASC";
@@ -23,7 +23,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Shop Our Merchandise</h1>
-        <p>Support our rescue by purchasing merchandise. All proceeds go directly to caring for our cats!</p>
+        <p>Support our exotic cat rescue by purchasing merchandise. All proceeds go directly to caring for our small exotic felines!</p>
     </div>
 </section>
 
@@ -102,7 +102,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card-content text-center">
                     <h3 style="color: var(--primary-color); font-size: 2rem;">🍽️</h3>
                     <h4>Food & Supplies</h4>
-                    <p>Nutritious food and daily care supplies for our cats</p>
+                    <p>Specialized high-protein food and daily care supplies for our exotic cats</p>
                 </div>
             </div>
             
@@ -126,7 +126,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card-content text-center">
                     <h3 style="color: var(--primary-color); font-size: 2rem;">🐱</h3>
                     <h4>Rescue Efforts</h4>
-                    <p>Saving more cats in need of help</p>
+                    <p>Saving more exotic cats and felines in need of help</p>
                 </div>
             </div>
         </div>

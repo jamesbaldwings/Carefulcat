@@ -1,11 +1,20 @@
     </main>
     
+    <!-- Donation CTA Banner (appears on every page) -->
+    <section class="donation-cta-banner" style="background: linear-gradient(135deg, var(--primary-color), #c0392b); padding: 2.5rem 0; text-align: center; color: white;">
+        <div class="container">
+            <h2 style="color: white; margin-bottom: 0.5rem; font-size: 1.75rem;">Help Us Save More Exotic Felines</h2>
+            <p style="margin-bottom: 1.5rem; font-size: 1.1rem; opacity: 0.95;">Every dollar you donate goes directly to the rescue, rehabilitation, and rehoming of small exotic cats in need.</p>
+            <a href="/donate.php" class="btn" style="background: white; color: var(--primary-color); font-weight: 700; padding: 14px 40px; font-size: 1.1rem; border-radius: 30px; display: inline-block; transition: all 0.3s ease;">Donate Now &rarr;</a>
+        </div>
+    </section>
+    
     <footer class="site-footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>About Us</h3>
-                    <p><?php echo e(SITE_NAME); ?> is dedicated to rescuing, rehabilitating, and rehoming cats in need. We provide a safe haven for cats while they await their forever homes.</p>
+                    <p><?php echo e(SITE_NAME); ?> is dedicated to rescuing, rehabilitating, and rehoming small exotic felines in need. We provide a safe haven for these exotic cats while they await their forever homes.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><svg width="24" height="24" fill="currentColor"><use href="#icon-facebook"/></svg></a>
                         <a href="#" aria-label="Instagram"><svg width="24" height="24" fill="currentColor"><use href="#icon-instagram"/></svg></a>
@@ -17,7 +26,7 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <?php if ($pageVisibility['adoptions']): ?>
-                        <li><a href="/adoptions.php">Adopt a Cat</a></li>
+                        <li><a href="/adoptions.php">Adopt an Exotic Cat</a></li>
                         <?php endif; ?>
                         <?php if ($pageVisibility['volunteer']): ?>
                         <li><a href="/volunteer.php">Volunteer</a></li>
@@ -39,7 +48,7 @@
                         <li><a href="/about.php">About Us</a></li>
                         <li><a href="/sponsors.php">Our Sponsors</a></li>
                         <li><a href="/faq.php">FAQ</a></li>
-                        <li><a href="/privacy-policy.php">Privacy Policy</a></li>
+                        <li><a href="/privacy.php">Privacy Policy</a></li>
                         <li><a href="/terms.php">Terms of Service</a></li>
                         <li><a href="/sitemap.php">Site Map</a></li>
                     </ul>
@@ -56,16 +65,12 @@
                             <svg width="20" height="20" fill="currentColor"><use href="#icon-email"/></svg>
                             <a href="mailto:<?php echo e(SITE_EMAIL); ?>"><?php echo e(SITE_EMAIL); ?></a>
                         </li>
-                        <li>
-                            <svg width="20" height="20" fill="currentColor"><use href="#icon-phone"/></svg>
-                            <span><?php echo e(getSetting('site_phone', '(615) 555-0123')); ?></span>
-                        </li>
                     </ul>
                 </div>
                 
                 <div class="footer-section">
                     <h3>Newsletter</h3>
-                    <p>Stay updated with our latest news and adoptable cats.</p>
+                    <p>Stay updated with our latest news and adoptable small exotic cats.</p>
                     <form class="newsletter-form" id="newsletterForm">
                         <input type="email" name="email" placeholder="Your email" required>
                         <button type="submit" class="btn btn-primary">Subscribe</button>
@@ -76,10 +81,10 @@
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
                     <p>&copy; <?php echo date('Y'); ?> <?php echo e(SITE_NAME); ?>. All rights reserved.</p>
-                    <p>Made with ❤️ for cats in need | 501(c)(3) Non-Profit Organization</p>
+                    <p>Made with ❤️ for small exotic cats in need | 501(c)(3) Non-Profit Organization</p>
                 </div>
                 <div class="footer-bottom-right">
-                    <a href="/privacy-policy.php">Privacy Policy</a>
+                    <a href="/privacy.php">Privacy Policy</a>
                     <span>|</span>
                     <a href="/terms.php">Terms</a>
                     <span>|</span>
@@ -116,11 +121,5 @@
     </svg>
     
     <script src="<?php echo ASSETS_URL; ?>/js/main.js"></script>
-    <?php if (isset($additionalJS)): ?>
-        <?php foreach ($additionalJS as $js): ?>
-            <script src="<?php echo e($js); ?>"></script>
-        <?php endforeach; ?>
-    <?php endif; ?>
 </body>
 </html>
-
