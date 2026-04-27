@@ -17,7 +17,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
 </div>
 
 <?php if ($m = flash_out('success')): ?>
-    <div class="alert alert-success"><?php echo htmlspecialchars($m); ?></div>
+    <div class="alert alert-success"><?php echo htmlspecialchars($m ?? ''); ?></div>
 <?php endif; ?>
 
 <div class="admin-card">
@@ -45,9 +45,9 @@ require_once __DIR__ . '/../includes/admin-header.php';
                 <?php foreach ($residents as $cat): ?>
                     <tr>
                         <td>
-                            <?php if ($cat['hero_photo']): ?>
-                                <img src="<?php echo htmlspecialchars($cat['hero_photo']); ?>" 
-                                     alt="<?php echo htmlspecialchars($cat['name']); ?>" 
+                            <?php if ($cat['hero_photo'] ?? null): ?>
+                                <img src="<?php echo htmlspecialchars($cat['hero_photo'] ?? ''); ?>" 
+                                     alt="<?php echo htmlspecialchars($cat['name'] ?? ''); ?>" 
                                      style="width: 50px; height: 50px; object-fit: cover; border-radius: 4px;">
                             <?php else: ?>
                                 <div style="width: 50px; height: 50px; background: #ddd; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
                                 </div>
                             <?php endif; ?>
                         </td>
-                        <td><strong><?php echo htmlspecialchars($cat['name']); ?></strong></td>
+                        <td><strong><?php echo htmlspecialchars($cat['name'] ?? ''); ?></strong></td>
                         <td><?php echo htmlspecialchars($cat['species'] ?? 'N/A'); ?></td>
                         <td><?php echo $cat['sex'] === 'M' ? 'Male' : ($cat['sex'] === 'F' ? 'Female' : 'N/A'); ?></td>
                         <td><?php echo htmlspecialchars($cat['age'] ?? 'N/A'); ?></td>

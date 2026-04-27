@@ -61,22 +61,22 @@ require_once __DIR__ . '/../includes/admin-header.php';
         
         <div class="form-group">
             <label>First Name <span style="color:red;">*</span></label>
-            <input name="first_name" required value="<?php echo htmlspecialchars($donation['first_name']); ?>">
+            <input name="first_name" required value="<?php echo htmlspecialchars($donation['first_name'] ?? ''); ?>">
         </div>
         
         <div class="form-group">
             <label>Last Name <span style="color:red;">*</span></label>
-            <input name="last_name" required value="<?php echo htmlspecialchars($donation['last_name']); ?>">
+            <input name="last_name" required value="<?php echo htmlspecialchars($donation['last_name'] ?? ''); ?>">
         </div>
         
         <div class="form-group">
             <label>Email <span style="color:red;">*</span></label>
-            <input name="email" type="email" required value="<?php echo htmlspecialchars($donation['email']); ?>">
+            <input name="email" type="email" required value="<?php echo htmlspecialchars($donation['email'] ?? ''); ?>">
         </div>
         
         <div class="form-group">
             <label>Amount ($) <span style="color:red;">*</span></label>
-            <input name="amount" type="number" step="0.01" min="0.01" required value="<?php echo htmlspecialchars($donation['amount']); ?>">
+            <input name="amount" type="number" step="0.01" min="0.01" required value="<?php echo htmlspecialchars($donation['amount'] ?? ''); ?>">
         </div>
         
         <div class="form-group">

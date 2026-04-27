@@ -18,7 +18,7 @@ if (!$cat) {
     exit;
 }
 
-$page_title = 'View Resident: ' . $cat['name'];
+$page_title = 'View Resident: ' . ($cat['name'] ?? '');
 require_once __DIR__ . '/../includes/admin-header.php';
 ?>
 
@@ -29,15 +29,15 @@ require_once __DIR__ . '/../includes/admin-header.php';
 
 <div class="admin-card">
     <div class="admin-card-header">
-        <h2 class="admin-card-title">🏠 <?php echo htmlspecialchars($cat['name']); ?></h2>
+        <h2 class="admin-card-title">🏠 <?php echo htmlspecialchars($cat['name'] ?? ''); ?></h2>
     </div>
 
     <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 30px;">
         <!-- Photo -->
         <div>
-            <?php if ($cat['hero_photo']): ?>
-                <img src="<?php echo htmlspecialchars($cat['hero_photo']); ?>" 
-                     alt="<?php echo htmlspecialchars($cat['name']); ?>"
+            <?php if ($cat['hero_photo'] ?? null): ?>
+                <img src="<?php echo htmlspecialchars($cat['hero_photo'] ?? ''); ?>" 
+                     alt="<?php echo htmlspecialchars($cat['name'] ?? ''); ?>"
                      style="width: 100%; border-radius: 8px;">
             <?php else: ?>
                 <div style="width: 100%; aspect-ratio: 1; background: #f0f0f0; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 48px;">
@@ -83,11 +83,11 @@ require_once __DIR__ . '/../includes/admin-header.php';
                 </tr>
             </table>
 
-            <?php if ($cat['bio']): ?>
+            <?php if ($cat['bio'] ?? null): ?>
                 <div style="margin-top: 20px;">
-                    <h3 style="margin-bottom: 10px;">About <?php echo htmlspecialchars($cat['name']); ?></h3>
+                    <h3 style="margin-bottom: 10px;">About <?php echo htmlspecialchars($cat['name'] ?? ''); ?></h3>
                     <p style="line-height: 1.6; color: #555;">
-                        <?php echo nl2br(htmlspecialchars($cat['bio'])); ?>
+                        <?php echo nl2br(htmlspecialchars($cat['bio'] ?? '')); ?>
                     </p>
                 </div>
             <?php endif; ?>

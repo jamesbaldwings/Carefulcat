@@ -6,7 +6,7 @@ requireAdmin();
 $cat_id=(int)($_GET['cat_id']??0);
 $cat=db()->fetchOne("SELECT * FROM cats WHERE id=?",[$cat_id]);
 if(!$cat){ redirect('/admin/cats/index.php'); }
-$page_title='Medical Record — '.$cat['name'];
+$page_title='Medical Record — '.($cat['name'] ?? '');
 
 // latest adoption (no fee output)
 $adopt=db()->fetchOne("SELECT status,applied_at,approved_at,denied_at,adopter_name,adopter_email,adopter_phone FROM adoptions WHERE cat_id=? ORDER BY applied_at DESC LIMIT 1",[$cat_id]);
@@ -17,17 +17,17 @@ require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
   <div class="admin-card-header">
-    <h2 class="admin-card-title">📄 Veterinary Medical Record — <?php echo htmlspecialchars($cat['name']);?></h2>
+    <h2 class="admin-card-title">📄 Veterinary Medical Record — <?php echo htmlspecialchars($cat['name'] ?? '');?></h2>
     <button class="btn btn-outline" onclick="window.print()">🖨️ Print</button>
   </div>
 
   <div class="table-responsive">
     <table class="admin-table">
       <tbody>
-        <tr><th style="width:220px;">Shelter Tag</th><td><?php echo htmlspecialchars($cat['shelter_tag']);?></td></tr>
+        <tr><th style="width:220px;">Shelter Tag</th><td><?php echo htmlspecialchars($cat['shelter_tag'] ?? '');?></td></tr>
         <tr><th>Sex</th><td><?php echo htmlspecialchars($cat['sex']??''); ?></td></tr>
-        <tr><th>DOB</th><td><?php echo $cat['dob']?htmlspecialchars($cat['dob']):'—';?></td></tr>
-        <tr><th>Intake Date</th><td><?php echo $cat['intake_date']?htmlspecialchars($cat['intake_date']):'—';?></td></tr>
+        <tr><th>DOB</th><td><?php echo ($cat['dob'] ?? null)?htmlspecialchars($cat['dob'] ?? ''):'—';?></td></tr>
+        <tr><th>Intake Date</th><td><?php echo ($cat['intake_date'] ?? null)?htmlspecialchars($cat['intake_date'] ?? ''):'—';?></td></tr>
         <tr><th>Notes</th><td><?php echo htmlspecialchars($cat['notes']??''); ?></td></tr>
       </tbody>
     </table>
@@ -38,11 +38,11 @@ require_once __DIR__.'/../includes/admin-header.php';
   <div class="table-responsive">
     <table class="admin-table">
       <tbody>
-        <tr><th>Status</th><td><?php echo ucfirst($adopt['status']);?></td></tr>
-        <tr><th>Applied</th><td><?php echo formatDateTime($adopt['applied_at']);?></td></tr>
-        <tr><th>Approved</th><td><?php echo $adopt['approved_at']?formatDateTime($adopt['approved_at']):'—';?></td></tr>
-        <tr><th>Denied</th><td><?php echo $adopt['denied_at']?formatDateTime($adopt['denied_at']):'—';?></td></tr>
-        <tr><th>Adopter</th><td><?php echo htmlspecialchars($adopt['adopter_name']).' — '.htmlspecialchars($adopt['adopter_email']);?></td></tr>
+        <tr><th>Status</th><td><?php echo ucfirst($adopt['status'] ?? '');?></td></tr>
+        <tr><th>Applied</th><td><?php echo formatDateTime($adopt['applied_at'] ?? '');?></td></tr>
+        <tr><th>Approved</th><td><?php echo ($adopt['approved_at'] ?? null)?formatDateTime($adopt['approved_at'] ?? ''):'—';?></td></tr>
+        <tr><th>Denied</th><td><?php echo ($adopt['denied_at'] ?? null)?formatDateTime($adopt['denied_at'] ?? ''):'—';?></td></tr>
+        <tr><th>Adopter</th><td><?php echo htmlspecialchars($adopt['adopter_name'] ?? '').' — '.htmlspecialchars($adopt['adopter_email'] ?? '');?></td></tr>
         <tr><th>Phone</th><td><?php echo htmlspecialchars($adopt['adopter_phone']??''); ?></td></tr>
       </tbody>
     </table>
@@ -61,7 +61,7 @@ require_once __DIR__.'/../includes/admin-header.php';
         <tbody>
           <?php foreach($tx as $t): ?>
             <tr>
-              <td><?php echo htmlspecialchars($t['date_administered']);?></td>
+              <td><?php echo htmlspecialchars($t['date_administered'] ?? '');?></td>
               <td><?php echo ucwords(str_replace('_',' ',$t['treatment_type']));?></td>
               <td><?php echo htmlspecialchars($t['administered_by']??''); ?></td>
               <td><?php echo htmlspecialchars($t['notes']??''); ?></td>

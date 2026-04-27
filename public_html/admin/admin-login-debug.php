@@ -47,8 +47,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 echo "Email: <code>{$admin['email']}</code><br>";
                 echo "Name: <code>{$admin['first_name']} {$admin['last_name']}</code><br>";
                 echo "Role: <code>{$admin['role']}</code><br>";
-                echo "Is Active: <code>" . ($admin['is_active'] ? 'YES' : 'NO') . "</code><br>";
-                echo "Password Hash: <code>" . substr($admin['password'], 0, 20) . "...</code> (" . strlen($admin['password']) . " chars)<br><br>";
+                echo "Is Active: <code>" . (($admin['is_active'] ?? null) ? 'YES' : 'NO') . "</code><br>";
+                echo "Password Hash: <code>" . substr($admin['password'] ?? '',  0,  20) . "...</code> (" . strlen($admin['password'] ?? '') . " chars)<br><br>";
                 
                 echo "<h3>Password Verification</h3>";
                 $password_match = verifyPassword($password, $admin['password']);
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     echo "<h3>Setting Session</h3>";
                     $_SESSION['admin_id'] = $admin['id'];
                     $_SESSION['admin_email'] = $admin['email'];
-                    $_SESSION['admin_name'] = $admin['first_name'] . ' ' . $admin['last_name'];
+                    $_SESSION['admin_name'] = ($admin['first_name'] ?? '') . ' ' . ($admin['last_name'] ?? '');
                     $_SESSION['admin_role'] = $admin['role'];
                     
                     echo "Session admin_id: <code>{$_SESSION['admin_id']}</code><br>";
@@ -103,7 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h2>Login Form</h2>
 <?php if ($error): ?>
     <div style="background: #ffebee; border: 1px solid #f44336; padding: 10px; margin: 10px 0;">
-        <?php echo htmlspecialchars($error); ?>
+        <?php echo htmlspecialchars($error ?? ''); ?>
     </div>
 <?php endif; ?>
 
@@ -133,7 +133,7 @@ if (isset($_GET['test'])) {
         case 'session':
             echo "<h3>Session Test</h3>";
             $_SESSION['test'] = 'Hello World';
-            echo "Set session test value: " . $_SESSION['test'] . "<br>";
+            echo "Set session test value: " . ($_SESSION['test'] ?? '') . "<br>";
             echo "Session works: <strong class='success'>YES</strong>";
             break;
             

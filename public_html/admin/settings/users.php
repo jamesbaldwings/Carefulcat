@@ -23,7 +23,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
 <div class="admin-card">
   <div class="admin-card-header"><h2 class="admin-card-title">👥 User Management</h2></div>
 
-  <?php if ($error): ?><div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
+  <?php if ($error): ?><div class="alert alert-error"><?php echo htmlspecialchars($error ?? ''); ?></div><?php endif; ?>
 
   <?php if (empty($users)): ?>
     <p class="text-muted">No admin users found.</p>
@@ -36,7 +36,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
         <tbody>
           <?php foreach ($users as $u): ?>
             <tr>
-              <td><?php echo (int)$u['id']; ?></td>
+              <td><?php echo (int)($u['id'] ?? 0); ?></td>
               <td><?php echo htmlspecialchars(trim(($u['first_name'] ?? '').' '.($u['last_name'] ?? ''))); ?></td>
               <td><?php echo htmlspecialchars($u['email'] ?? ''); ?></td>
               <td><?php echo htmlspecialchars($u['role'] ?? 'admin'); ?></td>
@@ -45,8 +45,8 @@ require_once __DIR__ . '/../includes/admin-header.php';
                   <?php echo ((int)($u['is_active'] ?? 0) === 1) ? 'Active' : 'Inactive'; ?>
                 </span>
               </td>
-              <td><?php echo $u['last_login'] ? formatDateTime($u['last_login']) : '—'; ?></td>
-              <td><?php echo $u['created_at'] ? formatDateTime($u['created_at']) : '—'; ?></td>
+              <td><?php echo ($u['last_login'] ?? null) ? formatDateTime($u['last_login'] ?? '') : '—'; ?></td>
+              <td><?php echo ($u['created_at'] ?? null) ? formatDateTime($u['created_at'] ?? '') : '—'; ?></td>
             </tr>
           <?php endforeach; ?>
         </tbody>

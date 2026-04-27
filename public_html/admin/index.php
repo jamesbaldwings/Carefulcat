@@ -42,7 +42,7 @@ require_once __DIR__ . '/includes/admin-header.php';
         <div class="stat-card">
             <div class="stat-icon" style="background-color: var(--primary-color);">🐱</div>
             <div class="stat-content">
-                <h3><?php echo number_format($stats['total_cats']); ?></h3>
+                <h3><?php echo number_format($stats['total_cats'] ?? 0); ?></h3>
                 <p>Total Cats</p>
             </div>
         </div>
@@ -50,7 +50,7 @@ require_once __DIR__ . '/includes/admin-header.php';
         <div class="stat-card">
             <div class="stat-icon" style="background-color: var(--secondary-color);">❤️</div>
             <div class="stat-content">
-                <h3><?php echo number_format($stats['adoptable_cats']); ?></h3>
+                <h3><?php echo number_format($stats['adoptable_cats'] ?? 0); ?></h3>
                 <p>Adoptable Cats</p>
             </div>
         </div>
@@ -58,7 +58,7 @@ require_once __DIR__ . '/includes/admin-header.php';
         <div class="stat-card">
             <div class="stat-icon" style="background-color: #ff9800;">🤝</div>
             <div class="stat-content">
-                <h3><?php echo number_format($stats['pending_volunteers']); ?></h3>
+                <h3><?php echo number_format($stats['pending_volunteers'] ?? 0); ?></h3>
                 <p>Pending Volunteers</p>
             </div>
         </div>
@@ -74,7 +74,7 @@ require_once __DIR__ . '/includes/admin-header.php';
         <div class="stat-card">
             <div class="stat-icon" style="background-color: #2196f3;">✉️</div>
             <div class="stat-content">
-                <h3><?php echo number_format($stats['recent_contacts']); ?></h3>
+                <h3><?php echo number_format($stats['recent_contacts'] ?? 0); ?></h3>
                 <p>Recent Messages (7 days)</p>
             </div>
         </div>
@@ -100,13 +100,13 @@ require_once __DIR__ . '/includes/admin-header.php';
                     <tbody>
                         <?php foreach ($recentDonations as $donation): ?>
                             <tr>
-                                <td><?php echo formatDateTime($donation['created_at']); ?></td>
-                                <td><?php echo htmlspecialchars($donation['donor_name']); ?></td>
-                                <td><?php echo htmlspecialchars($donation['donor_email']); ?></td>
+                                <td><?php echo formatDateTime($donation['created_at'] ?? ''); ?></td>
+                                <td><?php echo htmlspecialchars($donation['donor_name'] ?? ''); ?></td>
+                                <td><?php echo htmlspecialchars($donation['donor_email'] ?? ''); ?></td>
                                 <td><?php echo formatCurrency($donation['amount']); ?></td>
                                 <td>
                                     <span class="badge badge-<?php echo $donation['status'] === 'completed' ? 'success' : 'warning'; ?>">
-                                        <?php echo ucfirst($donation['status']); ?>
+                                        <?php echo ucfirst($donation['status'] ?? ''); ?>
                                     </span>
                                 </td>
                             </tr>
@@ -139,13 +139,13 @@ require_once __DIR__ . '/includes/admin-header.php';
                     <tbody>
                         <?php foreach ($recentContacts as $contact): ?>
                             <tr>
-                                <td><?php echo formatDateTime($contact['created_at']); ?></td>
-                                <td><?php echo htmlspecialchars($contact['name']); ?></td>
-                                <td><?php echo htmlspecialchars($contact['email']); ?></td>
-                                <td><?php echo htmlspecialchars($contact['subject']); ?></td>
+                                <td><?php echo formatDateTime($contact['created_at'] ?? ''); ?></td>
+                                <td><?php echo htmlspecialchars($contact['name'] ?? ''); ?></td>
+                                <td><?php echo htmlspecialchars($contact['email'] ?? ''); ?></td>
+                                <td><?php echo htmlspecialchars($contact['subject'] ?? ''); ?></td>
                                 <td>
                                     <span class="badge badge-<?php echo $contact['status'] === 'read' ? 'success' : 'warning'; ?>">
-                                        <?php echo ucfirst($contact['status']); ?>
+                                        <?php echo ucfirst($contact['status'] ?? ''); ?>
                                     </span>
                                 </td>
                             </tr>

@@ -25,10 +25,10 @@ require_once __DIR__.'/../includes/admin-header.php';
   <?php if($errors): ?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ', $errors)); ?></div><?php endif;?>
   <form method="post">
     <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <div class="form-group"><label>First Name</label><input name="first_name" value="<?php echo htmlspecialchars($v['first_name']);?>" required></div>
-    <div class="form-group"><label>Last Name</label><input name="last_name" value="<?php echo htmlspecialchars($v['last_name']);?>" required></div>
-    <div class="form-group"><label>Email</label><input type="email" name="email" value="<?php echo htmlspecialchars($v['email']);?>" required></div>
-    <div class="form-group"><label>Phone</label><input name="phone" value="<?php echo htmlspecialchars($v['phone']);?>"></div>
+    <div class="form-group"><label>First Name</label><input name="first_name" value="<?php echo htmlspecialchars($v['first_name'] ?? '');?>" required></div>
+    <div class="form-group"><label>Last Name</label><input name="last_name" value="<?php echo htmlspecialchars($v['last_name'] ?? '');?>" required></div>
+    <div class="form-group"><label>Email</label><input type="email" name="email" value="<?php echo htmlspecialchars($v['email'] ?? '');?>" required></div>
+    <div class="form-group"><label>Phone</label><input name="phone" value="<?php echo htmlspecialchars($v['phone'] ?? '');?>"></div>
     <div class="form-group"><label>Status</label>
       <select name="status">
         <?php foreach(['pending','approved','denied'] as $s):?>

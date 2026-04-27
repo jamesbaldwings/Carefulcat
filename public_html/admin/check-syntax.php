@@ -78,7 +78,7 @@ if (file_exists($index_file)) {
     $start_line = count($lines) - 30;
     foreach ($last_lines as $i => $line) {
         $line_num = $start_line + $i + 1;
-        echo sprintf("%3d: %s\n", $line_num, htmlspecialchars($line));
+        echo sprintf("%3d: %s\n", $line_num, htmlspecialchars($line ?? ''));
     }
     echo "</pre>";
     echo "</div>";

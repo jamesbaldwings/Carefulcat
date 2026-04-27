@@ -18,7 +18,7 @@ if (!$cat) {
     exit;
 }
 
-$page_title = 'Edit Resident: ' . $cat['name'];
+$page_title = 'Edit Resident: ' . ($cat['name'] ?? '');
 $errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -53,11 +53,11 @@ require_once __DIR__.'/../includes/admin-header.php';
 
     <form method="post" enctype="multipart/form-data">
         <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-        <input type="hidden" name="hero_photo" id="hero_photo_url" value="<?php echo htmlspecialchars($cat['hero_photo']); ?>">
+        <input type="hidden" name="hero_photo" id="hero_photo_url" value="<?php echo htmlspecialchars($cat['hero_photo'] ?? ''); ?>">
         
         <div class="form-group">
             <label>Name <span style="color:red;">*</span></label>
-            <input name="name" required value="<?php echo htmlspecialchars($cat['name']); ?>">
+            <input name="name" required value="<?php echo htmlspecialchars($cat['name'] ?? ''); ?>">
         </div>
         
         <div class="form-group">
@@ -96,9 +96,9 @@ require_once __DIR__.'/../includes/admin-header.php';
         
         <div class="form-group">
             <label>Photo</label>
-            <?php if ($cat['hero_photo']): ?>
+            <?php if ($cat['hero_photo'] ?? null): ?>
                 <div style="margin-bottom: 10px;">
-                    <img src="<?php echo htmlspecialchars($cat['hero_photo']); ?>" style="max-width: 200px; border-radius: 8px;">
+                    <img src="<?php echo htmlspecialchars($cat['hero_photo'] ?? ''); ?>" style="max-width: 200px; border-radius: 8px;">
                     <p style="font-size: 12px; color: #666;">Current photo</p>
                 </div>
             <?php endif; ?>

@@ -75,7 +75,7 @@ $pageTitle = 'Admin Login';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($pageTitle); ?> - <?php echo htmlspecialchars(SITE_NAME); ?></title>
+    <title><?php echo htmlspecialchars($pageTitle ?? ''); ?> - <?php echo htmlspecialchars(SITE_NAME ?? ''); ?></title>
     <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/style.css">
     <link rel="stylesheet" href="<?php echo ASSETS_URL; ?>/css/admin.css">
     <style>
@@ -116,16 +116,16 @@ $pageTitle = 'Admin Login';
 <body>
     <div class="login-container">
         <div class="login-logo">
-            <h1><?php echo htmlspecialchars(SITE_NAME); ?></h1>
+            <h1><?php echo htmlspecialchars(SITE_NAME ?? ''); ?></h1>
             <p>Admin Panel Login</p>
         </div>
 
         <?php if ($error): ?>
-            <div class="alert alert-error"><?php echo htmlspecialchars($error); ?></div>
+            <div class="alert alert-error"><?php echo htmlspecialchars($error ?? ''); ?></div>
         <?php endif; ?>
 
         <?php if ($success): ?>
-            <div class="alert alert-success"><?php echo htmlspecialchars($success); ?></div>
+            <div class="alert alert-success"><?php echo htmlspecialchars($success ?? ''); ?></div>
         <?php endif; ?>
 
         <form method="POST" action="" autocomplete="on" novalidate>
@@ -135,7 +135,7 @@ $pageTitle = 'Admin Login';
                     type="email"
                     id="email"
                     name="email"
-                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email']) : ''; ?>"
+                    value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email'] ?? '') : ''; ?>"
                     required
                     autofocus
                     autocomplete="username"

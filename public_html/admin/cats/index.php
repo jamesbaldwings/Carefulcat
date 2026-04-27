@@ -25,7 +25,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
         <tbody>
           <?php foreach ($cats as $c): ?>
             <tr>
-              <td><?php echo (int)$c['id']; ?></td>
+              <td><?php echo (int)($c['id'] ?? 0); ?></td>
               <td><?php echo htmlspecialchars($c['name'] ?? ''); ?></td>
               <td><?php echo htmlspecialchars($c['breed'] ?? ''); ?></td>
               <td>
@@ -35,9 +35,9 @@ require_once __DIR__ . '/../includes/admin-header.php';
               </td>
               <td><?php echo formatDateTime($c['created_at'] ?? ''); ?></td>
               <td>
-                <a class="btn btn-small" href="/admin/cats/edit.php?id=<?php echo (int)$c['id']; ?>">Edit</a>
+                <a class="btn btn-small" href="/admin/cats/edit.php?id=<?php echo (int)($c['id'] ?? 0); ?>">Edit</a>
                 <form method="post" action="/admin/cats/delete.php" style="display:inline" onsubmit="return confirm('Delete this cat?');">
-                  <input type="hidden" name="id" value="<?php echo (int)$c['id']; ?>">
+                  <input type="hidden" name="id" value="<?php echo (int)($c['id'] ?? 0); ?>">
                   <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
                   <button class="btn btn-small btn-danger" type="submit">Delete</button>
                 </form>

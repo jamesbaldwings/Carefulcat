@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   $adopter_name=trim($_POST['adopter_name']??'');
   $adopter_email=trim($_POST['adopter_email']??'');
   $adopter_phone=trim($_POST['adopter_phone']??'');
-  $adoption_fee=$_POST['adoption_fee']!=='' ? (float)$_POST['adoption_fee'] : null;
+  $adoption_fee=($_POST['adoption_fee'] ?? '')!=='' ? (float)$_POST['adoption_fee'] : null;
   if($cat_id<=0||$adopter_name===''||$adopter_email===''){ $errors[]='Cat, adopter name and email are required.'; }
   if(!$errors){
     db()->query("INSERT INTO adoptions(cat_id,adopter_name,adopter_email,adopter_phone,adoption_fee,applied_at,created_at) VALUES(?,?,?,?,?,NOW(),NOW())",
@@ -33,7 +33,7 @@ require_once __DIR__.'/../includes/admin-header.php';
       <select name="cat_id" required>
         <option value="">-- select cat --</option>
         <?php foreach($cats as $c):?>
-          <option value="<?php echo (int)$c['id'];?>"><?php echo htmlspecialchars(($c['shelter_tag']?$c['shelter_tag'].' — ':'').$c['name']);?></option>
+          <option value="<?php echo (int)($c['id'] ?? 0);?>"><?php echo htmlspecialchars((($c['shelter_tag'] ?? '') ? ($c['shelter_tag'] . ' — ') : '') . ($c['name'] ?? ''));?></option>
         <?php endforeach;?>
       </select>
     </div>

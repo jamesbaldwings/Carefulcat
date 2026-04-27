@@ -23,14 +23,14 @@ try {
 } catch (Exception $e) {
     echo "<div style='background: #ffcccc; padding: 10px; margin: 10px 0;'>";
     echo "<h3>Exception Caught:</h3>";
-    echo "<pre>" . htmlspecialchars($e->getMessage()) . "</pre>";
-    echo "<pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+    echo "<pre>" . htmlspecialchars($e->getMessage() ?? '') . "</pre>";
+    echo "<pre>" . htmlspecialchars($e->getTraceAsString() ?? '') . "</pre>";
     echo "</div>";
 } catch (Error $e) {
     echo "<div style='background: #ffcccc; padding: 10px; margin: 10px 0;'>";
     echo "<h3>Error Caught:</h3>";
-    echo "<pre>" . htmlspecialchars($e->getMessage()) . "</pre>";
-    echo "<pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+    echo "<pre>" . htmlspecialchars($e->getMessage() ?? '') . "</pre>";
+    echo "<pre>" . htmlspecialchars($e->getTraceAsString() ?? '') . "</pre>";
     echo "</div>";
 }
 
@@ -46,7 +46,7 @@ $last_error = error_get_last();
 if ($last_error) {
     echo "<div style='background: #ffeeee; padding: 10px; margin: 10px 0;'>";
     echo "<h3>Last PHP Error:</h3>";
-    echo "<pre>" . htmlspecialchars(print_r($last_error, true)) . "</pre>";
+    echo "<pre>" . htmlspecialchars(print_r($last_error, true) ?? '') . "</pre>";
     echo "</div>";
 }
 ?>

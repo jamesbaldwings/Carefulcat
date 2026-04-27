@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
         // Send email using PHP mail() function
-        $to = $message['email'];
+        $to = $message['email'] ?? '';
         $subject = $reply_subject;
         $body = $reply_message;
         $headers = [
@@ -84,7 +84,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
     <h2>✉️ Reply to Message</h2>
     
     <?php if ($m = flash_out('error')): ?>
-        <div class="alert alert-danger"><?php echo htmlspecialchars($m); ?></div>
+        <div class="alert alert-danger"><?php echo htmlspecialchars($m ?? ''); ?></div>
     <?php endif; ?>
     
     <div class="admin-card" style="margin-bottom: 20px;">
@@ -93,25 +93,25 @@ require_once __DIR__ . '/../includes/admin-header.php';
             <tbody>
                 <tr>
                     <th style="width: 150px;">From</th>
-                    <td><?php echo htmlspecialchars($sender_name . ' <' . $message['email'] . '>'); ?></td>
+                    <td><?php echo htmlspecialchars($sender_name . ' <' . ($message['email'] ?? '') . '>' ?? ''); ?></td>
                 </tr>
                 <?php if (!empty($message['phone'])): ?>
                 <tr>
                     <th>Phone</th>
-                    <td><?php echo htmlspecialchars($message['phone']); ?></td>
+                    <td><?php echo htmlspecialchars($message['phone'] ?? ''); ?></td>
                 </tr>
                 <?php endif; ?>
                 <tr>
                     <th>Subject</th>
-                    <td><?php echo htmlspecialchars($message['subject']); ?></td>
+                    <td><?php echo htmlspecialchars($message['subject'] ?? ''); ?></td>
                 </tr>
                 <tr>
                     <th>Date</th>
-                    <td><?php echo formatDateTime($message['created_at']); ?></td>
+                    <td><?php echo formatDateTime($message['created_at'] ?? ''); ?></td>
                 </tr>
                 <tr>
                     <th>Message</th>
-                    <td><pre style="white-space: pre-wrap; background: #f5f5f5; padding: 10px; border-radius: 4px;"><?php echo htmlspecialchars($message['message']); ?></pre></td>
+                    <td><pre style="white-space: pre-wrap; background: #f5f5f5; padding: 10px; border-radius: 4px;"><?php echo htmlspecialchars($message['message'] ?? ''); ?></pre></td>
                 </tr>
             </tbody>
         </table>
@@ -128,7 +128,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
                     type="text" 
                     id="subject" 
                     name="subject" 
-                    value="<?php echo htmlspecialchars('Re: ' . $message['subject']); ?>" 
+                    value="<?php echo htmlspecialchars('Re: ' . ($message['subject'] ?? '')); ?>" 
                     required 
                     style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"
                 >

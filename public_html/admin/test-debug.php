@@ -6,7 +6,7 @@ echo "Test 2: Including db.php...<br>"echorequire_once dirname(__DIR__) . '/incl
 echo "✓ DB class loaded<br>"echorequire_once
 // Test 3: Check if we can get DB instancTestecho "Test 3: Getting DB instance...<br>"Test$db = Database::getInstance()->getConnection()DBecho "✓ DB instance obtained<brDatabase
 // Test 4: Try a simple query
-echo "Test 4: Testing simple query...<br>brDatabase$stmt = $db->prepare("SELECT COUNT(*) as count FROM cats")scandir($stmt->execute()$db-$result = $stmt->fetch(PDO::FETCH_ASSOC)$db-$resultecho "✓ Query executed. Cat count: " . $result['count'] . "<br>"quoted_printable_decode(
+echo "Test 4: Testing simple query...<br>brDatabase$stmt = $db->prepare("SELECT COUNT(*) as count FROM cats")scandir($stmt->execute()$db-$result = $stmt->fetch(PDO::FETCH_ASSOC)$db-$resultecho "✓ Query executed. Cat count: " . ($result['count'] ?? '') . "<br>"quoted_printable_decode(
     echo "<br>All tests passed!"executed?>")")function (args) use (&,  /*put vars in scope (closure) */) {
     
 };)';;

@@ -12,7 +12,7 @@ require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="dashboard-section">
   <h2>✉️ Messages</h2>
-  <?php if($m=flash_out('success')):?><div class="alert alert-success"><?php echo htmlspecialchars($m);?></div><?php endif;?>
+  <?php if($m=flash_out('success')):?><div class="alert alert-success"><?php echo htmlspecialchars($m ?? '');?></div><?php endif;?>
   
   <?php if (empty($rows)): ?>
     <p class="text-muted">No messages yet.</p>
@@ -23,17 +23,17 @@ require_once __DIR__.'/../includes/admin-header.php';
         <tbody>
           <?php foreach($rows as $r):?>
             <tr>
-              <td><?php echo (int)$r['id'];?></td>
+              <td><?php echo (int)($r['id'] ?? 0);?></td>
               <td><?php echo htmlspecialchars(($r['first_name'] ?? '') . ' ' . ($r['last_name'] ?? '')); ?></td>
-              <td><?php echo htmlspecialchars($r['email']);?></td>
-              <td><?php echo htmlspecialchars($r['subject']);?></td>
-              <td><?php echo formatDateTime($r['created_at']);?></td>
+              <td><?php echo htmlspecialchars($r['email'] ?? '');?></td>
+              <td><?php echo htmlspecialchars($r['subject'] ?? '');?></td>
+              <td><?php echo formatDateTime($r['created_at'] ?? '');?></td>
               <td style="white-space: nowrap;">
-                <a class="btn btn-small" href="/admin/messages/view.php?id=<?php echo (int)$r['id'];?>">View</a>
-                <a class="btn btn-small" href="/admin/messages/reply.php?id=<?php echo (int)$r['id'];?>">✉️ Reply</a>
+                <a class="btn btn-small" href="/admin/messages/view.php?id=<?php echo (int)($r['id'] ?? 0);?>">View</a>
+                <a class="btn btn-small" href="/admin/messages/reply.php?id=<?php echo (int)($r['id'] ?? 0);?>">✉️ Reply</a>
                 <form method="post" action="/admin/messages/delete.php" style="display:inline" onsubmit="return confirm('Delete this message?');">
                   <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-                  <input type="hidden" name="id" value="<?php echo (int)$r['id'];?>">
+                  <input type="hidden" name="id" value="<?php echo (int)($r['id'] ?? 0);?>">
                   <button class="btn btn-small btn-danger" type="submit">Delete</button>
                 </form>
               </td>

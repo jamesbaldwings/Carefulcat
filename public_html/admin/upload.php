@@ -28,7 +28,7 @@ try {
         exit;
     }
     
-    $file = $_FILES['file'];
+    $file = $_FILES['file'] ?? '';
     
     // Validate file
     if ($file['error'] !== UPLOAD_ERR_OK) {

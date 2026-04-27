@@ -14,10 +14,10 @@ require_once __DIR__.'/../includes/admin-header.php';
   <div class="admin-card-header"><h2 class="admin-card-title">✉️ Message</h2></div>
   <table class="admin-table">
     <tbody>
-      <tr><th>From</th><td><?php echo htmlspecialchars($msg['name'].' <'.$msg['email'].'>');?></td></tr>
-      <tr><th>Subject</th><td><?php echo htmlspecialchars($msg['subject']);?></td></tr>
-      <tr><th>Date</th><td><?php echo formatDateTime($msg['created_at']);?></td></tr>
-      <tr><th>Message</th><td><pre style="white-space:pre-wrap;"><?php echo htmlspecialchars($msg['message']);?></pre></td></tr>
+      <tr><th>From</th><td><?php echo htmlspecialchars($msg['name'].' <'.($msg['email'] ?? '').'>' ?? '');?></td></tr>
+      <tr><th>Subject</th><td><?php echo htmlspecialchars($msg['subject'] ?? '');?></td></tr>
+      <tr><th>Date</th><td><?php echo formatDateTime($msg['created_at'] ?? '');?></td></tr>
+      <tr><th>Message</th><td><pre style="white-space:pre-wrap;"><?php echo htmlspecialchars($msg['message'] ?? '');?></pre></td></tr>
     </tbody>
   </table>
   <p><a class="btn btn-outline" href="/admin/messages/index.php">Back</a></p>

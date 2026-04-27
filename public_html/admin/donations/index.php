@@ -25,7 +25,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
 </div>
 
 <?php if ($m=flash_out('success')): ?>
-  <div class="alert alert-success"><?php echo htmlspecialchars($m); ?></div>
+  <div class="alert alert-success"><?php echo htmlspecialchars($m ?? ''); ?></div>
 <?php endif; ?>
 
 <div class="admin-card">
@@ -55,7 +55,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
       <tbody>
         <?php foreach ($donations as $d): ?>
           <tr>
-            <td><?php echo (int)$d['id']; ?></td>
+            <td><?php echo (int)($d['id'] ?? 0); ?></td>
             <td><strong><?php echo htmlspecialchars(trim(($d['first_name'] ?? '') . ' ' . ($d['last_name'] ?? ''))); ?></strong></td>
             <td><?php echo htmlspecialchars($d['email'] ?? ''); ?></td>
             <td><strong><?php echo formatCurrency($d['amount'] ?? 0); ?></strong></td>
@@ -66,10 +66,10 @@ require_once __DIR__ . '/../includes/admin-header.php';
             </td>
             <td><?php echo formatDateTime($d['created_at'] ?? ''); ?></td>
             <td class="admin-table-actions">
-              <a class="btn btn-sm" href="/admin/donations/view.php?id=<?php echo (int)$d['id']; ?>">View</a>
-              <a class="btn btn-sm btn-outline" href="/admin/donations/edit.php?id=<?php echo (int)$d['id']; ?>">Edit</a>
+              <a class="btn btn-sm" href="/admin/donations/view.php?id=<?php echo (int)($d['id'] ?? 0); ?>">View</a>
+              <a class="btn btn-sm btn-outline" href="/admin/donations/edit.php?id=<?php echo (int)($d['id'] ?? 0); ?>">Edit</a>
               <a class="btn btn-sm btn-danger" 
-                 href="/admin/donations/delete.php?id=<?php echo (int)$d['id']; ?>"
+                 href="/admin/donations/delete.php?id=<?php echo (int)($d['id'] ?? 0); ?>"
                  onclick="return confirm('Are you sure you want to delete this donation?')">Delete</a>
             </td>
           </tr>

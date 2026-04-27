@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   $title=trim($_POST['title']??''); $slug=trim($_POST['slug']??''); $body=trim($_POST['body']??''); $status=$_POST['status']??'draft';
   if($title===''||$slug===''||$body===''){ $errors[]='Title, slug, and body are required.'; }
   if(!$errors){
-    $pub = $status==='published' ? ( $p['published_at'] ?: date('Y-m-d H:i:s') ) : null;
+    $pub = $status==='published' ? ( ($p['published_at'] ?? null) ?: date('Y-m-d H:i:s') ) : null;
     db()->query("UPDATE blog_posts SET title=?,slug=?,body=?,status=?,published_at=? WHERE id=?",[$title,$slug,$body,$status,$pub,$id]);
     flash('success','Post updated.'); redirect('/admin/blog/index.php');
   }
@@ -26,9 +26,9 @@ require_once __DIR__.'/../includes/admin-header.php';
   <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
   <form method="post">
     <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <div class="form-group"><label>Title</label><input name="title" value="<?php echo htmlspecialchars($p['title']);?>" required></div>
-    <div class="form-group"><label>Slug</label><input name="slug" value="<?php echo htmlspecialchars($p['slug']);?>" required></div>
-    <div class="form-group"><label>Body</label><textarea name="body" rows="10" required><?php echo htmlspecialchars($p['body']);?></textarea></div>
+    <div class="form-group"><label>Title</label><input name="title" value="<?php echo htmlspecialchars($p['title'] ?? '');?>" required></div>
+    <div class="form-group"><label>Slug</label><input name="slug" value="<?php echo htmlspecialchars($p['slug'] ?? '');?>" required></div>
+    <div class="form-group"><label>Body</label><textarea name="body" rows="10" required><?php echo htmlspecialchars($p['body'] ?? '');?></textarea></div>
     <div class="form-group"><label>Status</label>
       <select name="status"><?php foreach(['draft','published'] as $s):?>
         <option value="<?php echo $s;?>" <?php echo $p['status']===$s?'selected':'';?>><?php echo ucfirst($s);?></option>

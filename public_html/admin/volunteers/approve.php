@@ -35,7 +35,7 @@ try {
     }
     
     // Generate volunteer ID if not exists
-    $volunteer_id = $volunteer['volunteer_id'];
+    $volunteer_id = $volunteer['volunteer_id'] ?? '';
     if (empty($volunteer_id)) {
         // Format: VOL-YYYY-XXXX (e.g., VOL-2025-0001)
         $year = date('Y');

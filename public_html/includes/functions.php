@@ -11,7 +11,7 @@ function sanitize($data) {
     if (is_array($data)) {
         return array_map('sanitize', $data);
     }
-    return htmlspecialchars(strip_tags(trim($data)), ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars(strip_tags(trim($data ?? '')),  ENT_QUOTES,  'UTF-8');
 }
 
 /**
@@ -25,7 +25,7 @@ function isValidEmail($email) {
  * Validate phone number
  */
 function isValidPhone($phone) {
-    $phone = preg_replace('/[^0-9]/', '', $phone);
+    $phone = preg_replace('/[^0-9]/', '', $phone ?? '');
     return strlen($phone) >= 10;
 }
 
@@ -58,7 +58,7 @@ function redirect($url, $statusCode = 302) {
  */
 function currentUrl() {
     $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
-    return $protocol . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    return $protocol . '://' . ($_SERVER['HTTP_HOST'] ?? '') . $_SERVER['REQUEST_URI'];
 }
 
 /**
@@ -106,6 +106,7 @@ function timeAgo($datetime) {
  * Truncate text
  */
 function truncate($text, $length = 100, $suffix = '...') {
+    $text = $text ?? '';
     if (strlen($text) <= $length) {
         return $text;
     }
@@ -116,7 +117,7 @@ function truncate($text, $length = 100, $suffix = '...') {
  * Generate slug from text
  */
 function generateSlug($text) {
-    $text = strtolower($text);
+    $text = strtolower($text ?? '');
     $text = preg_replace('/[^a-z0-9\s-]/', '', $text);
     $text = preg_replace('/[\s-]+/', '-', $text);
     return trim($text, '-');
@@ -238,7 +239,7 @@ function getJsonInput() {
 function validateRequired($data, $fields) {
     $errors = [];
     foreach ($fields as $field) {
-        if (!isset($data[$field]) || empty(trim($data[$field]))) {
+        if (!isset($data[$field]) || empty(trim($data[$field] ?? ''))) {
             $errors[] = ucfirst(str_replace('_', ' ', $field)) . ' is required';
         }
     }
@@ -300,7 +301,7 @@ function verifyPassword($password, $hash) {
  * Escape HTML
  */
 function e($text) {
-    return htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+    return htmlspecialchars($text ?? '',  ENT_QUOTES,  'UTF-8');
 }
 
 /**

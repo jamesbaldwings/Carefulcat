@@ -24,9 +24,9 @@ require_once __DIR__.'/../includes/admin-header.php';
   <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
   <form method="post">
     <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <div class="form-group"><label>Name</label><input name="name" value="<?php echo htmlspecialchars($s['name']);?>" required></div>
-    <div class="form-group"><label>Level</label><input name="level" value="<?php echo htmlspecialchars($s['level']);?>"></div>
-    <div class="form-group"><label>Website</label><input name="website" value="<?php echo htmlspecialchars($s['website']);?>"></div>
+    <div class="form-group"><label>Name</label><input name="name" value="<?php echo htmlspecialchars($s['name'] ?? '');?>" required></div>
+    <div class="form-group"><label>Level</label><input name="level" value="<?php echo htmlspecialchars($s['level'] ?? '');?>"></div>
+    <div class="form-group"><label>Website</label><input name="website" value="<?php echo htmlspecialchars($s['website'] ?? '');?>"></div>
     <div class="form-group"><label>Status</label>
       <select name="status"><?php foreach(['active','inactive'] as $st):?><option value="<?php echo $st;?>" <?php echo $s['status']===$st?'selected':'';?>><?php echo ucfirst($st);?></option><?php endforeach;?></select>
     </div>

@@ -19,7 +19,7 @@ require_once __DIR__.'/../includes/admin-header.php';
   <a class="btn" href="/admin/adoptions/create.php">+ New Application</a>
 </div>
 
-<?php if($m=flash_out('success')):?><div class="alert alert-success"><?php echo htmlspecialchars($m);?></div><?php endif;?>
+<?php if($m=flash_out('success')):?><div class="alert alert-success"><?php echo htmlspecialchars($m ?? '');?></div><?php endif;?>
 
 <div class="admin-card">
   <div class="admin-card-header">
@@ -50,35 +50,35 @@ require_once __DIR__.'/../includes/admin-header.php';
       <tbody>
         <?php foreach($rows as $r):?>
           <tr>
-            <td><?php echo (int)$r['id'];?></td>
-            <td><strong><?php echo htmlspecialchars($r['cat_name']);?></strong></td>
-            <td><?php echo htmlspecialchars($r['shelter_tag']);?></td>
-            <td><?php echo htmlspecialchars($r['adopter_name']);?></td>
-            <td><?php echo htmlspecialchars($r['adopter_email']);?></td>
+            <td><?php echo (int)($r['id'] ?? 0);?></td>
+            <td><strong><?php echo htmlspecialchars($r['cat_name'] ?? '');?></strong></td>
+            <td><?php echo htmlspecialchars($r['shelter_tag'] ?? '');?></td>
+            <td><?php echo htmlspecialchars($r['adopter_name'] ?? '');?></td>
+            <td><?php echo htmlspecialchars($r['adopter_email'] ?? '');?></td>
             <td>
               <span class="badge badge-<?php echo $r['status']==='approved'?'success':($r['status']==='denied'?'danger':'warning');?>">
-                <?php echo ucfirst($r['status']);?>
+                <?php echo ucfirst($r['status'] ?? '');?>
               </span>
             </td>
-            <td><?php echo formatDateTime($r['applied_at']);?></td>
+            <td><?php echo formatDateTime($r['applied_at'] ?? '');?></td>
             <td class="admin-table-actions">
-              <a class="btn btn-sm" href="/admin/adoptions/view.php?id=<?php echo (int)$r['id'];?>">View</a>
+              <a class="btn btn-sm" href="/admin/adoptions/view.php?id=<?php echo (int)($r['id'] ?? 0);?>">View</a>
               
               <?php if($r['status'] === 'pending'):?>
                 <a class="btn btn-sm btn-success" 
-                   href="/admin/adoptions/approve.php?id=<?php echo (int)$r['id'];?>"
+                   href="/admin/adoptions/approve.php?id=<?php echo (int)($r['id'] ?? 0);?>"
                    onclick="return confirm('Approve this adoption application?')">
                   ✅ Approve
                 </a>
                 <a class="btn btn-sm btn-danger" 
-                   href="/admin/adoptions/reject.php?id=<?php echo (int)$r['id'];?>"
+                   href="/admin/adoptions/reject.php?id=<?php echo (int)($r['id'] ?? 0);?>"
                    onclick="return confirm('Reject this adoption application?')">
                   ❌ Reject
                 </a>
               <?php endif;?>
               
-              <a class="btn btn-sm btn-outline" href="/admin/adoptions/edit.php?id=<?php echo (int)$r['id'];?>">Edit</a>
-              <a class="btn btn-sm btn-outline" href="/admin/cats/medical.php?cat_id=<?php echo (int)$r['cat_id'];?>">Medical</a>
+              <a class="btn btn-sm btn-outline" href="/admin/adoptions/edit.php?id=<?php echo (int)($r['id'] ?? 0);?>">Edit</a>
+              <a class="btn btn-sm btn-outline" href="/admin/cats/medical.php?cat_id=<?php echo (int)($r['cat_id'] ?? 0);?>">Medical</a>
             </td>
           </tr>
         <?php endforeach;?>

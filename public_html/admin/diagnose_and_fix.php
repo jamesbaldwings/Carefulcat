@@ -102,7 +102,7 @@ $allowed_ips = ['127.0.0.1', '::1']; // Add your IP here if needed
                 $diagnostics[] = "<div class='error'><strong>Issues found in .htaccess:</strong><ul><li>" . implode('</li><li>', $issues) . "</li></ul></div>";
                 
                 $diagnostics[] = "<h3>Current .htaccess content:</h3>";
-                $diagnostics[] = "<pre>" . htmlspecialchars($content) . "</pre>";
+                $diagnostics[] = "<pre>" . htmlspecialchars($content ?? '') . "</pre>";
                 
                 // Offer to fix
                 if (!$apply_fix) {
@@ -111,7 +111,7 @@ $allowed_ips = ['127.0.0.1', '::1']; // Add your IP here if needed
                     $diagnostics[] = "<p>Click the button below to automatically fix it:</p>";
                     $diagnostics[] = "<form method='get'>";
                     $diagnostics[] = "<input type='hidden' name='fix' value='htaccess'>";
-                    $diagnostics[] = "<input type='hidden' name='file' value='" . htmlspecialchars($htaccess_file) . "'>";
+                    $diagnostics[] = "<input type='hidden' name='file' value='" . htmlspecialchars($htaccess_file ?? '') . "'>";
                     $diagnostics[] = "<button type='submit' class='btn'>🔧 Fix .htaccess File</button>";
                     $diagnostics[] = "</form>";
                     $diagnostics[] = "</div>";
@@ -132,7 +132,7 @@ $allowed_ips = ['127.0.0.1', '::1']; // Add your IP here if needed
                         if (file_put_contents($htaccess_file, $fixed_content)) {
                             $fixes_applied[] = "✅ Successfully fixed .htaccess file!";
                             $fixes_applied[] = "<h3>New .htaccess content:</h3>";
-                            $fixes_applied[] = "<pre>" . htmlspecialchars($fixed_content) . "</pre>";
+                            $fixes_applied[] = "<pre>" . htmlspecialchars($fixed_content ?? '') . "</pre>";
                         } else {
                             $errors[] = "❌ Failed to write fixed .htaccess file. Check file permissions.";
                         }
@@ -141,7 +141,7 @@ $allowed_ips = ['127.0.0.1', '::1']; // Add your IP here if needed
             } else {
                 $diagnostics[] = "<div class='success'>✅ No obvious issues found in this .htaccess file</div>";
                 $diagnostics[] = "<h3>Current .htaccess content:</h3>";
-                $diagnostics[] = "<pre>" . htmlspecialchars($content) . "</pre>";
+                $diagnostics[] = "<pre>" . htmlspecialchars($content ?? '') . "</pre>";
             }
         }
         
@@ -225,7 +225,7 @@ $allowed_ips = ['127.0.0.1', '::1']; // Add your IP here if needed
         <div class="warning">
             <p><strong>Important:</strong> Delete this diagnostic script after fixing the issues!</p>
             <p>This script can expose sensitive information about your server configuration.</p>
-            <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" onsubmit="return confirm('Are you sure you want to delete this script?');">
+            <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?? ''; ?>" onsubmit="return confirm('Are you sure you want to delete this script?');">
                 <input type="hidden" name="delete_self" value="1">
                 <button type="submit" class="btn btn-danger">🗑️ Delete This Script</button>
             </form>

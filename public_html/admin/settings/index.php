@@ -11,7 +11,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
 <link rel="stylesheet" href="/admin/css/admin-forms.css">
 
 <?php if ($m = flash_out('success')): ?>
-    <div class="alert alert-success"><?php echo htmlspecialchars($m); ?></div>
+    <div class="alert alert-success"><?php echo htmlspecialchars($m ?? ''); ?></div>
 <?php endif; ?>
 
 <div class="admin-card">
