@@ -28,51 +28,74 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
-  <div class="admin-card-header"><h2 class="admin-card-title">🏆 Add Sponsor</h2></div>
-  <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
-  
-  <form method="post" enctype="multipart/form-data">
-    <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <input type="hidden" name="logo_url" id="logo_url" value="">
+  <div class="admin-card-header">
+    <h1 class="admin-card-title">🏆 Add New Sponsor</h1>
+  </div>
+  <div class="admin-card-body">
+    <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
     
-    <div class="form-group">
-      <label>Name <span style="color:red;">*</span></label>
-      <input name="name" required value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>">
-    </div>
-    
-    <div class="form-group">
-      <label>Logo</label>
-      <input type="file" id="logo_input" accept="image/*" onchange="uploadLogo(this)">
-      <div id="logo_preview" style="margin-top: 10px;"></div>
-      <small style="color: #666;">Upload sponsor logo (JPG, PNG, GIF, WEBP - Max 5MB)</small>
-    </div>
-    
-    <div class="form-group">
-      <label>Website URL</label>
-      <input name="website_url" type="url" value="<?php echo htmlspecialchars($_POST['website_url'] ?? ''); ?>" placeholder="https://example.com">
-    </div>
-    
-    <div class="form-group">
-      <label>Description</label>
-      <textarea name="description" rows="3" placeholder="Brief description of the sponsor..."><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
-    </div>
-    
-    <div class="form-group">
-      <label>Display Order</label>
-      <input name="display_order" type="number" min="0" value="<?php echo htmlspecialchars($_POST['display_order'] ?? '0'); ?>">
-      <small style="color: #666;">Lower numbers appear first</small>
-    </div>
-    
-    <div class="form-group">
-      <label>
-        <input type="checkbox" name="is_active" value="1" <?php echo isset($_POST['is_active']) || !isset($_POST['name']) ? 'checked' : ''; ?>>
-        Active (show on website)
-      </label>
-    </div>
-    
-    <button class="btn" type="submit">💾 Save Sponsor</button>
-    <a class="btn btn-outline" href="/admin/sponsors/index.php">Cancel</a>
-  </form>
+    <form method="post" enctype="multipart/form-data">
+      <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
+      <input type="hidden" name="logo_url" id="logo_url" value="<?php echo htmlspecialchars($_POST['logo_url'] ?? ''); ?>">
+
+      <div class="form-section">
+        <h2 class="form-section-title">Sponsor Details</h2>
+        <div class="form-group">
+          <label for="name">Sponsor Name <span class="required">*</span></label>
+          <input type="text" id="name" name="name" required value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>" placeholder="Enter sponsor name...">
+        </div>
+        <div class="form-group">
+          <label for="website_url">Website URL</label>
+          <input type="url" id="website_url" name="website_url" value="<?php echo htmlspecialchars($_POST['website_url'] ?? ''); ?>" placeholder="https://example.com">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="3" placeholder="Brief description of the sponsor..."><?php echo htmlspecialchars($_POST['description'] ?? ''); ?></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Media</h2>
+        <div class="form-group">
+          <label>Logo</label>
+          <div class="file-upload-area">
+            <span class="file-upload-icon">📷</span>
+            <input type="file" id="logo_input" accept="image/*" onchange="uploadLogo(this)" class="file-upload-input" style="opacity: 0; position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer;">
+            <p class="file-upload-text">Click or drag to upload logo</p>
+            <small class="file-upload-hint">PNG, JPG, GIF, WEBP up to 5MB</small>
+          </div>
+          <div id="logo_preview" class="file-upload-preview" style="margin-top: 10px;">
+            <?php if (!empty($_POST['logo_url'])): ?>
+              <img src="<?php echo htmlspecialchars($_POST['logo_url']); ?>" style="max-width: 200px; max-height: 100px; border-radius: 8px;">
+            <?php endif; ?>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Settings</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="display_order">Display Order</label>
+            <input type="number" id="display_order" name="display_order" min="0" value="<?php echo htmlspecialchars($_POST['display_order'] ?? '0'); ?>">
+            <small class="form-hint">Lower numbers appear first.</small>
+          </div>
+          <div class="form-group">
+            <label class="toggle-switch">
+              <input type="checkbox" name="is_active" value="1" <?php echo isset($_POST['is_active']) || !isset($_POST['name']) ? 'checked' : ''; ?>>
+              <span class="toggle-slider"></span>
+              <span class="toggle-label">Active</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">💾 Save Sponsor</button>
+        <a href="/admin/sponsors/index.php" class="btn btn-outline">Cancel</a>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script>
@@ -82,8 +105,8 @@ function uploadLogo(input) {
     const formData = new FormData();
     formData.append('file', file);
     
-    // Show loading
-    document.getElementById('logo_preview').innerHTML = '<p>Uploading...</p>';
+    const previewContainer = document.getElementById('logo_preview');
+    previewContainer.innerHTML = '<p>Uploading...</p>';
     
     fetch('/admin/upload.php', {
       method: 'POST',
@@ -93,16 +116,16 @@ function uploadLogo(input) {
     .then(data => {
       if (data.success) {
         document.getElementById('logo_url').value = data.url;
-        document.getElementById('logo_preview').innerHTML = 
+        previewContainer.innerHTML = 
           '<img src="' + data.url + '" style="max-width: 200px; max-height: 100px; border-radius: 8px;"><br>' +
           '<small style="color: green;">✓ Logo uploaded successfully</small>';
       } else {
-        document.getElementById('logo_preview').innerHTML = 
+        previewContainer.innerHTML = 
           '<p style="color: red;">Error: ' + data.error + '</p>';
       }
     })
     .catch(error => {
-      document.getElementById('logo_preview').innerHTML = 
+      previewContainer.innerHTML = 
         '<p style="color: red;">Upload failed: ' + error + '</p>';
     });
   }

@@ -20,18 +20,49 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
-  <div class="admin-card-header"><h2 class="admin-card-title">🏆 Edit Sponsor</h2></div>
-  <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
-  <form method="post">
-    <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <div class="form-group"><label>Name</label><input name="name" value="<?php echo htmlspecialchars($s['name'] ?? '');?>" required></div>
-    <div class="form-group"><label>Level</label><input name="level" value="<?php echo htmlspecialchars($s['level'] ?? '');?>"></div>
-    <div class="form-group"><label>Website</label><input name="website" value="<?php echo htmlspecialchars($s['website'] ?? '');?>"></div>
-    <div class="form-group"><label>Status</label>
-      <select name="status"><?php foreach(['active','inactive'] as $st):?><option value="<?php echo $st;?>" <?php echo $s['status']===$st?'selected':'';?>><?php echo ucfirst($st);?></option><?php endforeach;?></select>
-    </div>
-    <button class="btn" type="submit">Save</button>
-    <a class="btn btn-outline" href="/admin/sponsors/index.php">Cancel</a>
-  </form>
+  <div class="admin-card-header">
+    <h1 class="admin-card-title">🏆 Edit Sponsor</h1>
+  </div>
+  <div class="admin-card-body">
+    <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
+    <form method="post">
+      <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
+
+      <div class="form-section">
+        <h2 class="form-section-title">Sponsor Details</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($s['name'] ?? '');?>" placeholder="e.g., Acme Corporation" required>
+          </div>
+          <div class="form-group">
+            <label for="level">Level</label>
+            <input type="text" id="level" name="level" value="<?php echo htmlspecialchars($s['level'] ?? '');?>" placeholder="e.g., Gold">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="website">Website</label>
+          <input type="url" id="website" name="website" value="<?php echo htmlspecialchars($s['website'] ?? '');?>" placeholder="https://example.com">
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Status</h2>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <?php foreach(['active','inactive'] as $st):?>
+              <option value="<?php echo $st;?>" <?php echo ($s['status'] ?? 'active') === $st ? 'selected' : '';?>><?php echo ucfirst($st);?></option>
+            <?php endforeach;?>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="/admin/sponsors/index.php" class="btn btn-outline">Cancel</a>
+      </div>
+    </form>
+  </div>
 </div>
 <?php require_once __DIR__.'/../includes/admin-footer.php'; ?>

@@ -22,20 +22,47 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
-  <div class="admin-card-header"><h2 class="admin-card-title">📰 Edit Post</h2></div>
-  <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
-  <form method="post">
-    <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <div class="form-group"><label>Title</label><input name="title" value="<?php echo htmlspecialchars($p['title'] ?? '');?>" required></div>
-    <div class="form-group"><label>Slug</label><input name="slug" value="<?php echo htmlspecialchars($p['slug'] ?? '');?>" required></div>
-    <div class="form-group"><label>Body</label><textarea name="body" rows="10" required><?php echo htmlspecialchars($p['body'] ?? '');?></textarea></div>
-    <div class="form-group"><label>Status</label>
-      <select name="status"><?php foreach(['draft','published'] as $s):?>
-        <option value="<?php echo $s;?>" <?php echo $p['status']===$s?'selected':'';?>><?php echo ucfirst($s);?></option>
-      <?php endforeach;?></select>
-    </div>
-    <button class="btn" type="submit">Save</button>
-    <a class="btn btn-outline" href="/admin/blog/index.php">Cancel</a>
-  </form>
+  <div class="admin-card-header">
+    <h1 class="admin-card-title">📰 Edit Post</h1>
+  </div>
+  <div class="admin-card-body">
+    <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
+    <form method="post">
+      <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
+      
+      <div class="form-section">
+        <h2 class="form-section-title">Post Content</h2>
+        <div class="form-group">
+          <label for="title">Title <span class="required">*</span></label>
+          <input type="text" id="title" name="title" value="<?php echo htmlspecialchars($p['title'] ?? '');?>" placeholder="Enter post title..." required>
+        </div>
+        <div class="form-group">
+          <label for="slug">Slug <span class="required">*</span></label>
+          <input type="text" id="slug" name="slug" value="<?php echo htmlspecialchars($p['slug'] ?? '');?>" placeholder="e.g., my-awesome-post" required>
+        </div>
+        <div class="form-group">
+          <label for="body">Body <span class="required">*</span></label>
+          <textarea id="body" name="body" rows="10" required placeholder="Write your post content here..."><?php echo htmlspecialchars($p['body'] ?? '');?></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Status & Options</h2>
+        <div class="form-group">
+          <label for="status">Status</label>
+          <select id="status" name="status">
+            <?php foreach(['draft','published'] as $s):?>
+              <option value="<?php echo $s;?>" <?php echo ($p['status']??'')===$s?'selected':'';?>><?php echo ucfirst($s);?></option>
+            <?php endforeach;?>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Save Changes</button>
+        <a class="btn btn-outline" href="/admin/blog/index.php">Cancel</a>
+      </div>
+    </form>
+  </div>
 </div>
 <?php require_once __DIR__.'/../includes/admin-footer.php'; ?>

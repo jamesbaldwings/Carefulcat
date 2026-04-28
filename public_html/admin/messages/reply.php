@@ -80,74 +80,60 @@ $page_title = 'Reply to Message';
 require_once __DIR__ . '/../includes/admin-header.php';
 ?>
 
-<div class="dashboard-section">
-    <h2>✉️ Reply to Message</h2>
-    
-    <?php if ($m = flash_out('error')): ?>
-        <div class="alert alert-danger"><?php echo htmlspecialchars($m ?? ''); ?></div>
-    <?php endif; ?>
-    
-    <div class="admin-card" style="margin-bottom: 20px;">
-        <h3>Original Message</h3>
-        <table class="admin-table">
-            <tbody>
-                <tr>
-                    <th style="width: 150px;">From</th>
-                    <td><?php echo htmlspecialchars($sender_name . ' <' . ($message['email'] ?? '') . '>' ?? ''); ?></td>
-                </tr>
-                <?php if (!empty($message['phone'])): ?>
-                <tr>
-                    <th>Phone</th>
-                    <td><?php echo htmlspecialchars($message['phone'] ?? ''); ?></td>
-                </tr>
-                <?php endif; ?>
-                <tr>
-                    <th>Subject</th>
-                    <td><?php echo htmlspecialchars($message['subject'] ?? ''); ?></td>
-                </tr>
-                <tr>
-                    <th>Date</th>
-                    <td><?php echo formatDateTime($message['created_at'] ?? ''); ?></td>
-                </tr>
-                <tr>
-                    <th>Message</th>
-                    <td><pre style="white-space: pre-wrap; background: #f5f5f5; padding: 10px; border-radius: 4px;"><?php echo htmlspecialchars($message['message'] ?? ''); ?></pre></td>
-                </tr>
-            </tbody>
-        </table>
+<div class="admin-card">
+    <div class="admin-card-header">
+        <h1 class="admin-card-title">✉️ Reply to Message</h1>
     </div>
-    
-    <div class="admin-card">
-        <h3>Your Reply</h3>
+    <div class="admin-card-body">
+        <?php if ($m = flash_out('error')): ?>
+            <div class="alert alert-error"><?php echo htmlspecialchars($m ?? ''); ?></div>
+        <?php endif; ?>
+
+        <div class="form-section">
+            <h2 class="form-section-title">Original Message</h2>
+            <table class="admin-table">
+                <tbody>
+                    <tr>
+                        <th style="width: 150px;">From</th>
+                        <td><?php echo htmlspecialchars($sender_name . ' <' . ($message['email'] ?? '') . '>' ?? ''); ?></td>
+                    </tr>
+                    <?php if (!empty($message['phone'])) : ?>
+                        <tr>
+                            <th>Phone</th>
+                            <td><?php echo htmlspecialchars($message['phone'] ?? ''); ?></td>
+                        </tr>
+                    <?php endif; ?>
+                    <tr>
+                        <th>Subject</th>
+                        <td><?php echo htmlspecialchars($message['subject'] ?? ''); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Date</th>
+                        <td><?php echo formatDateTime($message['created_at'] ?? ''); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Message</th>
+                        <td><pre class="message-body"><?php echo htmlspecialchars($message['message'] ?? ''); ?></pre></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <form method="post" action="/admin/messages/reply.php?id=<?php echo $id; ?>">
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-            
-            <div style="margin-bottom: 15px;">
-                <label for="subject" style="display: block; margin-bottom: 5px; font-weight: bold;">Subject:</label>
-                <input 
-                    type="text" 
-                    id="subject" 
-                    name="subject" 
-                    value="<?php echo htmlspecialchars('Re: ' . ($message['subject'] ?? '')); ?>" 
-                    required 
-                    style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px;"
-                >
+            <div class="form-section">
+                <h2 class="form-section-title">Your Reply</h2>
+                <div class="form-group">
+                    <label for="subject">Subject <span class="required">*</span></label>
+                    <input type="text" id="subject" name="subject" value="<?php echo htmlspecialchars('Re: ' . ($message['subject'] ?? '')); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message <span class="required">*</span></label>
+                    <textarea id="message" name="message" rows="10" required placeholder="Type your reply here..."></textarea>
+                </div>
             </div>
-            
-            <div style="margin-bottom: 15px;">
-                <label for="message" style="display: block; margin-bottom: 5px; font-weight: bold;">Message:</label>
-                <textarea 
-                    id="message" 
-                    name="message" 
-                    rows="10" 
-                    required 
-                    style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; font-family: inherit;"
-                    placeholder="Type your reply here..."
-                ></textarea>
-            </div>
-            
-            <div style="display: flex; gap: 10px;">
-                <button type="submit" class="btn">Send Reply</button>
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Send Reply</button>
                 <a href="/admin/messages/view.php?id=<?php echo $id; ?>" class="btn btn-outline">Cancel</a>
             </div>
         </form>

@@ -25,24 +25,56 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
-  <div class="admin-card-header"><h2 class="admin-card-title">📝 New Adoption</h2></div>
-  <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
-  <form method="post">
-    <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-    <div class="form-group"><label>Cat</label>
-      <select name="cat_id" required>
-        <option value="">-- select cat --</option>
-        <?php foreach($cats as $c):?>
-          <option value="<?php echo (int)($c['id'] ?? 0);?>"><?php echo htmlspecialchars((($c['shelter_tag'] ?? '') ? ($c['shelter_tag'] . ' — ') : '') . ($c['name'] ?? ''));?></option>
-        <?php endforeach;?>
-      </select>
-    </div>
-    <div class="form-group"><label>Adopter Name</label><input name="adopter_name" required></div>
-    <div class="form-group"><label>Adopter Email</label><input type="email" name="adopter_email" required></div>
-    <div class="form-group"><label>Adopter Phone</label><input name="adopter_phone"></div>
-    <div class="form-group"><label>Adoption Fee</label><input type="number" step="0.01" name="adoption_fee" placeholder="0.00"></div>
-    <button class="btn" type="submit">Save</button>
-    <a class="btn btn-outline" href="/admin/adoptions/index.php">Cancel</a>
-  </form>
+  <div class="admin-card-header">
+      <h1 class="admin-card-title">📝 New Adoption Application</h1>
+  </div>
+  <div class="admin-card-body">
+    <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
+    <form method="post">
+        <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
+
+        <div class="form-section">
+            <h2 class="form-section-title">Adoption Details</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="cat_id">Cat <span class="required">*</span></label>
+                    <select name="cat_id" id="cat_id" required>
+                        <option value="">-- Select a cat --</option>
+                        <?php foreach($cats as $c):?>
+                          <option value="<?php echo (int)($c['id'] ?? 0);?>"><?php echo htmlspecialchars((($c['shelter_tag'] ?? '') ? ($c['shelter_tag'] . ' — ') : '') . ($c['name'] ?? ''));?></option>
+                        <?php endforeach;?>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="adoption_fee">Adoption Fee</label>
+                    <input type="number" step="0.01" id="adoption_fee" name="adoption_fee" placeholder="e.g., 150.00">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2 class="form-section-title">Adopter Information</h2>
+            <div class="form-group">
+                <label for="adopter_name">Full Name <span class="required">*</span></label>
+                <input type="text" id="adopter_name" name="adopter_name" required placeholder="e.g., John Doe">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="adopter_email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="adopter_email" name="adopter_email" required placeholder="e.g., john.doe@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="adopter_phone">Phone Number</label>
+                    <input type="tel" id="adopter_phone" name="adopter_phone" placeholder="e.g., (555) 123-4567">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Create Application</button>
+            <a href="/admin/adoptions/index.php" class="btn btn-outline">Cancel</a>
+        </div>
+    </form>
+  </div>
 </div>
 <?php require_once __DIR__.'/../includes/admin-footer.php'; ?>

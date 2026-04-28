@@ -60,11 +60,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <div class="admin-content">
     <div class="admin-header">
         <h1>Add New Sponsor</h1>
-        <a href="index.php" class="btn btn-secondary">Back to Sponsors</a>
+        <a href="index.php" class="btn btn-outline">Back to Sponsors</a>
     </div>
 
     <?php if (!empty($errors)): ?>
-        <div class="alert alert-danger">
+        <div class="alert alert-error">
+            <strong>Please fix the following errors:</strong>
             <ul>
                 <?php foreach ($errors as $error): ?>
                     <li><?= htmlspecialchars($error ?? '') ?></li>
@@ -73,70 +74,107 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     <?php endif; ?>
 
-    <form method="POST" enctype="multipart/form-data" class="admin-form">
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="name">Sponsor Name *</label>
-                <input type="text" id="name" name="name" required 
-                       value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
-            </div>
-
-            <div class="form-group">
-                <label for="tier">Sponsor Tier *</label>
-                <select id="tier" name="tier" required>
-                    <option value="">Select Tier</option>
-                    <option value="bronze" <?= ($_POST['tier'] ?? '') === 'bronze' ? 'selected' : '' ?>>Bronze</option>
-                    <option value="silver" <?= ($_POST['tier'] ?? '') === 'silver' ? 'selected' : '' ?>>Silver</option>
-                    <option value="gold" <?= ($_POST['tier'] ?? '') === 'gold' ? 'selected' : '' ?>>Gold</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label for="logo">Logo Image *</label>
-                <input type="file" id="logo" name="logo" accept="image/*" required>
-                <small>Recommended size: 300x300px. Formats: JPG, PNG, GIF, SVG</small>
-            </div>
-
-            <div class="form-group">
-                <label for="website_url">Website URL</label>
-                <input type="url" id="website_url" name="website_url" 
-                       placeholder="https://example.com"
-                       value="<?= htmlspecialchars($_POST['website_url'] ?? '') ?>">
-            </div>
-
-            <div class="form-group full-width">
-                <label for="description">Description</label>
-                <textarea id="description" name="description" rows="3"><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="display_order">Display Order</label>
-                <input type="number" id="display_order" name="display_order" min="0" 
-                       value="<?= htmlspecialchars($_POST['display_order'] ?? '0') ?>">
-                <small>Lower numbers appear first</small>
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="featured_on_homepage" value="1" 
-                           <?= isset($_POST['featured_on_homepage']) ? 'checked' : '' ?>>
-                    Featured on Homepage
-                </label>
-            </div>
-
-            <div class="form-group">
-                <label class="checkbox-label">
-                    <input type="checkbox" name="active" value="1" checked>
-                    Active
-                </label>
-            </div>
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <h2 class="admin-card-title">Sponsor Details</h2>
         </div>
+        <div class="admin-card-body">
+            <form method="POST" enctype="multipart/form-data" class="admin-form">
 
-        <div class="form-actions">
-            <button type="submit" class="btn btn-primary">Add Sponsor</button>
-            <a href="index.php" class="btn btn-secondary">Cancel</a>
+                <div class="form-section">
+                    <h3 class="form-section-title">Basic Information</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Sponsor Name <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" required placeholder="Enter sponsor name..."
+                                   value="<?= htmlspecialchars($_POST['name'] ?? '') ?>">
+                        </div>
+                        <div class="form-group">
+                            <label for="tier">Sponsor Tier <span class="required">*</span></label>
+                            <select id="tier" name="tier" required>
+                                <option value="">Select Tier</option>
+                                <option value="bronze" <?= ($_POST['tier'] ?? '') === 'bronze' ? 'selected' : '' ?>>Bronze</option>
+                                <option value="silver" <?= ($_POST['tier'] ?? '') === 'silver' ? 'selected' : '' ?>>Silver</option>
+                                <option value="gold" <?= ($_POST['tier'] ?? '') === 'gold' ? 'selected' : '' ?>>Gold</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="website_url">Website URL</label>
+                        <input type="url" id="website_url" name="website_url" 
+                               placeholder="https://example.com"
+                               value="<?= htmlspecialchars($_POST['website_url'] ?? '') ?>">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Briefly describe the sponsor..."><?= htmlspecialchars($_POST['description'] ?? '') ?></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="form-section-title">Media</h3>
+                    <div class="form-group">
+                        <label for="logo">Logo Image <span class="required">*</span></label>
+                        <div class="file-upload-area">
+                            <span class="file-upload-icon">🖼️</span>
+                            <span class="file-upload-text">Click or drag to upload a logo</span>
+                            <input type="file" id="logo" name="logo" accept="image/*" required class="file-upload-input" onchange="previewImage(this, 'logo-preview')">
+                            <span class="file-upload-hint">Recommended: 300x300px. Allowed: JPG, PNG, GIF, SVG.</span>
+                        </div>
+                        <div class="file-upload-preview" id="logo-preview"></div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="form-section-title">Status & Options</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="display_order">Display Order</label>
+                            <input type="number" id="display_order" name="display_order" min="0" 
+                                   value="<?= htmlspecialchars($_POST['display_order'] ?? '0') ?>">
+                            <small class="form-hint">Lower numbers appear first on the sponsors page.</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Settings</label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="featured_on_homepage" value="1" 
+                                           <?= isset($_POST['featured_on_homepage']) ? 'checked' : '' ?>>
+                                    Featured on Homepage
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="active" value="1" checked>
+                                    Active
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Add Sponsor</button>
+                    <a href="index.php" class="btn btn-outline">Cancel</a>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
+
+<script>
+function previewImage(input, previewId) {
+    const preview = document.getElementById(previewId);
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.innerHTML = '<img src="' + e.target.result + '" alt="Image preview"/>';
+            preview.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    } else {
+        preview.innerHTML = '';
+        preview.style.display = 'none';
+    }
+}
+</script>
 
 <?php require_once '../includes/admin-footer.php'; ?>

@@ -32,64 +32,84 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
-  <div class="admin-card-header"><h2 class="admin-card-title">🏠 Add Sanctuary Resident</h2></div>
-  <?php if($m=flash_out('success')): ?><div class="alert alert-success"><?php echo htmlspecialchars($m ?? ''); ?></div><?php endif; ?>
-  <?php if($errors): ?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ', $errors)); ?></div><?php endif; ?>
+  <div class="admin-card-header">
+    <h1 class="admin-card-title">🏠 Add Sanctuary Resident</h1>
+  </div>
+  <div class="admin-card-body">
+    <?php if($m=flash_out('success')): ?><div class="alert alert-success"><?php echo htmlspecialchars($m ?? ''); ?></div><?php endif; ?>
+    <?php if($errors): ?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ', $errors)); ?></div><?php endif; ?>
 
-  <form method="post" enctype="multipart/form-data">
-    <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-    <input type="hidden" name="hero_photo" id="hero_photo_url" value="">
-    
-    <div class="form-group">
-      <label>Name <span style="color:red;">*</span></label>
-      <input name="name" required value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>">
-    </div>
-    
-    <div class="form-group">
-      <label>Species</label>
-      <input name="species" value="<?php echo htmlspecialchars($_POST['species'] ?? ''); ?>" placeholder="e.g., Domestic Shorthair, Siamese">
-    </div>
-    
-    <div class="form-group">
-      <label>Sex <span style="color:red;">*</span></label>
-      <select name="sex" required>
-        <option value="">Select...</option>
-        <option value="M" <?php echo ($_POST['sex'] ?? '') === 'M' ? 'selected' : ''; ?>>Male</option>
-        <option value="F" <?php echo ($_POST['sex'] ?? '') === 'F' ? 'selected' : ''; ?>>Female</option>
-      </select>
-    </div>
-    
-    <div class="form-group">
-      <label>Age</label>
-      <input name="age" value="<?php echo htmlspecialchars($_POST['age'] ?? ''); ?>" placeholder="e.g., 2 years, 6 months">
-    </div>
-    
-    <div class="form-group">
-      <label>Location</label>
-      <input name="location" value="<?php echo htmlspecialchars($_POST['location'] ?? 'Murfreesboro, TN'); ?>">
-    </div>
-    
-    <div class="form-group">
-      <label>Shelter Tag</label>
-      <input name="shelter_tag" value="<?php echo htmlspecialchars($_POST['shelter_tag'] ?? ''); ?>" placeholder="e.g., CAT-2025-001">
-    </div>
-    
-    <div class="form-group">
-      <label>Bio</label>
-      <textarea name="bio" rows="4" placeholder="Tell us about this resident..."><?php echo htmlspecialchars($_POST['bio'] ?? ''); ?></textarea>
-      <small style="color: #666;">Explain why this cat is a permanent sanctuary resident</small>
-    </div>
-    
-    <div class="form-group">
-      <label>Photo</label>
-      <input type="file" id="hero_photo_input" accept="image/*" onchange="uploadImage(this)">
-      <div id="image_preview" style="margin-top: 10px;"></div>
-      <small style="color: #666;">Upload a photo (JPG, PNG, GIF, WEBP - Max 5MB)</small>
-    </div>
-    
-    <button class="btn" type="submit">💾 Save Resident</button>
-    <a class="btn btn-outline" href="/admin/residents/index.php">Cancel</a>
-  </form>
+    <form method="post" enctype="multipart/form-data">
+      <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
+      <input type="hidden" name="hero_photo" id="hero_photo_url" value="">
+
+      <div class="form-section">
+        <h2 class="form-section-title">Basic Information</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name <span class="required">*</span></label>
+            <input type="text" id="name" name="name" required value="<?php echo htmlspecialchars($_POST['name'] ?? ''); ?>" placeholder="Enter cat name...">
+          </div>
+          <div class="form-group">
+            <label for="species">Species</label>
+            <input type="text" id="species" name="species" value="<?php echo htmlspecialchars($_POST['species'] ?? ''); ?>" placeholder="e.g., Domestic Shorthair">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="sex">Sex <span class="required">*</span></label>
+            <select id="sex" name="sex" required>
+              <option value="">Select...</option>
+              <option value="M" <?php echo ($_POST['sex'] ?? '') === 'M' ? 'selected' : ''; ?>>Male</option>
+              <option value="F" <?php echo ($_POST['sex'] ?? '') === 'F' ? 'selected' : ''; ?>>Female</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="text" id="age" name="age" value="<?php echo htmlspecialchars($_POST['age'] ?? ''); ?>" placeholder="e.g., 2 years, 6 months">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Details</h2>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($_POST['location'] ?? 'Murfreesboro, TN'); ?>">
+        </div>
+        <div class="form-group">
+          <label for="shelter_tag">Shelter Tag</label>
+          <input type="text" id="shelter_tag" name="shelter_tag" value="<?php echo htmlspecialchars($_POST['shelter_tag'] ?? ''); ?>" placeholder="e.g., CAT-2025-001">
+        </div>
+        <div class="form-group">
+          <label for="bio">Bio</label>
+          <textarea id="bio" name="bio" rows="4" placeholder="Tell us about this resident..."><?php echo htmlspecialchars($_POST['bio'] ?? ''); ?></textarea>
+          <small class="form-hint">Explain why this cat is a permanent sanctuary resident.</small>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Media</h2>
+        <div class="form-group">
+          <label>Photo</label>
+          <div class="file-upload-area">
+            <label for="hero_photo_input" class="file-upload-label">
+              <span class="file-upload-icon">📷</span>
+              <span class="file-upload-text">Click to upload or drag and drop</span>
+              <span class="file-upload-hint">JPG, PNG, GIF, WEBP (Max 5MB)</span>
+            </label>
+            <input type="file" id="hero_photo_input" accept="image/*" onchange="uploadImage(this)" class="file-upload-input">
+          </div>
+          <div id="image_preview" class="file-upload-preview"></div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary" type="submit">💾 Save Resident</button>
+        <a class="btn btn-outline" href="/admin/residents/index.php">Cancel</a>
+      </div>
+    </form>
+  </div>
 </div>
 
 <script>
@@ -99,7 +119,8 @@ function uploadImage(input) {
     const formData = new FormData();
     formData.append('file', file);
     
-    document.getElementById('image_preview').innerHTML = '<p>Uploading...</p>';
+    const preview = document.getElementById('image_preview');
+    preview.innerHTML = '<p>Uploading...</p>';
     
     fetch('/admin/upload.php', {
       method: 'POST',
@@ -109,16 +130,16 @@ function uploadImage(input) {
     .then(data => {
       if (data.success) {
         document.getElementById('hero_photo_url').value = data.url;
-        document.getElementById('image_preview').innerHTML = 
-          '<img src="' + data.url + '" style="max-width: 200px; border-radius: 8px;"><br>' +
+        preview.innerHTML = 
+          '<img src="' + data.url + '" alt="Image preview" style="max-width: 200px; border-radius: 8px;"><br>' +
           '<small style="color: green;">✓ Image uploaded successfully</small>';
       } else {
-        document.getElementById('image_preview').innerHTML = 
+        preview.innerHTML = 
           '<p style="color: red;">Error: ' + data.error + '</p>';
       }
     })
     .catch(error => {
-      document.getElementById('image_preview').innerHTML = 
+      preview.innerHTML = 
         '<p style="color: red;">Upload failed: ' + error + '</p>';
     });
   }
