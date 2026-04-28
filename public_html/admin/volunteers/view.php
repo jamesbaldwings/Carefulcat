@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../includes/functions.php';
 
 requireAdmin();
 
-$id = (int)($_GET['id'] ?? 0);
+$id = $_GET['id'] ?? '';
 $volunteer = db()->fetchOne("SELECT * FROM volunteers WHERE id = ?", [$id]);
 
 if (!$volunteer) {
@@ -22,7 +22,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <h2>🤝 Volunteer Details</h2>
         <div>
-            <a href="/admin/volunteers/edit.php?id=<?php echo $id; ?>" class="btn">Edit</a>
+            <a href="/admin/volunteers/edit.php?id=<?php echo htmlspecialchars($id); ?>" class="btn">Edit</a>
             <a href="/admin/volunteers/index.php" class="btn btn-outline">Back to List</a>
         </div>
     </div>
@@ -32,7 +32,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
             <tbody>
                 <tr>
                     <th style="width: 200px;">ID</th>
-                    <td><?php echo (int)($volunteer['id'] ?? 0); ?></td>
+                    <td><?php echo htmlspecialchars($volunteer['id'] ?? ''); ?></td>
                 </tr>
                 <tr>
                     <th>Name</th>
@@ -117,7 +117,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
     <div style="margin-top: 20px; display: flex; gap: 10px;">
         <form method="post" action="/admin/volunteers/approve.php" style="display: inline;">
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <button type="submit" class="btn" onclick="return confirm('Approve this volunteer application?')">
                 ✅ Approve
             </button>
@@ -125,7 +125,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
         
         <form method="post" action="/admin/volunteers/reject.php" style="display: inline;">
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-            <input type="hidden" name="id" value="<?php echo $id; ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($id); ?>">
             <button type="submit" class="btn btn-danger" onclick="return confirm('Reject this volunteer application?')">
                 ❌ Reject
             </button>

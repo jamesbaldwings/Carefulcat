@@ -21,7 +21,7 @@ require_once __DIR__.'/../includes/admin-header.php';
         <?php else: ?>
           <?php foreach($rows as $v): ?>
             <tr>
-              <td><?php echo (int)($v['id'] ?? 0); ?></td>
+              <td><?php echo htmlspecialchars($v['id'] ?? ''); ?></td>
               <td><?php echo htmlspecialchars($v['first_name'].' '.$v['last_name'] ?? ''); ?></td>
               <td><?php echo htmlspecialchars($v['email'] ?? ''); ?></td>
               <td><?php echo htmlspecialchars($v['phone'] ?? ''); ?></td>
@@ -33,23 +33,23 @@ require_once __DIR__.'/../includes/admin-header.php';
               <td><?php echo htmlspecialchars($v['volunteer_id'] ?? '-'); ?></td>
               <td><?php echo formatDateTime($v['created_at'] ?? ''); ?></td>
               <td style="white-space: nowrap;">
-                <a class="btn btn-small" href="/admin/volunteers/view.php?id=<?php echo (int)($v['id'] ?? 0); ?>">View</a>
+                <a class="btn btn-small" href="/admin/volunteers/view.php?id=<?php echo htmlspecialchars($v['id'] ?? ''); ?>">View</a>
                 <?php if ($v['status'] === 'pending'): ?>
                   <form method="post" action="/admin/volunteers/approve.php" style="display:inline">
                     <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-                    <input type="hidden" name="id" value="<?php echo (int)($v['id'] ?? 0); ?>">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($v['id'] ?? ''); ?>">
                     <button class="btn btn-small" type="submit">✅ Approve</button>
                   </form>
                   <form method="post" action="/admin/volunteers/reject.php" style="display:inline">
                     <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-                    <input type="hidden" name="id" value="<?php echo (int)($v['id'] ?? 0); ?>">
+                    <input type="hidden" name="id" value="<?php echo htmlspecialchars($v['id'] ?? ''); ?>">
                     <button class="btn btn-small btn-outline" type="submit">❌ Reject</button>
                   </form>
                 <?php endif; ?>
-                <a class="btn btn-small btn-outline" href="/admin/volunteers/edit.php?id=<?php echo (int)($v['id'] ?? 0); ?>">Edit</a>
+                <a class="btn btn-small btn-outline" href="/admin/volunteers/edit.php?id=<?php echo htmlspecialchars($v['id'] ?? ''); ?>">Edit</a>
                 <form method="post" action="/admin/volunteers/delete.php" style="display:inline" onsubmit="return confirm('Delete this volunteer?');">
                   <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
-                  <input type="hidden" name="id" value="<?php echo (int)($v['id'] ?? 0); ?>">
+                  <input type="hidden" name="id" value="<?php echo htmlspecialchars($v['id'] ?? ''); ?>">
                   <button class="btn btn-small btn-danger" type="submit">Delete</button>
                 </form>
               </td>

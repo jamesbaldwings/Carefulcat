@@ -17,17 +17,17 @@ require_once __DIR__.'/../includes/admin-header.php';
       <tbody>
         <?php foreach($rows as $p):?>
           <tr>
-            <td><?php echo (int)($p['id'] ?? 0);?></td>
+            <td><?php echo htmlspecialchars($p['id'] ?? '');?></td>
             <td><?php echo htmlspecialchars($p['title'] ?? '');?></td>
             <td><?php echo htmlspecialchars($p['slug'] ?? '');?></td>
             <td><span class="badge badge-<?php echo $p['status']==='published'?'success':'warning';?>"><?php echo ucfirst($p['status'] ?? '');?></span></td>
             <td><?php echo formatDateTime($p['created_at'] ?? '');?></td>
             <td><?php echo ($p['published_at'] ?? null)?formatDateTime($p['published_at'] ?? ''):'—';?></td>
             <td>
-              <a class="btn btn-small" href="/admin/blog/edit.php?id=<?php echo (int)($p['id'] ?? 0);?>">Edit</a>
+              <a class="btn btn-small" href="/admin/blog/edit.php?id=<?php echo htmlspecialchars($p['id'] ?? '');?>">Edit</a>
               <form method="post" action="/admin/blog/delete.php" style="display:inline" onsubmit="return confirm('Delete this post?');">
                 <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
-                <input type="hidden" name="id" value="<?php echo (int)($p['id'] ?? 0);?>">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($p['id'] ?? '');?>">
                 <button class="btn btn-small btn-danger" type="submit">Delete</button>
               </form>
             </td>

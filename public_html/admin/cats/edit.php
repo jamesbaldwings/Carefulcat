@@ -3,7 +3,7 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$id=(int)($_GET['id'] ?? 0);
+$id=$_GET['id'] ?? '';
 $cat = db()->fetchOne("SELECT * FROM cats WHERE id=?",[$id]);
 if(!$cat){ redirect('/admin/cats/index.php'); exit; }
 $page_title='Edit Cat #'.$id;
@@ -12,11 +12,11 @@ $errors=[];
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(!csrf_verify($_POST['csrf'] ?? '')){ $errors[]='Invalid CSRF token.'; }
   $name=trim($_POST['name'] ?? '');
-  $breed=trim($_POST['breed'] ?? '');
+  $species=trim($_POST['species'] ?? '');
   $status=$_POST['status'] ?? 'intake';
   if($name===''){ $errors[]='Name is required.'; }
   if(!$errors){
-    db()->query("UPDATE cats SET name=?, breed=?, status=? WHERE id=? ",[$name,$breed,$status,$id]);
+    db()->query("UPDATE cats SET name=?, species=?, status=? WHERE id=? ",[$name,$species,$status,$id]);
     flash('success','Cat updated.');
     redirect('/admin/cats/index.php'); exit;
   }
@@ -41,8 +41,8 @@ require_once __DIR__.'/../includes/admin-header.php';
                 <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($cat['name'] ?? ''); ?>" placeholder="Enter cat name..." required>
             </div>
             <div class="form-group">
-                <label for="breed">Breed</label>
-                <input type="text" id="breed" name="breed" value="<?php echo htmlspecialchars($cat['breed'] ?? ''); ?>" placeholder="e.g., Domestic Shorthair">
+                <label for="species">Species</label>
+                <input type="text" id="species" name="species" value="<?php echo htmlspecialchars($cat['species'] ?? ''); ?>" placeholder="e.g., Domestic Shorthair">
             </div>
         </div>
 

@@ -50,7 +50,7 @@ require_once __DIR__.'/../includes/admin-header.php';
       <tbody>
         <?php foreach($rows as $r):?>
           <tr>
-            <td><?php echo (int)($r['id'] ?? 0);?></td>
+            <td><?php echo htmlspecialchars($r['id'] ?? '');?></td>
             <td><strong><?php echo htmlspecialchars($r['cat_name'] ?? '');?></strong></td>
             <td><?php echo htmlspecialchars($r['shelter_tag'] ?? '');?></td>
             <td><?php echo htmlspecialchars($r['adopter_name'] ?? '');?></td>
@@ -62,23 +62,23 @@ require_once __DIR__.'/../includes/admin-header.php';
             </td>
             <td><?php echo formatDateTime($r['applied_at'] ?? '');?></td>
             <td class="admin-table-actions">
-              <a class="btn btn-sm" href="/admin/adoptions/view.php?id=<?php echo (int)($r['id'] ?? 0);?>">View</a>
+              <a class="btn btn-sm" href="/admin/adoptions/view.php?id=<?php echo htmlspecialchars($r['id'] ?? '');?>">View</a>
               
               <?php if($r['status'] === 'pending'):?>
-                <a class="btn btn-sm btn-success" 
-                   href="/admin/adoptions/approve.php?id=<?php echo (int)($r['id'] ?? 0);?>"
-                   onclick="return confirm('Approve this adoption application?')">
-                  ✅ Approve
-                </a>
-                <a class="btn btn-sm btn-danger" 
-                   href="/admin/adoptions/reject.php?id=<?php echo (int)($r['id'] ?? 0);?>"
-                   onclick="return confirm('Reject this adoption application?')">
-                  ❌ Reject
-                </a>
+                <form method="post" action="/admin/adoptions/approve.php" style="display:inline" onsubmit="return confirm('Approve this adoption application?');">
+                  <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
+                  <input type="hidden" name="id" value="<?php echo htmlspecialchars($r['id'] ?? '');?>">
+                  <button class="btn btn-sm btn-success" type="submit">✅ Approve</button>
+                </form>
+                <form method="post" action="/admin/adoptions/reject.php" style="display:inline" onsubmit="return confirm('Reject this adoption application?');">
+                  <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">
+                  <input type="hidden" name="id" value="<?php echo htmlspecialchars($r['id'] ?? '');?>">
+                  <button class="btn btn-sm btn-danger" type="submit">❌ Reject</button>
+                </form>
               <?php endif;?>
               
-              <a class="btn btn-sm btn-outline" href="/admin/adoptions/edit.php?id=<?php echo (int)($r['id'] ?? 0);?>">Edit</a>
-              <a class="btn btn-sm btn-outline" href="/admin/cats/medical.php?cat_id=<?php echo (int)($r['cat_id'] ?? 0);?>">Medical</a>
+              <a class="btn btn-sm btn-outline" href="/admin/adoptions/edit.php?id=<?php echo htmlspecialchars($r['id'] ?? '');?>">Edit</a>
+              <a class="btn btn-sm btn-outline" href="/admin/cats/medical.php?cat_id=<?php echo htmlspecialchars($r['cat_id'] ?? '');?>">Medical</a>
             </td>
           </tr>
         <?php endforeach;?>

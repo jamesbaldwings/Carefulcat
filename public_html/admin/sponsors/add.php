@@ -46,9 +46,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($errors)) {
         db()->execute(
-            "INSERT INTO sponsors (name, tier, logo, website_url, description, featured_on_homepage, display_order, active) 
-             VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-            [$name, $tier, $logo_path, $website_url, $description, $featured, $display_order, $active]
+            "INSERT INTO sponsors (name, logo_url, website_url, description, is_active, display_order) 
+             VALUES (?, ?, ?, ?, ?, ?)",
+            [$name, $logo_path, $website_url, $description, $active, $display_order]
         );
         
         header('Location: index.php?success=added');

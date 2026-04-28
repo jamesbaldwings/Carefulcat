@@ -3,17 +3,17 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$id=(int)($_GET['id']??0);
+$id=$_GET['id'] ?? '';
 $s=db()->fetchOne("SELECT * FROM sponsors WHERE id=?",[$id]);
 if(!$s){ redirect('/admin/sponsors/index.php'); }
 $page_title='Edit Sponsor';
 $errors=[];
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(!csrf_verify($_POST['csrf'] ?? '')){ $errors[]='Invalid CSRF token.'; }
-  $name=trim($_POST['name']??''); $level=trim($_POST['level']??''); $website=trim($_POST['website']??''); $status=$_POST['status']??'active';
+  $name=trim($_POST['name']??''); $logo_url=trim($_POST['logo_url']??''); $website_url=trim($_POST['website_url']??''); $description=trim($_POST['description']??''); $is_active=isset($_POST['is_active']) ? 1 : 0; $display_order=(int)($_POST['display_order'] ?? 0);
   if($name===''){ $errors[]='Name is required.'; }
   if(!$errors){
-    db()->query("UPDATE sponsors SET name=?,level=?,website=?,status=? WHERE id=?",[$name,$level,$website,$status,$id]);
+    db()->query("UPDATE sponsors SET name=?,logo_url=?,website_url=?,description=?,is_active=?,display_order=? WHERE id=?",[$name,$logo_url,$website_url,$description,$is_active,$display_order,$id]);
     flash('success','Sponsor updated.'); redirect('/admin/sponsors/index.php');
   }
 }
@@ -36,25 +36,28 @@ require_once __DIR__.'/../includes/admin-header.php';
             <input type="text" id="name" name="name" value="<?php echo htmlspecialchars($s['name'] ?? '');?>" placeholder="e.g., Acme Corporation" required>
           </div>
           <div class="form-group">
-            <label for="level">Level</label>
-            <input type="text" id="level" name="level" value="<?php echo htmlspecialchars($s['level'] ?? '');?>" placeholder="e.g., Gold">
+            <label for="logo_url">Logo URL</label>
+            <input type="text" id="logo_url" name="logo_url" value="<?php echo htmlspecialchars($s['logo_url'] ?? '');?>" placeholder="e.g., /uploads/sponsors/logo.png">
           </div>
         </div>
         <div class="form-group">
-          <label for="website">Website</label>
-          <input type="url" id="website" name="website" value="<?php echo htmlspecialchars($s['website'] ?? '');?>" placeholder="https://example.com">
+          <label for="website_url">Website URL</label>
+          <input type="url" id="website_url" name="website_url" value="<?php echo htmlspecialchars($s['website_url'] ?? '');?>" placeholder="https://example.com">
         </div>
       </div>
 
       <div class="form-section">
         <h2 class="form-section-title">Status</h2>
         <div class="form-group">
-          <label for="status">Status</label>
-          <select id="status" name="status">
-            <?php foreach(['active','inactive'] as $st):?>
-              <option value="<?php echo $st;?>" <?php echo ($s['status'] ?? 'active') === $st ? 'selected' : '';?>><?php echo ucfirst($st);?></option>
-            <?php endforeach;?>
-          </select>
+          <label for="description">Description</label>
+          <textarea id="description" name="description" rows="3" placeholder="Brief description..."><?php echo htmlspecialchars($s['description'] ?? '');?></textarea>
+        </div>
+        <div class="form-group">
+          <label for="display_order">Display Order</label>
+          <input type="number" id="display_order" name="display_order" min="0" value="<?php echo htmlspecialchars($s['display_order'] ?? '0');?>">
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" name="is_active" value="1" <?php echo ($s['is_active'] ?? 1) ? 'checked' : '';?>> Active</label>
         </div>
       </div>
 

@@ -4,7 +4,7 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$id=(int)($_GET['id']??0);
+$id=$_GET['id'] ?? '';
 $p=db()->fetchOne("SELECT * FROM blog_posts WHERE id=?",[$id]);
 if(!$p){ redirect('/admin/blog/index.php'); }
 $page_title='Edit Post';

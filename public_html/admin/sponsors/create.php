@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   $website_url=trim($_POST['website_url']??'');
   $description=trim($_POST['description']??'');
   $is_active=isset($_POST['is_active']) ? 1 : 0;
-  $display_order=(int)($_POST['display_order'] ?? 0);
+  $display_order = $_POST['display_order'] ?? '';
   
   if($name===''){ $errors[]='Name is required.'; }
   

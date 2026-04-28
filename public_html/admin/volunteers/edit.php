@@ -3,7 +3,7 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$id=(int)($_GET['id']??0);
+$id=$_GET['id'] ?? '';
 $v=db()->fetchOne("SELECT * FROM volunteers WHERE id=?",[$id]);
 if(!$v){ redirect('/admin/volunteers/index.php'); }
 $page_title='Edit Volunteer';

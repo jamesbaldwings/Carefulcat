@@ -3,7 +3,7 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$cat_id=(int)($_GET['cat_id']??0);
+$cat_id=$_GET['cat_id'] ?? '';
 $cat=db()->fetchOne("SELECT id,name,shelter_tag FROM cats WHERE id=?",[$cat_id]);
 if(!$cat){ redirect('/admin/cats/index.php'); }
 $page_title='Add Treatment for '.($cat['name'] ?? '');
@@ -40,7 +40,7 @@ require_once __DIR__.'/../includes/admin-header.php';
     <div class="form-group"><label>Administered By</label><input name="administered_by" placeholder="Dr. Smith, Vet Tech ..."></div>
     <div class="form-group"><label>Notes</label><textarea name="notes" rows="4"></textarea></div>
     <button class="btn" type="submit">Save</button>
-    <a class="btn btn-outline" href="/admin/cats/medical.php?cat_id=<?php echo (int)$cat_id;?>">Cancel</a>
+    <a class="btn btn-outline" href="/admin/cats/medical.php?cat_id=<?php echo htmlspecialchars($cat_id ?? '');?>">Cancel</a>
   </form>
 </div>
 <?php require_once __DIR__.'/../includes/admin-footer.php'; ?>

@@ -7,6 +7,6 @@ requireAdmin();
 if($_SERVER['REQUEST_METHOD']!=='POST'){ redirect('/admin/cats/index.php'); exit; }
 if(!csrf_verify($_POST['csrf'] ?? '')){ flash('error','Invalid CSRF.'); redirect('/admin/cats/index.php'); exit; }
 
-$id=(int)($_POST['id'] ?? 0);
-if($id>0){ db()->query("DELETE FROM cats WHERE id=?",[$id]); flash('success','Cat deleted.'); }
+$id=$_POST['id'] ?? '';
+if(!empty($id)){ db()->query("DELETE FROM cats WHERE id=?",[$id]); flash('success','Cat deleted.'); }
 redirect('/admin/cats/index.php'); exit;

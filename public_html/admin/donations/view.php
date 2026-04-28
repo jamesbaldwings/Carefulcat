@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../includes/functions.php';
 
 requireAdmin();
 
-$id = (int)($_GET['id'] ?? 0);
+$id = $_GET['id'] ?? '';
 $donation = db()->fetchOne("SELECT * FROM donations WHERE id = ?", [$id]);
 
 if (!$donation) {

@@ -41,8 +41,8 @@ include '../includes/admin-header.php';
         </div>
         
         <div class="admin-form-group">
-            <label class="admin-form-label">Breed</label>
-            <input type="text" name="breed" class="admin-form-control">
+            <label class="admin-form-label">Species</label>
+            <input type="text" name="species" class="admin-form-control">
         </div>
         
         <div class="admin-form-group">

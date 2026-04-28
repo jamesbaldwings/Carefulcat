@@ -16,9 +16,9 @@ if (!csrf_verify($_POST['csrf'] ?? '')) {
     exit;
 }
 
-$id = (int)($_POST['id'] ?? 0);
+$id = $_POST['id'] ?? '';
 
-if ($id <= 0) {
+if (empty($id)) {
     flash('error', 'Invalid adoption ID');
     redirect('/admin/adoptions/index.php');
     exit;

@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   $status=$_POST['status'] ?? 'intake';
   $sex=$_POST['sex'] ?? '';
   $age=trim($_POST['age'] ?? '');
-  $fee=(int)($_POST['fee'] ?? 0);
+  $fee = $_POST['fee'] ?? '';
   $location=trim($_POST['location'] ?? 'Murfreesboro, TN');
   $bio=trim($_POST['bio'] ?? '');
   $shelter_tag=trim($_POST['shelter_tag'] ?? '');

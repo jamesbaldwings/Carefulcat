@@ -3,7 +3,7 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$id=(int)($_GET['id']??0);
+$id=$_GET['id'] ?? '';
 $a=db()->fetchOne("SELECT * FROM adoptions WHERE id=?",[$id]);
 if(!$a){ redirect('/admin/adoptions/index.php'); }
 $page_title='Edit Adoption';
@@ -11,7 +11,7 @@ $cats=db()->fetchAll("SELECT id,name,shelter_tag FROM cats ORDER BY name ASC");
 $errors=[];
 if($_SERVER['REQUEST_METHOD']==='POST'){
   if(!csrf_verify($_POST['csrf']??'')){ $errors[]='Invalid CSRF token.'; }
-  $cat_id=(int)($_POST['cat_id']??0);
+  $cat_id=$_POST['cat_id'] ?? '';
   $adopter_name=trim($_POST['adopter_name']??'');
   $adopter_email=trim($_POST['adopter_email']??'');
   $adopter_phone=trim($_POST['adopter_phone']??'');
@@ -19,9 +19,9 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
   $status=$_POST['status']??$a['status'];
   $approved_at = $status==='approved' ? ( ($a['approved_at'] ?? null) ?: date('Y-m-d H:i:s') ) : null;
   $denied_at   = $status==='denied' ? ( ($a['denied_at'] ?? null) ?: date('Y-m-d H:i:s') ) : null;
-  if($cat_id<=0||$adopter_name===''||$adopter_email===''){ $errors[]='Cat, adopter name and email are required.'; }
+  if(empty($cat_id)||$adopter_name===''||$adopter_email===''){ $errors[]='Cat, adopter name and email are required.'; }
   if(!$errors){
-    db()->query("UPDATE adoptions SET cat_id=?, adopter_name=?, adopter_email=?, adopter_phone=?, adoption_fee=?, status=?, approved_at=?, denied_at=? WHERE id=?.",
+    db()->query("UPDATE adoptions SET cat_id=?, adopter_name=?, adopter_email=?, adopter_phone=?, adoption_fee=?, status=?, approved_at=?, denied_at=? WHERE id=?",
       [$cat_id,$adopter_name,$adopter_email,$adopter_phone,$adoption_fee,$status,$approved_at,$denied_at,$id]);
     ensure_shelter_tag($cat_id);
     flash('success','Adoption updated.'); redirect('/admin/adoptions/index.php');
@@ -44,7 +44,7 @@ require_once __DIR__.'/../includes/admin-header.php';
           <label for="cat_id">Cat <span class="required">*</span></label>
           <select name="cat_id" id="cat_id" required>
             <?php foreach($cats as $c):?>
-              <option value="<?php echo (int)($c['id'] ?? 0);?>" <?php echo $a['cat_id']==$c['id']?'selected':''; ?>>
+              <option value="<?php echo htmlspecialchars($c['id'] ?? '');?>" <?php echo $a['cat_id']==$c['id']?'selected':''; ?>>
                 <?php echo htmlspecialchars((($c['shelter_tag'] ?? '') ? ($c['shelter_tag'] . ' — ') : '') . ($c['name'] ?? ''));?>
               </option>
             <?php endforeach;?>

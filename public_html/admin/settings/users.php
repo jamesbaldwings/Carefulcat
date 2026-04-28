@@ -38,7 +38,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
           <tbody>
             <?php foreach ($users as $u): ?>
               <tr>
-                <td><?php echo (int)($u['id'] ?? 0); ?></td>
+                <td><?php echo htmlspecialchars($u['id'] ?? ''); ?></td>
                 <td><?php echo htmlspecialchars(trim(($u['first_name'] ?? '').' '.($u['last_name'] ?? ''))); ?></td>
                 <td><?php echo htmlspecialchars($u['email'] ?? ''); ?></td>
                 <td><?php echo htmlspecialchars($u['role'] ?? 'admin'); ?></td>

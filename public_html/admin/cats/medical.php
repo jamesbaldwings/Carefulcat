@@ -3,7 +3,7 @@ require_once __DIR__.'/../../includes/config.php';
 require_once __DIR__.'/../../includes/db.php';
 require_once __DIR__.'/../../includes/functions.php';
 requireAdmin();
-$cat_id=(int)($_GET['cat_id']??0);
+$cat_id=$_GET['cat_id'] ?? '';
 $cat=db()->fetchOne("SELECT * FROM cats WHERE id=?",[$cat_id]);
 if(!$cat){ redirect('/admin/cats/index.php'); }
 $page_title='Medical Record — '.($cat['name'] ?? '');
@@ -73,7 +73,7 @@ require_once __DIR__.'/../includes/admin-header.php';
   <?php endif; ?>
 
   <p style="margin-top:1rem;">
-    <a class="btn" href="/admin/cats/treatments.php?cat_id=<?php echo (int)$cat_id;?>">➕ Add Treatment</a>
+    <a class="btn" href="/admin/cats/treatments.php?cat_id=<?php echo htmlspecialchars($cat_id ?? '');?>">➕ Add Treatment</a>
     <a class="btn btn-outline" href="/admin/cats/index.php">Back to Cats</a>
   </p>
 </div>

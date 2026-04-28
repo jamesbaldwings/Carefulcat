@@ -11,7 +11,7 @@ if (!$id) {
     exit;
 }
 
-$cat = db()->fetchOne("SELECT * FROM cats WHERE id = ? AND status = \'sanctuary\'", [$id]);
+$cat = db()->fetchOne("SELECT * FROM cats WHERE id = ? AND status = 'sanctuary'", [$id]);
 if (!$cat) {
     flash('error', 'Resident not found');
     redirect('/admin/residents/index.php');
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($sex === '') { $errors[] = 'Sex is required.'; }
     
     if (!$errors) {
-        db()->query("UPDATE cats SET name=?, species=?, sex=?, age=?, location=?, bio=?, shelter_tag=?, hero_photo=? WHERE id=? AND status = \'sanctuary\'",
+        db()->query("UPDATE cats SET name=?, species=?, sex=?, age=?, location=?, bio=?, shelter_tag=?, hero_photo=? WHERE id=? AND status = 'sanctuary'",
             [$name, $species, $sex, $age, $location, $bio, $shelter_tag, $hero_photo, $id]);
         flash('success', 'Resident updated successfully!');
         redirect('/admin/residents/index.php');

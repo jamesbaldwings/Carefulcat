@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../includes/functions.php';
 
 requireAdmin();
 
-$id = (int)($_GET['id'] ?? 0);
+$id = $_GET['id'] ?? '';
 $message = db()->fetchOne("SELECT * FROM contacts WHERE id = ?", [$id]);
 
 if (!$message) {
@@ -119,7 +119,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
             </table>
         </div>
 
-        <form method="post" action="/admin/messages/reply.php?id=<?php echo $id; ?>">
+        <form method="post" action="/admin/messages/reply.php?id=<?php echo htmlspecialchars($id); ?>">
             <input type="hidden" name="csrf" value="<?php echo csrf_token(); ?>">
             <div class="form-section">
                 <h2 class="form-section-title">Your Reply</h2>
@@ -134,7 +134,7 @@ require_once __DIR__ . '/../includes/admin-header.php';
             </div>
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">Send Reply</button>
-                <a href="/admin/messages/view.php?id=<?php echo $id; ?>" class="btn btn-outline">Cancel</a>
+                <a href="/admin/messages/view.php?id=<?php echo htmlspecialchars($id); ?>" class="btn btn-outline">Cancel</a>
             </div>
         </form>
     </div>
