@@ -79,7 +79,7 @@ $ogImg = isset($ogImage) ? e($ogImage) : ASSETS_URL . '/images/careful_cat_logo_
                 "closes": "16:00"
             }
         ],
-        "nonprofitStatus": "pending",
+        "nonprofitStatus": "501(c)(3)",
         "areaServed": {
             "@type": "State",
             "name": "Tennessee"

@@ -81,7 +81,7 @@
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
                     <p>&copy; <?php echo date('Y'); ?> <?php echo e(SITE_NAME); ?>. All rights reserved.</p>
-                    <p>Made with ❤️ for small exotic cats in need</p>
+                    <p>Made with ❤️ for small exotic cats in need | 501(c)(3) Nonprofit (EIN: 39-4358631)</p>
                 </div>
                 <div class="footer-bottom-right">
                     <a href="/privacy.php">Privacy Policy</a>

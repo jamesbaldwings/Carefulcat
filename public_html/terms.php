@@ -65,7 +65,7 @@ require_once __DIR__ . '/includes/header.php';
                     <ul>
                         <li>All donations are voluntary and non-refundable</li>
                         <li>Donations are processed through secure third-party payment processors</li>
-                        <li>We will provide a receipt for your donation</li>
+                        <li>We will provide a tax receipt for your tax-deductible donation</li>
                         <li>Donations will be used to support our rescue operations and mission</li>
                         <li>We reserve the right to use donations where they are most needed</li>
                     </ul>

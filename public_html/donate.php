@@ -4,8 +4,8 @@ require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
 $pageTitle = 'Donate - Help Rescue Small Exotic Cats';
-$metaDescription = 'Support Careful Cat Rescue with a donation. Your contribution helps us rescue, rehabilitate, and rehome small exotic cats including servals, savannahs, bengals, and caracals.';
-$metaKeywords = 'donate exotic cat rescue, support exotic feline sanctuary, exotic cat charity, donate to exotic cat rescue, sponsor exotic cat, Murfreesboro TN nonprofit';
+$metaDescription = 'Support Careful Cat Rescue with a tax-deductible donation. Your contribution helps us rescue, rehabilitate, and rehome small exotic cats including servals, savannahs, bengals, and caracals.';
+$metaKeywords = 'donate exotic cat rescue, support exotic feline sanctuary, exotic cat charity, tax deductible donation, sponsor exotic cat, Murfreesboro TN nonprofit';
 
 // Get sponsor cat if specified
 $sponsorCatId = isset($_GET['sponsor']) ? sanitize($_GET['sponsor']) : '';
@@ -199,7 +199,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card">
                     <div class="card-content">
                         <h3>Tax Deductible</h3>
-                        <p>Your donation directly supports the rescue, rehabilitation, and rehoming of small exotic cats in our care. Thank you for your generosity.</p>
+                        <p>Careful Cat Rescue is a registered 501(c)(3) nonprofit organization (EIN: 39-4358631). Your donation is tax-deductible to the full extent allowed by law.</p>
                         <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 0;">You will receive a receipt via email for your tax records.</p>
                     </div>
                 </div>

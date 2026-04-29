@@ -164,7 +164,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content">
                     <h4>🎯 Tax Benefits</h4>
-                    <p>Sponsorship contributions may be tax-deductible. Contact us for details about our nonprofit status.</p>
+                    <p>Sponsorships are tax-deductible. Careful Cat Rescue is a registered 501(c)(3) nonprofit (EIN: 39-4358631).</p>
                 </div>
             </div>
         </div>
