@@ -134,7 +134,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Are donations tax-deductible?</h4>
-                    <p>Yes! Careful Cat Rescue is a registered 501(c)(3) nonprofit organization. All donations are tax-deductible to the extent allowed by law. We'll provide a receipt for your records.</p>
+                    <p>We are working toward our 501(c)(3) nonprofit status. Please contact us for the latest information about the tax-deductibility of your donation. We provide receipts for all contributions.</p>
                 </div>
             </div>
             

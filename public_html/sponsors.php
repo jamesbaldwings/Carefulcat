@@ -150,7 +150,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content">
                     <h4>📣 Brand Visibility</h4>
-                    <p>Reach thousands of exotic cat lovers and animal welfare advocates through our website and social media.</p>
+                    <p>Gain visibility among exotic cat enthusiasts and animal welfare supporters through our website and social media channels.</p>
                 </div>
             </div>
             
@@ -164,7 +164,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content">
                     <h4>🎯 Tax Benefits</h4>
-                    <p>Sponsorships are tax-deductible as we are a registered 501(c)(3) nonprofit organization.</p>
+                    <p>Sponsorship contributions may be tax-deductible. Contact us for details about our nonprofit status.</p>
                 </div>
             </div>
         </div>

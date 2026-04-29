@@ -34,23 +34,19 @@ require_once __DIR__ . '/includes/header.php';
             <div>
                 <div class="card">
                     <div class="card-content" style="background-color: var(--primary-color); color: white; text-align: center; padding: 2rem;">
-                        <h3 style="color: white; margin-bottom: 1.5rem;">Our Impact</h3>
-                        <div class="grid grid-2" style="gap: 2rem;">
-                            <div>
-                                <div style="font-size: 3rem; font-weight: bold;">500+</div>
-                                <div>Exotic Cats Rescued</div>
+                        <h3 style="color: white; margin-bottom: 1.5rem;">What We Stand For</h3>
+                        <div style="text-align: left; max-width: 320px; margin: 0 auto;">
+                            <div style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                                <strong style="font-size: 1.25rem;">&#10003;</strong> Specialized exotic feline care
                             </div>
-                            <div>
-                                <div style="font-size: 3rem; font-weight: bold;">400+</div>
-                                <div>Successful Adoptions</div>
+                            <div style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                                <strong style="font-size: 1.25rem;">&#10003;</strong> Responsible placement in qualified homes
                             </div>
-                            <div>
-                                <div style="font-size: 3rem; font-weight: bold;">100+</div>
-                                <div>Dedicated Volunteers</div>
+                            <div style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
+                                <strong style="font-size: 1.25rem;">&#10003;</strong> Individualized veterinary attention
                             </div>
-                            <div>
-                                <div style="font-size: 3rem; font-weight: bold;">24/7</div>
-                                <div>Specialized Care</div>
+                            <div style="padding: 0.75rem 0;">
+                                <strong style="font-size: 1.25rem;">&#10003;</strong> Education on exotic cat ownership
                             </div>
                         </div>
                     </div>
