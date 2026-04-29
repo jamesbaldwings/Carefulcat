@@ -11,7 +11,7 @@ if (!isPageVisible('adoptions')) {
 }
 
 $pageTitle = 'Adoptable Exotic Cats - Find Your Perfect Exotic Feline';
-$metaDescription = 'Browse our adorable small exotic cats looking for forever homes. Find your perfect exotic feline companion — servals, savannahs, bengals, caracals, and more.';
+$metaDescription = 'Browse our adorable small exotic cats looking for forever homes. Find your perfect exotic feline companion - servals, savannahs, bengals, caracals, and more.';
 $metaKeywords = 'adopt exotic cat, exotic cat adoption, serval adoption, savannah cat adoption, bengal cat adoption, caracal adoption, exotic feline rescue, Murfreesboro TN';
 
 // Get filter parameters

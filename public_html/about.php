@@ -23,11 +23,13 @@ require_once __DIR__ . '/includes/header.php';
         <div class="grid grid-2" style="gap: 3rem; align-items: center;">
             <div>
                 <h2 class="mb-3">Our Story</h2>
-                <p>Careful Cat Rescue was founded with a simple but powerful mission: to provide a safe haven for small exotic cats in need and find them loving forever homes.</p>
+                <p>Careful Cat Rescue began in an unexpected way. After operating a small wildlife rescue for several years, we were asked to take in a close friend's exotic felines when she became ill. What started as a personal commitment quickly became something more.</p>
                 
-                <p>What started as a small operation has grown into a comprehensive rescue organization serving the Murfreesboro, TN area. We rescue small exotic felines from shelters, private surrenders, and difficult situations, providing them with specialized medical care, rehabilitation, and lots of love while we search for their perfect families.</p>
+                <p>To protect native wildlife, we made the difficult decision to close our wildlife rescue and focus solely on the care of small exotic cats, reducing the risk of disease transmission between exotic and local species. Through word of mouth, more animals in need began to find their way to us, each with unique challenges, backgrounds, and care requirements.</p>
                 
-                <p>Every exotic cat that comes through our doors receives individualized care, including veterinary treatment, spay/neuter services, vaccinations, and behavioral support. We believe every small exotic feline deserves a second chance, regardless of age, health status, or background.</p>
+                <p>As the number of exotic cats in private ownership continues to grow across the country, so does the need for responsible, specialized rescue. Recognizing this gap, we chose to make our mission public and expand our efforts.</p>
+                
+                <p>Today, Careful Cat Rescue is dedicated to providing small exotic felines with safe, knowledgeable care while working to place them in appropriate, well-prepared homes. Each animal receives individualized attention, including veterinary care, proper nutrition, and behavioral support, with a focus on long-term wellbeing.</p>
             </div>
             <div>
                 <div class="card">

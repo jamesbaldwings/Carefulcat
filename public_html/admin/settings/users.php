@@ -47,8 +47,8 @@ require_once __DIR__ . '/../includes/admin-header.php';
                     <?php echo ((int)($u['is_active'] ?? 0) === 1) ? 'Active' : 'Inactive'; ?>
                   </span>
                 </td>
-                <td><?php echo ($u['last_login'] ?? null) ? formatDateTime($u['last_login'] ?? '') : '—'; ?></td>
-                <td><?php echo ($u['created_at'] ?? null) ? formatDateTime($u['created_at'] ?? '') : '—'; ?></td>
+                <td><?php echo ($u['last_login'] ?? null) ? formatDateTime($u['last_login'] ?? '') : ' - '; ?></td>
+                <td><?php echo ($u['created_at'] ?? null) ? formatDateTime($u['created_at'] ?? '') : ' - '; ?></td>
               </tr>
             <?php endforeach; ?>
           </tbody>

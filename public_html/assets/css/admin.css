@@ -455,7 +455,7 @@ body {
 }
 
 /* ============================
-   FORM STYLES — POLISHED
+   FORM STYLES - POLISHED
    ============================ */
 
 /* Form wrapper for padding inside admin-card */
@@ -613,7 +613,7 @@ textarea.admin-form-control {
 }
 
 /* ============================
-   FILE UPLOAD — STYLED BOX
+   FILE UPLOAD - STYLED BOX
    ============================ */
 .form-group input[type="file"] {
     width: 100%;
@@ -687,7 +687,7 @@ textarea.admin-form-control {
 }
 
 /* ============================
-   FORM GRID — TWO COLUMN
+   FORM GRID - TWO COLUMN
    ============================ */
 .form-grid {
     display: grid;

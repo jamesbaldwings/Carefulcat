@@ -98,7 +98,7 @@ require_once __DIR__ . '/includes/header.php';
                             <div class="form-group">
                                 <label class="form-label">Sponsor a Specific Exotic Cat (Optional)</label>
                                 <select name="sponsored_cat_id" class="form-control">
-                                    <option value="">General Donation — Where Needed Most</option>
+                                    <option value="">General Donation - Where Needed Most</option>
                                     <?php foreach ($cats as $cat): ?>
                                     <option value="<?php echo e($cat['id']); ?>" <?php echo $sponsorCat && $sponsorCat['id'] === $cat['id'] ? 'selected' : ''; ?>>
                                         <?php echo e($cat['name']); ?> (<?php echo ucfirst(e($cat['status'])); ?>)
@@ -162,17 +162,17 @@ require_once __DIR__ . '/includes/header.php';
                         <div style="margin-top: 1.5rem;">
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$25</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Provides high-protein food for one exotic cat for a week — servals, savannahs, and other exotic felines require specialized diets.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Provides high-protein food for one exotic cat for a week - servals, savannahs, and other exotic felines require specialized diets.</p>
                             </div>
                             
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$50</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Covers a veterinary checkup with an exotic animal specialist — routine care that keeps our residents healthy.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Covers a veterinary checkup with an exotic animal specialist - routine care that keeps our residents healthy.</p>
                             </div>
                             
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$100</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Funds emergency medical treatment — many exotic cats arrive malnourished or injured and need immediate care.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Funds emergency medical treatment - many exotic cats arrive malnourished or injured and need immediate care.</p>
                             </div>
                             
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
@@ -182,7 +182,7 @@ require_once __DIR__ . '/includes/header.php';
                             
                             <div>
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$500+</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Funds a full rescue operation — from transport to intake, medical evaluation, and initial rehabilitation of a newly rescued exotic cat.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Funds a full rescue operation - from transport to intake, medical evaluation, and initial rehabilitation of a newly rescued exotic cat.</p>
                             </div>
                         </div>
                     </div>

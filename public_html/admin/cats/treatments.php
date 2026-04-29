@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD']==='POST'){
 require_once __DIR__.'/../includes/admin-header.php';
 ?>
 <div class="admin-card">
-  <div class="admin-card-header"><h2 class="admin-card-title">➕ Add Treatment — <?php echo htmlspecialchars($cat['name'] ?? '');?></h2></div>
+  <div class="admin-card-header"><h2 class="admin-card-title">➕ Add Treatment - <?php echo htmlspecialchars($cat['name'] ?? '');?></h2></div>
   <?php if($errors):?><div class="alert alert-error"><?php echo htmlspecialchars(implode(' ',$errors));?></div><?php endif;?>
   <form method="post">
     <input type="hidden" name="csrf" value="<?php echo csrf_token();?>">

@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin Header — FULL VERSION (with emojis + fixed includes + RESIDENTS LINK)
+ * Admin Header - FULL VERSION (with emojis + fixed includes + RESIDENTS LINK)
  * Correct paths, authentication, and active nav highlighting.
  */
 require_once __DIR__ . '/../../includes/config.php';

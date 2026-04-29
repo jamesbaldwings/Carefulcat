@@ -45,7 +45,7 @@ require_once __DIR__.'/../includes/admin-header.php';
           <select name="cat_id" id="cat_id" required>
             <?php foreach($cats as $c):?>
               <option value="<?php echo htmlspecialchars($c['id'] ?? '');?>" <?php echo $a['cat_id']==$c['id']?'selected':''; ?>>
-                <?php echo htmlspecialchars((($c['shelter_tag'] ?? '') ? ($c['shelter_tag'] . ' — ') : '') . ($c['name'] ?? ''));?>
+                <?php echo htmlspecialchars((($c['shelter_tag'] ?? '') ? ($c['shelter_tag'] . ' - ') : '') . ($c['name'] ?? ''));?>
               </option>
             <?php endforeach;?>
           </select>

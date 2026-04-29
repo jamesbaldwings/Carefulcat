@@ -72,7 +72,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content text-center">
                     <h3>Learn & Grow</h3>
-                    <p>Gain valuable experience in exotic animal care and rescue operations — skills you won't find anywhere else.</p>
+                    <p>Gain valuable experience in exotic animal care and rescue operations - skills you won't find anywhere else.</p>
                 </div>
             </div>
             
@@ -91,7 +91,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Volunteer Opportunities</h2>
-            <p class="section-subtitle">There are many ways to help our exotic cats — find the role that fits you best.</p>
+            <p class="section-subtitle">There are many ways to help our exotic cats - find the role that fits you best.</p>
         </div>
         
         <div class="grid grid-2">

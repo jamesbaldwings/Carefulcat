@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin Login Page — Hardened & Consistent
+ * Admin Login Page - Hardened & Consistent
  * - Uses require_* includes
  * - Redirects early if already logged in
  * - Verifies with password_verify() via verifyPassword()
