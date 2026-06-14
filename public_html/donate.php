@@ -145,7 +145,7 @@ require_once __DIR__ . '/includes/header.php';
             <div>
                 <?php if ($sponsorCat): ?>
                 <div class="card mb-3">
-                    <img src="<?php echo e($sponsorCat['hero_photo']); ?>" alt="<?php echo e($sponsorCat['name']); ?>" class="card-image">
+                    <img src="<?php echo e(cat_photo($sponsorCat)); ?>" alt="<?php echo e($sponsorCat['name']); ?>" class="card-image">
                     <div class="card-content">
                         <h3>Sponsor <?php echo e($sponsorCat['name']); ?></h3>
                         <p><?php echo e(truncate($sponsorCat['bio'], 150)); ?></p>
