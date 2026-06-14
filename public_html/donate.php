@@ -3,9 +3,9 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Donate - Help Rescue Small Exotic Cats';
-$metaDescription = 'Support Careful Cat Rescue with a tax-deductible donation. Your contribution helps us rescue, rehabilitate, and rehome small exotic cats including servals, savannahs, bengals, and caracals.';
-$metaKeywords = 'donate exotic cat rescue, support exotic feline sanctuary, exotic cat charity, tax deductible donation, sponsor exotic cat, Murfreesboro TN nonprofit';
+$pageTitle = 'Donate - Help Rescue Cats';
+$metaDescription = 'Support Careful Cat Rescue with a tax-deductible donation. Your contribution helps us rescue, rehabilitate, and rehome cats including servals, savannahs, bengals, and caracals.';
+$metaKeywords = 'donate cat rescue, support cat sanctuary, cat charity, tax deductible donation, sponsor cat, Murfreesboro TN nonprofit';
 
 // Get sponsor cat if specified
 $sponsorCatId = isset($_GET['sponsor']) ? sanitize($_GET['sponsor']) : '';
@@ -25,8 +25,8 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
-        <h1>Make a Difference for Exotic Felines</h1>
-        <p>Your donation helps us provide specialized food, expert medical care, safe enclosures, and love to small exotic cats in need. Every contribution saves lives!</p>
+        <h1>Make a Difference for Cats</h1>
+        <p>Your donation helps us provide specialized food, expert medical care, safe enclosures, and love to cats in need. Every contribution saves lives!</p>
     </div>
 </section>
 
@@ -34,7 +34,7 @@ require_once __DIR__ . '/includes/header.php';
 <section style="background: linear-gradient(135deg, #fff5f5, #ffe8e8); padding: 2rem 0;">
     <div class="container text-center">
         <p style="font-size: 1.2rem; font-weight: 600; color: var(--primary-color); margin: 0;">
-            Right now, exotic cats are waiting for rescue. Your donation today means one more life saved.
+            Right now, cats are waiting for rescue. Your donation today means one more life saved.
         </p>
     </div>
 </section>
@@ -47,7 +47,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card" style="border: 2px solid var(--primary-color);">
                     <div class="card-content">
                         <h2 style="color: var(--primary-color);">Make a Donation</h2>
-                        <p style="margin-bottom: 1.5rem; color: var(--text-light);">100% of your donation goes directly to exotic cat care. It takes less than 2 minutes.</p>
+                        <p style="margin-bottom: 1.5rem; color: var(--text-light);">100% of your donation goes directly to cat care. It takes less than 2 minutes.</p>
                         
                         <form id="donationForm">
                             <input type="hidden" name="csrf_token" value="<?php echo generateCsrfToken(); ?>">
@@ -96,7 +96,7 @@ require_once __DIR__ . '/includes/header.php';
                             
                             <?php if (count($cats) > 0): ?>
                             <div class="form-group">
-                                <label class="form-label">Sponsor a Specific Exotic Cat (Optional)</label>
+                                <label class="form-label">Sponsor a Specific Cat (Optional)</label>
                                 <select name="sponsored_cat_id" class="form-control">
                                     <option value="">General Donation - Where Needed Most</option>
                                     <?php foreach ($cats as $cat): ?>
@@ -156,33 +156,33 @@ require_once __DIR__ . '/includes/header.php';
                 
                 <div class="card mb-3" style="border-left: 4px solid var(--primary-color);">
                     <div class="card-content">
-                        <h3>Your Impact on Exotic Cat Lives</h3>
-                        <p>Every donation helps us provide essential specialized care for small exotic cats in need. Here's exactly how your contribution makes a difference:</p>
+                        <h3>Your Impact on Cat Lives</h3>
+                        <p>Every donation helps us provide essential specialized care for cats in need. Here's exactly how your contribution makes a difference:</p>
                         
                         <div style="margin-top: 1.5rem;">
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$25</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Provides high-protein food for one exotic cat for a week - servals, savannahs, and other exotic felines require specialized diets.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Provides high-protein food for one cat for a week - servals, savannahs, and other cats require specialized diets.</p>
                             </div>
                             
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$50</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Covers a veterinary checkup with an exotic animal specialist - routine care that keeps our residents healthy.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Covers a veterinary checkup with an animal specialist - routine care that keeps our residents healthy.</p>
                             </div>
                             
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$100</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Funds emergency medical treatment - many exotic cats arrive malnourished or injured and need immediate care.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Funds emergency medical treatment - many cats arrive malnourished or injured and need immediate care.</p>
                             </div>
                             
                             <div style="margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border-color);">
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$250</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Covers spay/neuter surgery and comprehensive vaccinations for one exotic feline.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Covers spay/neuter surgery and comprehensive vaccinations for one cat.</p>
                             </div>
                             
                             <div>
                                 <strong style="color: var(--primary-color); font-size: 1.25rem;">$500+</strong>
-                                <p style="margin: 0.5rem 0 0 0;">Funds a full rescue operation - from transport to intake, medical evaluation, and initial rehabilitation of a newly rescued exotic cat.</p>
+                                <p style="margin: 0.5rem 0 0 0;">Funds a full rescue operation - from transport to intake, medical evaluation, and initial rehabilitation of a newly rescued cat.</p>
                             </div>
                         </div>
                     </div>
@@ -190,8 +190,8 @@ require_once __DIR__ . '/includes/header.php';
                 
                 <div class="card mb-3" style="background-color: #f0fdf4;">
                     <div class="card-content">
-                        <h3>Why Exotic Cats Need Your Help</h3>
-                        <p>Small exotic cats like servals, caracals, savannahs, and bengals are often acquired as pets by owners who underestimate the specialized care they require. When these owners can no longer care for them, these beautiful animals need a safe place to go.</p>
+                        <h3>Why Cats Need Your Help</h3>
+                        <p>Cats like servals, caracals, savannahs, and bengals are often acquired as pets by owners who underestimate the specialized care they require. When these owners can no longer care for them, these beautiful animals need a safe place to go.</p>
                         <p style="font-weight: 600; margin-bottom: 0;">Your donation ensures they receive the expert care, proper nutrition, and safe environment they deserve while we find them the right forever home.</p>
                     </div>
                 </div>
@@ -212,13 +212,13 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section" style="background-color: var(--bg-light);">
     <div class="container">
         <div class="section-header text-center">
-            <h2 class="section-title">Other Ways to Support Our Exotic Cats</h2>
+            <h2 class="section-title">Other Ways to Support Our Cats</h2>
         </div>
         <div class="grid grid-3">
             <div class="card">
                 <div class="card-content text-center">
                     <h4>Volunteer Your Time</h4>
-                    <p>Help care for our exotic residents, assist at events, or support our operations.</p>
+                    <p>Help care for our residents, assist at events, or support our operations.</p>
                     <a href="/volunteer.php" class="btn btn-outline mt-2">Learn More</a>
                 </div>
             </div>
