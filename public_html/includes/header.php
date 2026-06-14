@@ -12,9 +12,9 @@ $currentPage = basename($_SERVER['PHP_SELF'], '.php');
 $siteName = SITE_NAME;
 $siteUrl = SITE_URL;
 $currentUrl = $siteUrl . parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
-$fullTitle = isset($pageTitle) ? e($pageTitle) . ' | ' . $siteName : $siteName . ' - Small Exotic Cat Rescue in Murfreesboro, TN';
-$metaDesc = isset($metaDescription) ? e($metaDescription) : 'Careful Cat Rescue is a nonprofit dedicated to rescuing, rehabilitating, and rehoming small exotic felines in Murfreesboro, TN. Adopt, volunteer, or donate today.';
-$metaKw = isset($metaKeywords) ? e($metaKeywords) : 'exotic cat rescue, small exotic cat adoption, exotic feline sanctuary, Murfreesboro TN, serval rescue, savannah cat rescue, bengal cat rescue, caracal rescue, donate exotic cat rescue';
+$fullTitle = isset($pageTitle) ? e($pageTitle) . ' | ' . $siteName : $siteName . ' - Cat Rescue in Murfreesboro, TN';
+$metaDesc = isset($metaDescription) ? e($metaDescription) : 'Careful Cat Rescue is a nonprofit dedicated to rescuing, rehabilitating, and rehoming cats in Murfreesboro, TN. Adopt, volunteer, or donate today.';
+$metaKw = isset($metaKeywords) ? e($metaKeywords) : 'cat rescue, cat adoption, cat sanctuary, Murfreesboro TN, serval rescue, savannah cat rescue, bengal cat rescue, caracal rescue, donate cat rescue';
 $ogImg = isset($ogImage) ? e($ogImage) : ASSETS_URL . '/images/careful_cat_logo_1757800576415-Cgbj6qkL.png';
 ?>
 <!DOCTYPE html>
@@ -54,7 +54,7 @@ $ogImg = isset($ogImage) ? e($ogImage) : ASSETS_URL . '/images/careful_cat_logo_
         "@context": "https://schema.org",
         "@type": ["NonprofitOrganization", "LocalBusiness"],
         "name": "Careful Cat Rescue",
-        "description": "Careful Cat Rescue is a nonprofit organization dedicated to rescuing abandoned, neglected, and homeless small exotic felines. We provide medical care, rehabilitation, and a safe environment while they await their forever homes.",
+        "description": "Careful Cat Rescue is a nonprofit organization dedicated to rescuing abandoned, neglected, and homeless cats. We provide medical care, rehabilitation, and a safe environment while they await their forever homes.",
         "url": "<?php echo e($siteUrl); ?>",
         "logo": "<?php echo ASSETS_URL; ?>/images/careful_cat_logo_1757800576415-Cgbj6qkL.png",
         "image": "<?php echo $ogImg; ?>",
@@ -90,7 +90,7 @@ $ogImg = isset($ogImage) ? e($ogImage) : ASSETS_URL . '/images/careful_cat_logo_
                 "@type": "EntryPoint",
                 "urlTemplate": "<?php echo e($siteUrl); ?>/donate.php"
             },
-            "description": "Donate to support small exotic cat rescue and rehabilitation"
+            "description": "Donate to support cat rescue and rehabilitation"
         }
     }
     </script>
