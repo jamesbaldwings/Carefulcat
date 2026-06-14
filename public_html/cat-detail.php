@@ -16,9 +16,9 @@ if (!$cat) {
     redirect('/adoptions.php');
 }
 
-$pageTitle = e($cat['name']) . ' - Exotic Cat Available for Adoption';
-$metaDescription = $cat['bio'] ? truncate(strip_tags($cat['bio']), 150) : 'Meet ' . $cat['name'] . ', a small exotic cat available for adoption at Careful Cat Rescue in Murfreesboro, TN.';
-$metaKeywords = 'adopt ' . e($cat['species']) . ', exotic cat adoption Murfreesboro TN, ' . e($cat['name']) . ' exotic cat rescue';
+$pageTitle = e($cat['name']) . ' - Cat Available for Adoption';
+$metaDescription = $cat['bio'] ? truncate(strip_tags($cat['bio']), 150) : 'Meet ' . $cat['name'] . ', a cat available for adoption at Careful Cat Rescue in Murfreesboro, TN.';
+$metaKeywords = 'adopt ' . e($cat['species']) . ', cat adoption Murfreesboro TN, ' . e($cat['name']) . ' cat rescue';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -26,7 +26,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section">
     <div class="container" style="max-width: 1000px;">
         <a href="/adoptions.php" style="display: inline-block; margin-bottom: 1rem; color: var(--text-light);">
-            &larr; Back to Adoptable Exotic Cats
+            &larr; Back to Adoptable Cats
         </a>
         
         <div class="cat-detail-card">
@@ -92,10 +92,10 @@ require_once __DIR__ . '/includes/header.php';
                             &#10003; <?php echo e($cat['name']); ?> has found a forever home!
                         </p>
                         <a href="/adoptions.php" class="btn btn-primary">
-                            View Other Adoptable Exotic Cats
+                            View Other Adoptable Cats
                         </a>
                         <a href="/donate.php" class="btn btn-outline">
-                            Donate to Help More Exotic Cats
+                            Donate to Help More Cats
                         </a>
                     </div>
                     <?php elseif ($cat['status'] === 'pending'): ?>
@@ -104,10 +104,10 @@ require_once __DIR__ . '/includes/header.php';
                             &#8987; <?php echo e($cat['name']); ?>'s adoption is pending
                         </p>
                         <a href="/adoptions.php" class="btn btn-primary">
-                            View Other Adoptable Exotic Cats
+                            View Other Adoptable Cats
                         </a>
                         <a href="/donate.php" class="btn btn-outline">
-                            Donate to Help More Exotic Cats
+                            Donate to Help More Cats
                         </a>
                     </div>
                     <?php else: ?>
