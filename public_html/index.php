@@ -96,7 +96,7 @@ require_once __DIR__ . '/includes/header.php';
                 <span class="cat-status <?php echo e($cat['status']); ?>">
                     <?php echo ucfirst(e($cat['status'])); ?>
                 </span>
-                <img src="<?php echo e($cat['hero_photo']); ?>" alt="<?php echo e($cat['name']); ?>" class="card-image">
+                <img src="<?php echo e(cat_photo($cat)); ?>" alt="<?php echo e($cat['name']); ?>" class="card-image">
                 <div class="card-content">
                     <h3 class="card-title"><?php echo e($cat['name']); ?></h3>
                     <p class="card-text"><?php echo e(truncate($cat['bio'], 100)); ?></p>
