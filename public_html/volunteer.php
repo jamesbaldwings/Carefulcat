@@ -10,9 +10,9 @@ if (!isPageVisible('volunteer')) {
     exit;
 }
 
-$pageTitle = 'Volunteer With Us - Help Rescue Exotic Cats';
-$metaDescription = 'Join our team of dedicated volunteers and help make a difference in the lives of small exotic cats in need. Volunteer at Careful Cat Rescue in Murfreesboro, TN.';
-$metaKeywords = 'volunteer exotic cat rescue, exotic feline sanctuary volunteer, Murfreesboro TN animal volunteer, small exotic cat care volunteer';
+$pageTitle = 'Volunteer With Us - Help Rescue Cats';
+$metaDescription = 'Join our team of dedicated volunteers and help make a difference in the lives of cats in need. Volunteer at Careful Cat Rescue in Murfreesboro, TN.';
+$metaKeywords = 'volunteer cat rescue, cat sanctuary volunteer, Murfreesboro TN animal volunteer, cat care volunteer';
 
 $successMessage = '';
 $errorMessage = '';
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  VALUES (?, ?, ?, ?, ?, ?, ?, 'pending', NOW())",
                 [$name, $email, $phone, $availability, $interests, $experience, $message]
             );
-            $successMessage = 'Thank you for your interest in volunteering with our exotic cats! We\'ll be in touch soon.';
+            $successMessage = 'Thank you for your interest in volunteering with our cats! We\'ll be in touch soon.';
         } catch (Exception $e) {
             $errorMessage = 'Sorry, there was an error submitting your application. Please try again.';
         }
@@ -49,7 +49,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Volunteer With Us</h1>
-        <p>Join our team of dedicated volunteers and help make a difference in the lives of small exotic cats in need.</p>
+        <p>Join our team of dedicated volunteers and help make a difference in the lives of cats in need.</p>
     </div>
 </section>
 
@@ -58,28 +58,28 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Why Volunteer?</h2>
-            <p class="section-subtitle">Volunteering at Careful Cat Rescue is a uniquely rewarding experience that makes a real difference for exotic felines.</p>
+            <p class="section-subtitle">Volunteering at Careful Cat Rescue is a uniquely rewarding experience that makes a real difference for cats.</p>
         </div>
         
         <div class="grid grid-3">
             <div class="card">
                 <div class="card-content text-center">
                     <h3>Make a Difference</h3>
-                    <p>Your time and effort directly improves the lives of small exotic cats in our care, helping them heal and find forever homes.</p>
+                    <p>Your time and effort directly improves the lives of cats in our care, helping them heal and find forever homes.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content text-center">
                     <h3>Learn & Grow</h3>
-                    <p>Gain valuable experience in exotic animal care and rescue operations - skills you won't find anywhere else.</p>
+                    <p>Gain valuable experience in animal care and rescue operations - skills you won't find anywhere else.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content text-center">
                     <h3>Join Our Community</h3>
-                    <p>Connect with fellow exotic cat lovers and make lasting friendships with people who share your passion.</p>
+                    <p>Connect with fellow cat lovers and make lasting friendships with people who share your passion.</p>
                 </div>
             </div>
         </div>
@@ -91,28 +91,28 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Volunteer Opportunities</h2>
-            <p class="section-subtitle">There are many ways to help our exotic cats - find the role that fits you best.</p>
+            <p class="section-subtitle">There are many ways to help our cats - find the role that fits you best.</p>
         </div>
         
         <div class="grid grid-2">
             <div class="card">
                 <div class="card-content">
-                    <h3>Exotic Cat Care</h3>
-                    <p>Feed, enrich, and socialize our exotic cats. Help keep their specialized enclosures clean and comfortable. This is hands-on work with our incredible animals.</p>
+                    <h3>Cat Care</h3>
+                    <p>Feed, enrich, and socialize our cats. Help keep their specialized enclosures clean and comfortable. This is hands-on work with our incredible animals.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h3>Adoption Events</h3>
-                    <p>Help at adoption events, meet potential adopters, and showcase our wonderful exotic cats to find them loving forever homes.</p>
+                    <p>Help at adoption events, meet potential adopters, and showcase our wonderful cats to find them loving forever homes.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h3>Foster Care</h3>
-                    <p>Provide temporary homes for exotic cats in need of extra care or socialization. Experienced exotic cat owners preferred.</p>
+                    <p>Provide temporary homes for cats in need of extra care or socialization. Experienced cat owners preferred.</p>
                 </div>
             </div>
             
@@ -126,14 +126,14 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content">
                     <h3>Transportation</h3>
-                    <p>Help transport exotic cats to vet appointments, rescue pickups, or adoption events throughout Tennessee.</p>
+                    <p>Help transport cats to vet appointments, rescue pickups, or adoption events throughout Tennessee.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h3>Fundraising</h3>
-                    <p>Organize or assist with fundraising events to support our mission of rescuing and rehoming small exotic felines.</p>
+                    <p>Organize or assist with fundraising events to support our mission of rescuing and rehoming cats.</p>
                 </div>
             </div>
         </div>
@@ -190,7 +190,7 @@ require_once __DIR__ . '/includes/header.php';
                         <label class="form-label">Areas of Interest (select all that apply)</label>
                         <div class="grid grid-2">
                             <label class="checkbox-label">
-                                <input type="checkbox" name="interests[]" value="Exotic Cat Care"> Exotic Cat Care
+                                <input type="checkbox" name="interests[]" value="Cat Care"> Cat Care
                             </label>
                             <label class="checkbox-label">
                                 <input type="checkbox" name="interests[]" value="Adoption Events"> Adoption Events
@@ -211,8 +211,8 @@ require_once __DIR__ . '/includes/header.php';
                     </div>
                     
                     <div class="form-group">
-                        <label class="form-label">Previous Experience with Exotic Animals</label>
-                        <textarea name="experience" class="form-control" rows="3" placeholder="Tell us about any previous experience you have with exotic cats, servals, savannahs, bengals, or other animals..."></textarea>
+                        <label class="form-label">Previous Experience with Animals</label>
+                        <textarea name="experience" class="form-control" rows="3" placeholder="Tell us about any previous experience you have with cats, servals, savannahs, bengals, or other animals..."></textarea>
                     </div>
                     
                     <div class="form-group">
@@ -231,8 +231,8 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section" style="background-color: var(--bg-light);">
     <div class="container text-center">
         <h2 class="section-title">Can't Volunteer Right Now?</h2>
-        <p class="section-subtitle">Even a small donation makes a huge difference for our exotic cats. Every dollar goes directly to their care.</p>
-        <a href="/donate.php" class="btn btn-primary" style="padding: 12px 36px; font-size: 1.1rem;">Donate to Support Our Exotic Cats</a>
+        <p class="section-subtitle">Even a small donation makes a huge difference for our cats. Every dollar goes directly to their care.</p>
+        <a href="/donate.php" class="btn btn-primary" style="padding: 12px 36px; font-size: 1.1rem;">Donate to Support Our Cats</a>
     </div>
 </section>
 
