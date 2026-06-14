@@ -33,7 +33,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="cat-detail-grid">
                 <!-- Cat Image -->
                 <div class="cat-detail-image">
-                    <img src="<?php echo e($cat['hero_photo']); ?>" alt="<?php echo e($cat['name']); ?> - <?php echo e($cat['species']); ?> available for adoption">
+                    <img src="<?php echo e(cat_photo($cat)); ?>" alt="<?php echo e($cat['name']); ?> - <?php echo e($cat['species']); ?> available for adoption">
                     <?php if ($cat['status'] === 'adoptable'): ?>
                     <span class="status-badge adoptable">Adoptable</span>
                     <?php elseif ($cat['status'] === 'adopted'): ?>
