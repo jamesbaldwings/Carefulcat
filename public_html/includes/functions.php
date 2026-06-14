@@ -305,6 +305,24 @@ function e($text) {
 }
 
 /**
+ * Resolve a cat's photo URL with a safe fallback.
+ * Handles missing photos and dead third-party image hosts (e.g. placekitten.com,
+ * which has shut down) so the public site never shows a broken image.
+ */
+function cat_photo($cat) {
+    $url = is_array($cat) ? ($cat['hero_photo'] ?? '') : (string)$cat;
+    $url = trim((string)$url);
+    $dead_hosts = ['placekitten', 'placecage', 'placebear'];
+    foreach ($dead_hosts as $h) {
+        if (stripos($url, $h) !== false) { $url = ''; break; }
+    }
+    if ($url === '') {
+        return '/assets/images/cat-placeholder.svg';
+    }
+    return $url;
+}
+
+/**
  * Get page visibility settings
  */
 function getPageVisibility() {
