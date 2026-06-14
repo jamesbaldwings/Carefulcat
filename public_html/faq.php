@@ -3,9 +3,9 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Frequently Asked Questions About Exotic Cat Rescue & Adoption';
-$metaDescription = 'Find answers to common questions about adopting exotic cats, volunteering at our sanctuary, donating, and supporting Careful Cat Rescue in Murfreesboro, TN.';
-$metaKeywords = 'exotic cat rescue FAQ, adopt exotic cat questions, exotic feline adoption process, volunteer exotic cat sanctuary, donate exotic cat rescue';
+$pageTitle = 'Frequently Asked Questions About Cat Rescue & Adoption';
+$metaDescription = 'Find answers to common questions about adopting cats, volunteering at our sanctuary, donating, and supporting Careful Cat Rescue in Murfreesboro, TN.';
+$metaKeywords = 'cat rescue FAQ, adopt cat questions, cat adoption process, volunteer cat sanctuary, donate cat rescue';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -13,7 +13,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Frequently Asked Questions</h1>
-        <p>Find answers to common questions about our exotic cat rescue, adoption process, and how you can help.</p>
+        <p>Find answers to common questions about our cat rescue, adoption process, and how you can help.</p>
     </div>
 </section>
 
@@ -26,36 +26,36 @@ require_once __DIR__ . '/includes/header.php';
             
             <div class="card mb-3">
                 <div class="card-content">
-                    <h4>How do I adopt an exotic cat?</h4>
-                    <p>Start by browsing our <a href="/adoptions.php">available exotic cats</a>. When you find one you're interested in, fill out an adoption application. We'll review your application, conduct a home visit if needed, and help you meet the exotic feline. If it's a good match, we'll complete the adoption paperwork and you can take your new companion home!</p>
+                    <h4>How do I adopt a cat?</h4>
+                    <p>Start by browsing our <a href="/adoptions.php">available cats</a>. When you find one you're interested in, fill out an adoption application. We'll review your application, conduct a home visit if needed, and help you meet the cat. If it's a good match, we'll complete the adoption paperwork and you can take your new companion home!</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>What is the adoption fee?</h4>
-                    <p>Adoption fees vary by exotic cat but typically range from $75-$150. This fee covers spay/neuter surgery, vaccinations, microchipping, deworming, and flea treatment. All exotic felines are fully vetted before adoption.</p>
+                    <p>Adoption fees vary by cat but typically range from $75-$150. This fee covers spay/neuter surgery, vaccinations, microchipping, deworming, and flea treatment. All cats are fully vetted before adoption.</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Can I adopt if I rent my home?</h4>
-                    <p>Yes! We just need written permission from your landlord confirming that exotic cats are allowed. We're happy to provide a letter template if needed.</p>
+                    <p>Yes! We just need written permission from your landlord confirming that cats are allowed. We're happy to provide a letter template if needed.</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Do you adopt to homes with other pets?</h4>
-                    <p>Absolutely! Many of our exotic cats do well with other pets. We'll help match you with an exotic feline whose personality is compatible with your existing pets. We may require a meet-and-greet to ensure everyone gets along.</p>
+                    <p>Absolutely! Many of our cats do well with other pets. We'll help match you with a cat whose personality is compatible with your existing pets. We may require a meet-and-greet to ensure everyone gets along.</p>
                 </div>
             </div>
             
             <div class="card mb-4">
                 <div class="card-content">
                     <h4>How long does the adoption process take?</h4>
-                    <p>The process typically takes 3-7 days from application to bringing your exotic cat home. This allows time for application review, reference checks, and scheduling a meet-and-greet.</p>
+                    <p>The process typically takes 3-7 days from application to bringing your cat home. This allows time for application review, reference checks, and scheduling a meet-and-greet.</p>
                 </div>
             </div>
             
@@ -65,28 +65,28 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Where are you located?</h4>
-                    <p>We're based in Murfreesboro, TN. Visits are by appointment only. <a href="/book-visit.php">Schedule a visit</a> to meet our exotic cats and see our facility.</p>
+                    <p>We're based in Murfreesboro, TN. Visits are by appointment only. <a href="/book-visit.php">Schedule a visit</a> to meet our cats and see our facility.</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Are you a no-kill shelter?</h4>
-                    <p>Yes! We are committed to a no-kill philosophy. We never euthanize for space or time constraints. Exotic cats stay with us until they find their forever homes, no matter how long it takes.</p>
+                    <p>Yes! We are committed to a no-kill philosophy. We never euthanize for space or time constraints. Cats stay with us until they find their forever homes, no matter how long it takes.</p>
                 </div>
             </div>
             
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Do you accept owner surrenders?</h4>
-                    <p>We accept surrenders on a case-by-case basis depending on our current capacity. Please <a href="/contact.php">contact us</a> to discuss your situation. We also provide resources to help keep exotic cats in their current homes when possible.</p>
+                    <p>We accept surrenders on a case-by-case basis depending on our current capacity. Please <a href="/contact.php">contact us</a> to discuss your situation. We also provide resources to help keep cats in their current homes when possible.</p>
                 </div>
             </div>
             
             <div class="card mb-4">
                 <div class="card-content">
                     <h4>Can I visit without an appointment?</h4>
-                    <p>No, all visits must be scheduled in advance. This ensures we can give you proper attention and that our exotic cats aren't overwhelmed. <a href="/book-visit.php">Book a visit</a> online.</p>
+                    <p>No, all visits must be scheduled in advance. This ensures we can give you proper attention and that our cats aren't overwhelmed. <a href="/book-visit.php">Book a visit</a> online.</p>
                 </div>
             </div>
             
@@ -103,7 +103,7 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card mb-3">
                 <div class="card-content">
                     <h4>Do I need experience to volunteer?</h4>
-                    <p>No experience necessary! We provide training for all volunteers. If you love exotic felines and want to help, we'll teach you everything you need to know.</p>
+                    <p>No experience necessary! We provide training for all volunteers. If you love cats and want to help, we'll teach you everything you need to know.</p>
                 </div>
             </div>
             
@@ -140,8 +140,8 @@ require_once __DIR__ . '/includes/header.php';
             
             <div class="card mb-3">
                 <div class="card-content">
-                    <h4>Can I sponsor a specific exotic cat?</h4>
-                    <p>Yes! You can sponsor an exotic cat's care while they wait for adoption. Sponsorships help cover food, medical care, and daily needs. <a href="/donate.php">Donate now</a> or <a href="/contact.php">contact us</a> to learn more.</p>
+                    <h4>Can I sponsor a specific cat?</h4>
+                    <p>Yes! You can sponsor a cat's care while they wait for adoption. Sponsorships help cover food, medical care, and daily needs. <a href="/donate.php">Donate now</a> or <a href="/contact.php">contact us</a> to learn more.</p>
                 </div>
             </div>
             
@@ -160,7 +160,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section" style="background-color: var(--bg-light);">
     <div class="container text-center">
         <h2 class="section-title">Still Have Questions?</h2>
-        <p class="section-subtitle">We're here to help! Reach out and we'll be happy to answer any questions you have about exotic cat rescue and adoption.</p>
+        <p class="section-subtitle">We're here to help! Reach out and we'll be happy to answer any questions you have about cat rescue and adoption.</p>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
             <a href="/contact.php" class="btn btn-primary">Contact Us</a>
             <a href="/donate.php" class="btn btn-outline">Support Our Mission</a>
