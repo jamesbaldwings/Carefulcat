@@ -4,8 +4,8 @@ require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
 $pageTitle = 'Contact Us - Careful Cat Rescue';
-$metaDescription = 'Get in touch with Careful Cat Rescue. We\'re here to answer your questions about exotic cat adoption, volunteering, donations, and more in Murfreesboro, TN.';
-$metaKeywords = 'contact exotic cat rescue, Careful Cat Rescue contact, exotic feline adoption inquiry, Murfreesboro TN rescue contact';
+$metaDescription = 'Get in touch with Careful Cat Rescue. We\'re here to answer your questions about cat adoption, volunteering, donations, and more in Murfreesboro, TN.';
+$metaKeywords = 'contact cat rescue, Careful Cat Rescue contact, cat adoption inquiry, Murfreesboro TN rescue contact';
 
 // Get cat ID if specified (for adoption inquiries)
 $catId = isset($_GET['cat']) ? sanitize($_GET['cat']) : '';
@@ -21,7 +21,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Contact Us</h1>
-        <p>Have questions about our exotic cats? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+        <p>Have questions about our cats? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
     </div>
 </section>
 
@@ -70,7 +70,7 @@ require_once __DIR__ . '/includes/header.php';
                                 <label class="form-label">Subject *</label>
                                 <select name="subject" class="form-control" required>
                                     <option value="">Select a subject</option>
-                                    <option value="Adoption Inquiry">Exotic Cat Adoption Inquiry</option>
+                                    <option value="Adoption Inquiry">Cat Adoption Inquiry</option>
                                     <option value="Volunteer Opportunity">Volunteer Opportunity</option>
                                     <option value="Donation Question">Donation Question</option>
                                     <option value="Foster Program">Foster Program</option>
@@ -132,8 +132,8 @@ require_once __DIR__ . '/includes/header.php';
                 
                 <div class="card mb-3">
                     <div class="card-content">
-                        <h3>Visit Our Exotic Cat Sanctuary</h3>
-                        <p>We welcome visitors by appointment. Please contact us to schedule a visit to meet our exotic cats.</p>
+                        <h3>Visit Our Cat Sanctuary</h3>
+                        <p>We welcome visitors by appointment. Please contact us to schedule a visit to meet our cats.</p>
                         <?php if (isPageVisible('book_visit')): ?>
                         <a href="/book-visit.php" class="btn btn-primary">Schedule a Visit</a>
                         <?php endif; ?>
@@ -155,7 +155,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card" style="border: 2px solid var(--primary-color); background: #fff5f5;">
                     <div class="card-content text-center">
                         <h4 style="color: var(--primary-color);">Support Our Mission</h4>
-                        <p>Can't adopt or volunteer right now? A donation makes a huge difference for our exotic cats.</p>
+                        <p>Can't adopt or volunteer right now? A donation makes a huge difference for our cats.</p>
                         <a href="/donate.php" class="btn btn-primary" style="width: 100%;">Donate Now</a>
                     </div>
                 </div>
