@@ -31,6 +31,14 @@ a2ensite carefulcat > /dev/null 2>&1 || true
 # Remove default Apache page so index.php is served
 rm -f /var/www/html/index.html
 
+# Ensure uploads directory exists and is writable.
+# On Railway the container filesystem is ephemeral; mount a Volume at
+# /var/www/html/uploads so uploaded photos survive redeploys. A freshly
+# mounted volume is empty/owned by root, so we (re)create + chown it here.
+mkdir -p /var/www/html/uploads
+chown -R www-data:www-data /var/www/html/uploads
+chmod 775 /var/www/html/uploads
+
 # Ensure proper ownership
 chown -R www-data:www-data /var/www/html
 
