@@ -10,9 +10,9 @@ if (!isPageVisible('residents')) {
     exit;
 }
 
-$pageTitle = 'Our Exotic Cat Residents - Sanctuary Felines';
-$metaDescription = 'Meet all the wonderful small exotic cats currently living at Careful Cat Rescue sanctuary in Murfreesboro, TN. Some are adoptable, others are permanent sanctuary residents.';
-$metaKeywords = 'exotic cat sanctuary residents, small exotic cats Murfreesboro TN, serval sanctuary, savannah cat rescue resident, bengal cat rescue, exotic feline sanctuary';
+$pageTitle = 'Our Cat Residents - Sanctuary Felines';
+$metaDescription = 'Meet all the wonderful cats currently living at Careful Cat Rescue sanctuary in Murfreesboro, TN. Some are adoptable, others are permanent sanctuary residents.';
+$metaKeywords = 'cat sanctuary residents, cats Murfreesboro TN, serval sanctuary, savannah cat rescue resident, bengal cat rescue, cat sanctuary';
 
 // Get all cats (not just adoptable)
 $sql = "SELECT * FROM cats ORDER BY intake_date DESC";
@@ -23,8 +23,8 @@ require_once __DIR__ . '/includes/header.php';
 
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
-        <h1>Our Exotic Cat Residents</h1>
-        <p>Meet all the wonderful small exotic cats currently living at our sanctuary. Some are looking for forever homes, while others are permanent residents receiving specialized lifelong care.</p>
+        <h1>Our Cat Residents</h1>
+        <p>Meet all the wonderful cats currently living at our sanctuary. Some are looking for forever homes, while others are permanent residents receiving specialized lifelong care.</p>
     </div>
 </section>
 
@@ -32,7 +32,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <!-- Results Count -->
         <p class="mb-3" style="color: var(--text-light);">
-            Currently caring for <?php echo count($cats); ?> exotic cat<?php echo count($cats) !== 1 ? 's' : ''; ?>
+            Currently caring for <?php echo count($cats); ?> cat<?php echo count($cats) !== 1 ? 's' : ''; ?>
         </p>
         
         <!-- Cats Grid -->
@@ -74,7 +74,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="card">
             <div class="card-content text-center" style="padding: 3rem;">
                 <h3>No residents yet</h3>
-                <p>We're just getting started! Check back soon to meet our exotic feline friends.</p>
+                <p>We're just getting started! Check back soon to meet our cat friends.</p>
             </div>
         </div>
         <?php endif; ?>
@@ -85,12 +85,12 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section" style="background-color: var(--bg-light);">
     <div class="container text-center">
         <div class="section-header">
-            <h2 class="section-title">Support Our Exotic Cat Residents</h2>
-            <p class="section-subtitle">Your donation helps us provide specialized food, expert medical care, and love to all our exotic cats. These animals depend on your generosity.</p>
+            <h2 class="section-title">Support Our Cat Residents</h2>
+            <p class="section-subtitle">Your donation helps us provide specialized food, expert medical care, and love to all our cats. These animals depend on your generosity.</p>
         </div>
         <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
             <a href="/donate.php" class="btn btn-primary btn-lg">Donate Now</a>
-            <a href="/adoptions.php" class="btn btn-outline btn-lg">Adopt an Exotic Cat</a>
+            <a href="/adoptions.php" class="btn btn-outline btn-lg">Adopt a Cat</a>
         </div>
     </div>
 </section>
