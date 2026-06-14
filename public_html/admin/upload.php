@@ -63,8 +63,9 @@ try {
         }
     }
     
-    // Generate unique filename
-    $extension = pathinfo($file['name'], PATHINFO_EXTENSION);
+    // Generate unique filename (normalize extension by MIME type)
+    $ext_map = ['image/jpeg'=>'jpg','image/jpg'=>'jpg','image/png'=>'png','image/gif'=>'gif','image/webp'=>'webp'];
+    $extension = $ext_map[$mime_type] ?? strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
     $filename = uniqid('img_', true) . '.' . $extension;
     $filepath = $upload_dir . $filename;
     
