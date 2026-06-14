@@ -220,7 +220,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card mb-4" style="background-color: #f0f9ff; border: 2px solid var(--primary-color);">
                     <div class="card-content">
                         <div style="display: grid; grid-template-columns: 120px 1fr; gap: 1.5rem; align-items: center;">
-                            <img src="<?php echo e($cat['hero_photo']); ?>" alt="<?php echo e($cat['name']); ?>" style="width: 120px; height: 120px; object-fit: cover; border-radius: var(--border-radius);">
+                            <img src="<?php echo e(cat_photo($cat)); ?>" alt="<?php echo e($cat['name']); ?>" style="width: 120px; height: 120px; object-fit: cover; border-radius: var(--border-radius);">
                             <div>
                                 <h3 style="margin: 0 0 0.5rem 0; color: var(--primary-color);"><?php echo e($cat['name']); ?></h3>
                                 <div class="cat-badges">
