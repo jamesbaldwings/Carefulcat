@@ -3,9 +3,9 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'Our Sponsors - Partners in Exotic Cat Rescue';
-$metaDescription = 'Thank you to our generous sponsors who support Careful Cat Rescue and help us save small exotic cats in Murfreesboro, TN. Learn how your business can become a sponsor.';
-$metaKeywords = 'exotic cat rescue sponsors, sponsor exotic feline sanctuary, Careful Cat Rescue partners, animal rescue sponsorship Tennessee';
+$pageTitle = 'Our Sponsors - Partners in Cat Rescue';
+$metaDescription = 'Thank you to our generous sponsors who support Careful Cat Rescue and help us save cats in Murfreesboro, TN. Learn how your business can become a sponsor.';
+$metaKeywords = 'cat rescue sponsors, sponsor cat sanctuary, Careful Cat Rescue partners, animal rescue sponsorship Tennessee';
 
 // Get all active sponsors
 $sponsors = db()->fetchAll(
@@ -18,7 +18,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>Our Generous Sponsors</h1>
-        <p>We are grateful to our sponsors whose support makes our exotic cat rescue work possible. Thank you for believing in our mission!</p>
+        <p>We are grateful to our sponsors whose support makes our cat rescue work possible. Thank you for believing in our mission!</p>
     </div>
 </section>
 
@@ -65,7 +65,7 @@ require_once __DIR__ . '/includes/header.php';
         <div class="card">
             <div class="card-content text-center" style="padding: 3rem;">
                 <h3>No Sponsors Yet</h3>
-                <p>We're currently building our sponsor network. Interested in becoming a sponsor for our exotic cat rescue?</p>
+                <p>We're currently building our sponsor network. Interested in becoming a sponsor for our cat rescue?</p>
                 <a href="/contact.php" class="btn btn-primary mt-3">Contact Us</a>
             </div>
         </div>
@@ -78,7 +78,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Become a Sponsor</h2>
-            <p class="section-subtitle">Partner with us to make a lasting impact on the lives of small exotic cats in need.</p>
+            <p class="section-subtitle">Partner with us to make a lasting impact on the lives of cats in need.</p>
         </div>
         
         <div class="grid grid-3">
@@ -126,7 +126,7 @@ require_once __DIR__ . '/includes/header.php';
         </div>
         
         <div class="text-center mt-4">
-            <p><strong>Interested in becoming a sponsor of our exotic cat rescue?</strong></p>
+            <p><strong>Interested in becoming a sponsor of our cat rescue?</strong></p>
             <a href="/contact.php" class="btn btn-primary">Contact Us About Sponsorship</a>
         </div>
     </div>
@@ -143,21 +143,21 @@ require_once __DIR__ . '/includes/header.php';
             <div class="card">
                 <div class="card-content">
                     <h4>🤝 Community Impact</h4>
-                    <p>Show your commitment to exotic animal welfare and community support in Murfreesboro, TN.</p>
+                    <p>Show your commitment to animal welfare and community support in Murfreesboro, TN.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>📣 Brand Visibility</h4>
-                    <p>Gain visibility among exotic cat enthusiasts and animal welfare supporters through our website and social media channels.</p>
+                    <p>Gain visibility among cat enthusiasts and animal welfare supporters through our website and social media channels.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>💚 Feel-Good Factor</h4>
-                    <p>Know that your support directly saves lives and helps small exotic cats find forever homes.</p>
+                    <p>Know that your support directly saves lives and helps cats find forever homes.</p>
                 </div>
             </div>
             
