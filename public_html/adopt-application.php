@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         // Validation
         if (empty($selectedCatId)) {
-            throw new Exception('Please select an exotic cat to adopt.');
+            throw new Exception('Please select a cat to adopt.');
         }
         
         if (empty($fullName)) {
@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         
         if ($residenceOwnership === 'rent' && !$landlordVerified) {
-            throw new Exception('If you rent, you must verify with your landlord that you can own an exotic cat.');
+            throw new Exception('If you rent, you must verify with your landlord that you can own a cat.');
         }
         
         if (!$agreeInfoTrue || !$agreeVetCare || !$agreeNoDeclaw || !$agreeReturnIfUnable) {
@@ -179,9 +179,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-$pageTitle = $cat ? 'Adopt ' . e($cat['name']) . ' - Exotic Cat Adoption Application' : 'Exotic Cat Adoption Application';
-$metaDescription = 'Submit a comprehensive adoption application for a small exotic cat at Careful Cat Rescue in Murfreesboro, TN. Servals, savannahs, bengals, caracals, and more.';
-$metaKeywords = 'exotic cat adoption application, adopt exotic feline, serval adoption form, savannah cat adoption, bengal cat adoption Murfreesboro TN';
+$pageTitle = $cat ? 'Adopt ' . e($cat['name']) . ' - Cat Adoption Application' : 'Cat Adoption Application';
+$metaDescription = 'Submit a comprehensive adoption application for a cat at Careful Cat Rescue in Murfreesboro, TN. Servals, savannahs, bengals, caracals, and more.';
+$metaKeywords = 'cat adoption application, adopt cat, serval adoption form, savannah cat adoption, bengal cat adoption Murfreesboro TN';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -191,7 +191,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="section">
     <div class="container" style="max-width: 900px;">
         <a href="<?php echo $cat ? '/cat-detail.php?id=' . e($cat['id']) : '/adoptions.php'; ?>" style="display: inline-block; margin-bottom: 1rem; color: var(--text-light);">
-            &larr; Back to <?php echo $cat ? e($cat['name']) : 'Adoptable Exotic Cats'; ?>
+            &larr; Back to <?php echo $cat ? e($cat['name']) : 'Adoptable Cats'; ?>
         </a>
         
         <?php if ($m = flash_out('success')): ?>
@@ -204,7 +204,7 @@ require_once __DIR__ . '/includes/header.php';
         
         <div class="admin-card">
             <div class="admin-card-header">
-                <h1 class="admin-card-title">Exotic Cat Adoption Application</h1>
+                <h1 class="admin-card-title">Cat Adoption Application</h1>
                 <p style="margin: 8px 0 0 0; color: #666; font-size: 14px;">
                     <?php if ($cat): ?>
                         Apply to adopt <?php echo e($cat['name']); ?>
@@ -249,7 +249,7 @@ require_once __DIR__ . '/includes/header.php';
                     <div class="form-group">
                         <label class="form-label required">Select Cat to Adopt</label>
                         <select name="cat_id" class="form-control" required>
-                            <option value="">-- Choose an exotic cat --</option>
+                            <option value="">-- Choose a cat --</option>
                             <?php
                             $availableCats = db()->fetchAll("SELECT id, name, age, sex, species, fee FROM cats WHERE status = 'adoptable' ORDER BY name");
                             foreach ($availableCats as $availableCat):
@@ -368,7 +368,7 @@ require_once __DIR__ . '/includes/header.php';
                         <div class="form-group" id="landlordVerificationGroup" style="display: none;">
                             <label class="checkbox-label">
                                 <input type="checkbox" name="landlord_verified" value="1" id="landlordVerified">
-                                <span>I have verified with my landlord that I am permitted to own an exotic cat</span>
+                                <span>I have verified with my landlord that I am permitted to own a cat</span>
                             </label>
                             <small class="form-help" style="color: #dc2626; margin-top: 0.5rem; display: block;">
                                 If you rent, you must confirm landlord approval before proceeding
@@ -461,7 +461,7 @@ require_once __DIR__ . '/includes/header.php';
                         <h2 class="form-section-title">🧡 4. Pet Care and Lifestyle</h2>
                         
                         <div class="form-group">
-                            <label class="form-label required">Why do you want to adopt an exotic cat?</label>
+                            <label class="form-label required">Why do you want to adopt a cat?</label>
                             <textarea name="adoption_reason" class="form-control" rows="4" required
                                       placeholder="Tell us about your motivation for adopting and what you're looking for in a feline companion"><?php echo isset($_POST['adoption_reason']) ? e($_POST['adoption_reason']) : ''; ?></textarea>
                         </div>
@@ -474,7 +474,7 @@ require_once __DIR__ . '/includes/header.php';
                                 <option value="outdoors_only">Outdoors only</option>
                                 <option value="indoor_outdoor">Both indoors and outdoors</option>
                             </select>
-                            <small class="form-help">We strongly recommend keeping exotic cats in secure, enriched environments for their safety</small>
+                            <small class="form-help">We strongly recommend keeping cats in secure, enriched environments for their safety</small>
                         </div>
                         
                         <div class="form-group">
@@ -535,7 +535,7 @@ require_once __DIR__ . '/includes/header.php';
                             <label class="checkbox-label">
                                 <input type="checkbox" name="open_to_bonded_pair" value="1"
                                        <?php echo isset($_POST['open_to_bonded_pair']) ? 'checked' : ''; ?>>
-                                <span>I am open to adopting a bonded pair (two exotic cats that must stay together)</span>
+                                <span>I am open to adopting a bonded pair (two cats that must stay together)</span>
                             </label>
                         </div>
                         
@@ -543,7 +543,7 @@ require_once __DIR__ . '/includes/header.php';
                             <label class="checkbox-label">
                                 <input type="checkbox" name="open_to_special_needs" value="1"
                                        <?php echo isset($_POST['open_to_special_needs']) ? 'checked' : ''; ?>>
-                                <span>I am open to adopting a special-needs exotic cat (medical conditions, disabilities, etc.)</span>
+                                <span>I am open to adopting a special-needs cat (medical conditions, disabilities, etc.)</span>
                             </label>
                         </div>
                         
