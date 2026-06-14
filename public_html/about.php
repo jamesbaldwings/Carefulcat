@@ -3,9 +3,9 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/db.php';
 require_once __DIR__ . '/includes/functions.php';
 
-$pageTitle = 'About Us - Our Mission to Rescue Small Exotic Cats';
-$metaDescription = 'Learn about Careful Cat Rescue, our mission to save and rehome small exotic cats including servals, savannahs, bengals, caracals, and other exotic felines in Murfreesboro, TN.';
-$metaKeywords = 'about exotic cat rescue, small exotic cat sanctuary, serval rescue mission, savannah cat rescue, bengal cat rescue, caracal rescue, exotic feline nonprofit, Murfreesboro TN';
+$pageTitle = 'About Us - Our Mission to Rescue Cats';
+$metaDescription = 'Learn about Careful Cat Rescue, our mission to save and rehome cats of all kinds — from domestic cats to exotic breeds like servals, savannahs, bengals, and caracals — in Murfreesboro, TN.';
+$metaKeywords = 'about cat rescue, cat sanctuary, exotic cat rescue, serval rescue mission, savannah cat rescue, bengal cat rescue, caracal rescue, cat nonprofit, Murfreesboro TN';
 
 require_once __DIR__ . '/includes/header.php';
 ?>
@@ -13,7 +13,7 @@ require_once __DIR__ . '/includes/header.php';
 <section class="hero" style="padding: 60px 0;">
     <div class="container">
         <h1>About Careful Cat Rescue</h1>
-        <p>Dedicated to rescuing and rehoming small exotic felines, one paw at a time.</p>
+        <p>Dedicated to rescuing and rehoming cats of every kind &mdash; with a special heart for exotic breeds &mdash; one paw at a time.</p>
     </div>
 </section>
 
@@ -23,13 +23,13 @@ require_once __DIR__ . '/includes/header.php';
         <div class="grid grid-2" style="gap: 3rem; align-items: center;">
             <div>
                 <h2 class="mb-3">Our Story</h2>
-                <p>Careful Cat Rescue began in an unexpected way. After operating a small wildlife rescue for several years, we were asked to take in a close friend's exotic felines when she became ill. What started as a personal commitment quickly became something more.</p>
+                <p>Careful Cat Rescue began in an unexpected way. After operating a small wildlife rescue for several years, we were asked to take in a close friend's cats when she became ill. What started as a personal commitment quickly became something more.</p>
                 
-                <p>To protect native wildlife, we made the difficult decision to close our wildlife rescue and focus solely on the care of small exotic cats, reducing the risk of disease transmission between exotic and local species. Through word of mouth, more animals in need began to find their way to us, each with unique challenges, backgrounds, and care requirements.</p>
+                <p>To protect native wildlife, we made the difficult decision to close our wildlife rescue and focus solely on the care of cats, reducing the risk of disease transmission between and local species. Through word of mouth, more animals in need began to find their way to us, each with unique challenges, backgrounds, and care requirements.</p>
                 
-                <p>As the number of exotic cats in private ownership continues to grow across the country, so does the need for responsible, specialized rescue. Recognizing this gap, we chose to make our mission public and expand our efforts.</p>
+                <p>As the number of cats in private ownership continues to grow across the country, so does the need for responsible, specialized rescue. Recognizing this gap, we chose to make our mission public and expand our efforts.</p>
                 
-                <p>Today, Careful Cat Rescue is dedicated to providing small exotic felines with safe, knowledgeable care while working to place them in appropriate, well-prepared homes. Each animal receives individualized attention, including veterinary care, proper nutrition, and behavioral support, with a focus on long-term wellbeing.</p>
+                <p>Today, Careful Cat Rescue is dedicated to providing cats with safe, knowledgeable care while working to place them in appropriate, well-prepared homes. Each animal receives individualized attention, including veterinary care, proper nutrition, and behavioral support, with a focus on long-term wellbeing.</p>
             </div>
             <div>
                 <div class="card">
@@ -37,7 +37,7 @@ require_once __DIR__ . '/includes/header.php';
                         <h3 style="color: white; margin-bottom: 1.5rem;">What We Stand For</h3>
                         <div style="text-align: left; max-width: 320px; margin: 0 auto;">
                             <div style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
-                                <strong style="font-size: 1.25rem;">&#10003;</strong> Specialized exotic feline care
+                                <strong style="font-size: 1.25rem;">&#10003;</strong> Specialized cat care
                             </div>
                             <div style="padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.2);">
                                 <strong style="font-size: 1.25rem;">&#10003;</strong> Responsible placement in qualified homes
@@ -46,7 +46,7 @@ require_once __DIR__ . '/includes/header.php';
                                 <strong style="font-size: 1.25rem;">&#10003;</strong> Individualized veterinary attention
                             </div>
                             <div style="padding: 0.75rem 0;">
-                                <strong style="font-size: 1.25rem;">&#10003;</strong> Education on exotic cat ownership
+                                <strong style="font-size: 1.25rem;">&#10003;</strong> Education on cat ownership
                             </div>
                         </div>
                     </div>
@@ -64,7 +64,7 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Types of Cats We Rescue</h2>
-            <p class="section-subtitle">We specialize in rescuing small wild cats and high-content exotic hybrid breeds that require experienced, dedicated care.</p>
+            <p class="section-subtitle">We specialize in rescuing small wild cats and high-content hybrid breeds that require experienced, dedicated care.</p>
         </div>
         
         <div class="grid grid-2" style="gap: 2rem;">
@@ -81,7 +81,7 @@ require_once __DIR__ . '/includes/header.php';
                     </div>
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
                         <h4 style="margin-bottom: 0.25rem;">Bobcat <span style="font-weight: 400; font-size: 0.875rem; color: var(--text-light);">(Lynx rufus)</span></h4>
-                        <p style="margin: 0;">Sometimes kept as exotic pets, known for high intelligence and strong bonds with their caretakers.</p>
+                        <p style="margin: 0;">Sometimes kept as pets, known for high intelligence and strong bonds with their caretakers.</p>
                     </div>
                     <div>
                         <h4 style="margin-bottom: 0.25rem;">Other Species</h4>
@@ -92,7 +92,7 @@ require_once __DIR__ . '/includes/header.php';
             
             <div class="card">
                 <div class="card-content">
-                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Exotic Hybrid Breeds</h3>
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem;">Hybrid Breeds</h3>
                     <div style="margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
                         <h4 style="margin-bottom: 0.25rem;">Savannah <span style="font-weight: 400; font-size: 0.875rem; color: var(--text-light);">(Serval × Domestic)</span></h4>
                         <p style="margin: 0;">Highly intelligent, active, and tall. F1/F2 generations are closest to the wild ancestor and require experienced owners.</p>
@@ -111,7 +111,7 @@ require_once __DIR__ . '/includes/header.php';
                     </div>
                     <div>
                         <h4 style="margin-bottom: 0.25rem;">And More</h4>
-                        <p style="margin: 0;">We welcome all small exotic and hybrid felines in need of rescue, rehabilitation, or rehoming.</p>
+                        <p style="margin: 0;">We welcome all small and hybrid felines in need of rescue, rehabilitation, or rehoming.</p>
                     </div>
                 </div>
             </div>
@@ -136,7 +136,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card-content text-center">
                     <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem;">🏥</h3>
                     <h4>Rescue</h4>
-                    <p>We rescue small exotic cats from shelters, private surrenders, and difficult situations, giving them a second chance at life.</p>
+                    <p>We rescue cats from shelters, private surrenders, and difficult situations, giving them a second chance at life.</p>
                 </div>
             </div>
             
@@ -144,7 +144,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card-content text-center">
                     <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem;">💚</h3>
                     <h4>Rehabilitate</h4>
-                    <p>Every exotic feline receives medical care, behavioral support, and lots of love to prepare them for adoption.</p>
+                    <p>Every cat receives medical care, behavioral support, and lots of love to prepare them for adoption.</p>
                 </div>
             </div>
             
@@ -152,7 +152,7 @@ require_once __DIR__ . '/includes/header.php';
                 <div class="card-content text-center">
                     <h3 style="color: var(--primary-color); font-size: 2.5rem; margin-bottom: 1rem;">🏡</h3>
                     <h4>Rehome</h4>
-                    <p>We carefully match each exotic cat with the perfect family to ensure lifelong happiness.</p>
+                    <p>We carefully match each cat with the perfect family to ensure lifelong happiness.</p>
                 </div>
             </div>
         </div>
@@ -169,43 +169,43 @@ require_once __DIR__ . '/includes/header.php';
         <div class="grid grid-2" style="gap: 2rem;">
             <div class="card">
                 <div class="card-content">
-                    <h4>🐱 Exotic Cat Rescue & Intake</h4>
-                    <p>We accept small exotic cats from various situations including owner surrenders, strays, and shelter transfers. Each feline is assessed and given immediate specialized care.</p>
+                    <h4>🐱 Cat Rescue & Intake</h4>
+                    <p>We accept cats from various situations including owner surrenders, strays, and shelter transfers. Each feline is assessed and given immediate specialized care.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>💉 Medical Care</h4>
-                    <p>All exotic cats receive comprehensive veterinary care including vaccinations, spay/neuter surgery, and treatment for any medical conditions from vets experienced with exotic species.</p>
+                    <p>All cats receive comprehensive veterinary care including vaccinations, spay/neuter surgery, and treatment for any medical conditions from vets experienced with species.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>🏠 Foster Program</h4>
-                    <p>Our network of experienced foster homes provides temporary care for exotic felines who need extra attention or a quieter environment.</p>
+                    <p>Our network of experienced foster homes provides temporary care for cats who need extra attention or a quieter environment.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>❤️ Adoption Services</h4>
-                    <p>We carefully screen potential adopters to ensure each exotic cat goes to a safe, loving, and knowledgeable permanent home.</p>
+                    <p>We carefully screen potential adopters to ensure each cat goes to a safe, loving, and knowledgeable permanent home.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>📚 Education & Outreach</h4>
-                    <p>We educate the community about responsible ownership, specialized care programs, and exotic feline welfare.</p>
+                    <p>We educate the community about responsible ownership, specialized care programs, and cat welfare.</p>
                 </div>
             </div>
             
             <div class="card">
                 <div class="card-content">
                     <h4>🤝 Community Support</h4>
-                    <p>We provide resources and support to exotic cat owners in need, helping keep these felines in their homes when possible.</p>
+                    <p>We provide resources and support to cat owners in need, helping keep these felines in their homes when possible.</p>
                 </div>
             </div>
         </div>
@@ -228,16 +228,16 @@ require_once __DIR__ . '/includes/header.php';
                             <strong>✓ No-Kill Philosophy:</strong> We never euthanize for space or time constraints.
                         </li>
                         <li style="padding: 1rem 0; border-bottom: 1px solid var(--border-color);">
-                            <strong>✓ Lifetime Support:</strong> We provide support to adopters for the life of the exotic cat.
+                            <strong>✓ Lifetime Support:</strong> We provide support to adopters for the life of the cat.
                         </li>
                         <li style="padding: 1rem 0; border-bottom: 1px solid var(--border-color);">
                             <strong>✓ Transparency:</strong> We operate with full transparency in our finances and operations.
                         </li>
                         <li style="padding: 1rem 0; border-bottom: 1px solid var(--border-color);">
-                            <strong>✓ Quality Care:</strong> Every exotic feline receives individualized, high-quality care from experienced handlers.
+                            <strong>✓ Quality Care:</strong> Every cat receives individualized, high-quality care from experienced handlers.
                         </li>
                         <li style="padding: 1rem 0;">
-                            <strong>✓ Community Focus:</strong> We work with the community to create lasting change for small exotic cats.
+                            <strong>✓ Community Focus:</strong> We work with the community to create lasting change for cats.
                         </li>
                     </ul>
                 </div>
@@ -251,15 +251,15 @@ require_once __DIR__ . '/includes/header.php';
     <div class="container">
         <div class="section-header text-center">
             <h2 class="section-title">Get Involved</h2>
-            <p class="section-subtitle">There are many ways you can help support our mission to rescue exotic felines.</p>
+            <p class="section-subtitle">There are many ways you can help support our mission to rescue cats.</p>
         </div>
         
         <div class="grid grid-4">
             <div class="card">
                 <div class="card-content text-center">
                     <h4>Adopt</h4>
-                    <p>Give an exotic cat a forever home</p>
-                    <a href="/adoptions.php" class="btn btn-primary mt-2">View Exotic Cats</a>
+                    <p>Give a cat a forever home</p>
+                    <a href="/adoptions.php" class="btn btn-primary mt-2">View Cats</a>
                 </div>
             </div>
             
